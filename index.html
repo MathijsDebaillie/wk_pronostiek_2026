@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WK 2026 - Vrienden van de Nuts Pronostiek Dashboard</title>
+    
+    <!-- Icons for Browser Tabs and Mobile Home Screen -->
+    <link rel="icon" type="image/webp" href="logo.webp">
+    <link rel="apple-touch-icon" href="logo.webp">
+    <meta name="theme-color" content="#002f6c">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -609,11 +615,11 @@
                     <div class="flex justify-between items-start mb-2">
                         <div>
                             <span class="font-bold text-sm text-slate-800 flex items-center">${getFlagHtml(t.name, 'mr-2')}${translateTeam(t.name)}</span>
-                            <span class="text-[11px] text-slate-500 font-medium">${t.w}W-${t.g}G-${t.v}V</span>
+                            <span class="text-[11px] text-slate-500 font-medium">${t.w}W-${t.g}G-${t.v}V | ⚽ ${t.goals} goals</span>
                         </div>
                         <div class="text-right">
-                            <span class="text-xs text-slate-400 font-semibold block uppercase tracking-wider">Basis</span>
-                            <span class="text-xs font-black text-[#002f6c]">${t.bp} pt</span>
+                            <span class="text-xs text-slate-400 font-semibold block uppercase tracking-wider">Punten</span>
+                            <span class="text-xs font-black text-[#002f6c]">${t.tp} pt</span>
                         </div>
                     </div>
                     <div class="flex flex-wrap mt-1">
@@ -627,8 +633,13 @@
         function honestTeamPointsList(allTeams, stats) {
             return allTeams.map(name => {
                 const s = stats[name] || { winst: 0, gelijk: 0, verlies: 0, goals: 0, basisPunten: 0 };
-                return { name, bp: s.basisPunten, w: s.winst, g: s.gelijk, v: s.verlies };
-            }).sort((a, b) => b.bp - a.bp);
+                const tp = s.basisPunten + s.goals;
+                return { name, bp: s.basisPunten, tp: tp, w: s.winst, g: s.gelijk, v: s.verlies, goals: s.goals };
+            }).sort((a, b) => {
+                if (b.tp !== a.tp) return b.tp - a.tp;
+                if (b.bp !== a.bp) return b.bp - a.bp;
+                return b.goals - a.goals;
+            });
         }
 
         // ==========================================
