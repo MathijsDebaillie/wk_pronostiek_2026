@@ -35,9 +35,23 @@
         <div class="max-w-4xl mx-auto relative z-10 flex flex-col items-center">
             <img src="logo.webp" alt="WK 2026 Logo" class="h-32 object-contain mb-4" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/en/thumb/8/87/2026_FIFA_World_Cup_Logo.svg/300px-2026_FIFA_World_Cup_Logo.svg.png'" />
             <h1 class="text-2xl md:text-4xl font-extrabold tracking-tight text-[#002f6c] uppercase">WK 2026 pronostiek - Vrienden van de Nuts</h1>
-            <div class="mt-4 inline-flex items-center space-x-2 bg-rose-50 text-rose-700 px-4 py-2 rounded-full border border-rose-200 font-semibold shadow-sm">
-                <span>⚽ Totaal aantal goals tornooi:</span>
-                <span id="header-total-goals" class="text-xl font-black">0</span>
+            <div class="mt-4 flex flex-wrap justify-center items-center gap-2">
+                <div class="inline-flex items-center space-x-2 bg-rose-50 text-rose-700 px-3 py-1.5 rounded-full border border-rose-200 font-semibold shadow-sm">
+                    <span>⚽ <span class="hidden sm:inline">Totaal aantal goals tornooi:</span></span>
+                    <span id="header-total-goals" class="text-lg font-black">0</span>
+                </div>
+                <div class="inline-flex items-center space-x-1.5 bg-amber-50 text-amber-700 px-3 py-1.5 rounded-full border border-amber-200 font-semibold shadow-sm" title="Gouden Schutter">
+                    <span class="text-base leading-none">🎯</span>
+                    <span id="header-schutter" class="text-sm font-black">-</span>
+                </div>
+                <div class="inline-flex items-center space-x-1.5 bg-sky-50 text-sky-700 px-3 py-1.5 rounded-full border border-sky-200 font-semibold shadow-sm" title="Underdog Hero">
+                    <span class="text-base leading-none">🐶</span>
+                    <span id="header-underdog" class="text-sm font-black">-</span>
+                </div>
+                <div class="inline-flex items-center space-x-1.5 bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-full border border-emerald-200 font-semibold shadow-sm" title="Rising Star">
+                    <span class="text-base leading-none">🚀</span>
+                    <span id="header-rising" class="text-sm font-black">-</span>
+                </div>
             </div>
         </div>
     </header>
@@ -336,13 +350,18 @@
                 const lbSection = document.getElementById('content-leaderboard');
                 container = document.createElement('div');
                 container.id = 'trophies-container';
-                container.className = 'grid grid-cols-1 md:grid-cols-2 gap-4 mb-6';
+                container.className = 'grid grid-cols-1 md:grid-cols-3 gap-4 mb-6';
                 lbSection.insertBefore(container, lbSection.firstChild);
             }
             if (calculatedData.length === 0) return;
 
             const schutter = [...calculatedData].sort((a, b) => b.participantGoals - a.participantGoals)[0];
             const underdog = [...calculatedData].sort((a, b) => b.underdogPoints - a.underdogPoints)[0];
+            const risingStar = [...calculatedData].sort((a, b) => b.delta - a.delta)[0];
+
+            document.getElementById('header-schutter').innerText = schutter.naam;
+            document.getElementById('header-underdog').innerText = underdog.naam;
+            document.getElementById('header-rising').innerText = risingStar.naam;
 
             container.innerHTML = `
                 <div class="bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
@@ -359,6 +378,14 @@
                         <div class="text-xs font-bold text-sky-200 uppercase tracking-wider">Underdog Hero</div>
                         <div class="font-black text-xl leading-tight">${underdog.naam}</div>
                         <div class="text-[11px] text-sky-100 mt-1">${underdog.underdogPoints} pt via underdogs</div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-emerald-400 to-teal-600 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
+                    <div class="text-4xl">🚀</div>
+                    <div>
+                        <div class="text-xs font-bold text-emerald-200 uppercase tracking-wider">Rising Star</div>
+                        <div class="font-black text-xl leading-tight">${risingStar.naam}</div>
+                        <div class="text-[11px] text-emerald-100 mt-1">Snelste stijger (+${risingStar.delta > 0 ? risingStar.delta : 0} posities)</div>
                     </div>
                 </div>
             `;
@@ -581,7 +608,12 @@
                     const div = document.createElement('div');
                     div.className = "bg-slate-50 p-4 rounded-lg border border-slate-200";
                     div.innerHTML = `
-                        <div class="text-center text-xs font-semibold text-slate-500 mb-3">${dateString} om ${timeString}</div>
+                        <div class="relative mb-4 flex items-center justify-center pb-2 border-b border-slate-100">
+                            <div class="text-xs font-semibold text-slate-500">${dateString} om ${timeString}</div>
+                            <div class="absolute right-0">
+                                <button onclick="openSimulationModal('${match.homeTeam}', '${match.awayTeam}')" class="text-[10px] bg-orange-100 text-orange-700 hover:bg-orange-200 px-2 py-1 rounded font-bold shadow-sm transition-colors border border-orange-200 flex items-center">🔮 Simuleer</button>
+                            </div>
+                        </div>
                         
                         <!-- Mobile Layout -->
                         <div class="flex flex-col md:hidden space-y-3">
@@ -590,13 +622,12 @@
                                 <div class="flex flex-wrap justify-center gap-1">${homeBadges}</div>
                             </div>
                             
-                            <div class="flex flex-col items-center justify-center relative py-2">
+                            <div class="flex flex-col items-center justify-center relative py-1">
                                 <div class="absolute inset-0 flex items-center">
                                     <div class="w-full border-t border-slate-200"></div>
                                 </div>
                                 <div class="relative bg-slate-50 px-3 flex flex-col items-center">
-                                    <span class="text-slate-300 font-black text-sm mb-1">VS</span>
-                                    <button onclick="openSimulationModal('${match.homeTeam}', '${match.awayTeam}')" class="text-[10px] bg-orange-100 text-orange-700 hover:bg-orange-200 px-3 py-1 rounded font-bold shadow-sm transition-colors border border-orange-200">🔮 Simuleer</button>
+                                    <span class="text-slate-300 font-black text-sm">VS</span>
                                 </div>
                             </div>
                             
@@ -613,8 +644,7 @@
                                 <div class="flex flex-wrap justify-end gap-1">${homeBadges}</div>
                             </div>
                             <div class="w-2/12 flex flex-col items-center justify-center">
-                                <div class="text-center text-slate-300 font-black text-xl mb-1">VS</div>
-                                <button onclick="openSimulationModal('${match.homeTeam}', '${match.awayTeam}')" class="text-[10px] bg-orange-100 text-orange-700 hover:bg-orange-200 px-2 py-1.5 rounded font-bold shadow-sm transition-colors border border-orange-200">🔮 Simuleer</button>
+                                <div class="text-center text-slate-300 font-black text-xl">VS</div>
                             </div>
                             <div class="w-5/12 text-left">
                                 <div class="font-bold text-[#002f6c] text-base mb-1 flex items-center justify-start">${getFlagHtml(match.awayTeam, 'mr-2')}${translateTeam(match.awayTeam)}</div>
