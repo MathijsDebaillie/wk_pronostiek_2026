@@ -6,47 +6,66 @@
 const participants = [
     {
         "naam": "Mathijs",
+        "goalsGuessed": 279,
         "selectie": [
             { "ploeg": "Spanje", "weging": 10 },
-            { "ploeg": "Kroatië", "weging": 9 },
-            { "ploeg": "Engeland", "weging": 8 },
-            { "ploeg": "Mexico", "weging": 7 },
-            { "ploeg": "Japan", "weging": 6 },
-            { "ploeg": "Uruguay", "weging": 5 },
-            { "ploeg": "Marokko", "weging": 4 },
-            { "ploeg": "Zweden", "weging": 3 },
-            { "ploeg": "Ghana", "weging": 2 },
-            { "ploeg": "Panama", "weging": 1 }
+            { "ploeg": "Frankrijk", "weging": 9 },
+            { "ploeg": "Argentinië", "weging": 8 },
+            { "ploeg": "Uruguay", "weging": 7 },
+            { "ploeg": "Colombia", "weging": 6 },
+            { "ploeg": "Noorwegen", "weging": 5 },
+            { "ploeg": "Japan", "weging": 4 },
+            { "ploeg": "Mexico", "weging": 3 },
+            { "ploeg": "Ivoorkust", "weging": 2 },
+            { "ploeg": "Zweden", "weging": 1 }
         ]
     },
     {
-        "naam": "Thomas",
+        "naam": "Tiebe",
+        "goalsGuessed": 278,
         "selectie": [
             { "ploeg": "Frankrijk", "weging": 10 },
-            { "ploeg": "Argentinië", "weging": 9 },
-            { "ploeg": "België", "weging": 8 },
-            { "ploeg": "Colombia", "weging": 7 },
-            { "ploeg": "Zwitserland", "weging": 6 },
-            { "ploeg": "Verenigde Staten", "weging": 5 },
-            { "ploeg": "Turkije", "weging": 4 },
-            { "ploeg": "Ivoorkust", "weging": 3 },
-            { "ploeg": "Schotland", "weging": 2 },
-            { "ploeg": "Qatar", "weging": 1 }
+            { "ploeg": "Spanje", "weging": 9 },
+            { "ploeg": "Engeland", "weging": 8 },
+            { "ploeg": "Noorwegen", "weging": 7 },
+            { "ploeg": "Japan", "weging": 6 },
+            { "ploeg": "Colombia", "weging": 5 },
+            { "ploeg": "Zweden", "weging": 4 },
+            { "ploeg": "Mexico", "weging": 3 },
+            { "ploeg": "Turkije", "weging": 2 },
+            { "ploeg": "Saudi-Arabië", "weging": 1 }
         ]
     },
     {
-        "naam": "Jef Vandermeiren",
+        "naam": "PW",
+        "goalsGuessed": 266,
         "selectie": [
-            { "ploeg": "Brazilië", "weging": 10 },
-            { "ploeg": "Nederland", "weging": 9 },
-            { "ploeg": "Duitsland", "weging": 8 },
-            { "ploeg": "Senegal", "weging": 7 },
-            { "ploeg": "Oostenrijk", "weging": 6 },
-            { "ploeg": "Zuid-Korea", "weging": 5 },
-            { "ploeg": "Denemarken", "weging": 4 }, // Let op: niet in originele lijst maar als voorbeeld
-            { "ploeg": "Tsjechië", "weging": 3 },
-            { "ploeg": "Saudi-Arabië", "weging": 2 },
-            { "ploeg": "Tunesië", "weging": 1 }
+            { "ploeg": "Spanje", "weging": 10 },
+            { "ploeg": "Argentinië", "weging": 9 },
+            { "ploeg": "Frankrijk", "weging": 8 },
+            { "ploeg": "Uruguay", "weging": 7 },
+            { "ploeg": "Japan", "weging": 6 },
+            { "ploeg": "Colombia", "weging": 5 },
+            { "ploeg": "Mexico", "weging": 4 },
+            { "ploeg": "Noorwegen", "weging": 3 },
+            { "ploeg": "Bosnië", "weging": 2 },
+            { "ploeg": "Ivoorkust", "weging": 1 }
+        ]
+    },
+    {
+        "naam": "Moes",
+        "goalsGuessed": 274,
+        "selectie": [
+            { "ploeg": "Frankrijk", "weging": 10 },
+            { "ploeg": "Spanje", "weging": 9 },
+            { "ploeg": "Argentinië", "weging": 8 },
+            { "ploeg": "Uruguay", "weging": 7 },
+            { "ploeg": "Japan", "weging": 6 },
+            { "ploeg": "Colombia", "weging": 5 },
+            { "ploeg": "Oostenrijk", "weging": 4 },
+            { "ploeg": "Noorwegen", "weging": 3 },
+            { "ploeg": "Paraguay", "weging": 2 },
+            { "ploeg": "Zweden", "weging": 1 }
         ]
     }
 ];
