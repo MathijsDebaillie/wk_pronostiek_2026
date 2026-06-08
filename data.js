@@ -17,7 +17,7 @@ const participants = [
             { "ploeg": "Norway", "weging": 5 },
             { "ploeg": "Japan", "weging": 4 },
             { "ploeg": "Mexico", "weging": 3 },
-            { "ploeg": "Côte d'Ivoire", "weging": 2 },
+            { "ploeg": "Ivory Coast", "weging": 2 },
             { "ploeg": "Sweden", "weging": 1 }
         ]
     },
@@ -49,8 +49,8 @@ const participants = [
             { "ploeg": "Colombia", "weging": 5 },
             { "ploeg": "Mexico", "weging": 4 },
             { "ploeg": "Norway", "weging": 3 },
-            { "ploeg": "Bosnia and Herzegovina", "weging": 2 },
-            { "ploeg": "Côte d'Ivoire", "weging": 1 }
+            { "ploeg": "Bosnia-Herzegovina", "weging": 2 },
+            { "ploeg": "Ivory Coast", "weging": 1 }
         ]
     },
     {
@@ -80,7 +80,7 @@ const matches = [];
 const teamCategories = {
     "favorieten": ["France", "Spain", "Argentina", "England", "Portugal", "Brazil", "Netherlands", "Morocco", "Belgium", "Germany"],
     "outsiders": ["Croatia", "Colombia", "Senegal", "Mexico", "United States", "Uruguay", "Japan", "Switzerland", "Iran", "Turkey", "Ecuador", "Austria", "South Korea", "Australia", "Algeria", "Egypt", "Canada", "Norway"],
-    "underdogs": ["Panama", "Côte d'Ivoire", "Sweden", "Paraguay", "Czechia", "Scotland", "Tunisia", "DR Congo", "Uzbekistan", "Qatar", "Iraq", "South Africa", "Saudi Arabia", "Jordan", "Bosnia and Herzegovina", "Cape Verde", "Ghana", "Curaçao", "Haiti", "New Zealand"]
+    "underdogs": ["Panama", "Ivory Coast", "Sweden", "Paraguay", "Czechia", "Scotland", "Tunisia", "Congo DR", "Uzbekistan", "Qatar", "Iraq", "South Africa", "Saudi Arabia", "Jordan", "Bosnia-Herzegovina", "Cape Verde", "Ghana", "Curaçao", "Haiti", "New Zealand"]
 };
 
 // ==========================================
