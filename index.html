@@ -41,8 +41,8 @@
             <button id="tab-player" onclick="switchTab('player')" class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all text-slate-500 hover:text-slate-800 hover:bg-slate-100 whitespace-nowrap">
                 👤 Speler
             </button>
-            <button id="tab-matches" onclick="switchTab('matches')" class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all text-slate-500 hover:text-slate-800 hover:bg-slate-100 whitespace-nowrap">
-                ⚽ Gespeelde Matchen
+            <button id="tab-calendar" onclick="switchTab('calendar')" class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all text-slate-500 hover:text-slate-800 hover:bg-slate-100 whitespace-nowrap">
+                📅 Kalender & Matchen
             </button>
             <button id="tab-teams" onclick="switchTab('teams')" class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all text-slate-500 hover:text-slate-800 hover:bg-slate-100 whitespace-nowrap">
                 📊 Team Prestaties
@@ -110,13 +110,24 @@
             </div>
         </section>
 
-        <!-- Tab: Matches -->
-        <section id="content-matches" class="hidden max-w-2xl mx-auto">
+        <!-- Tab: Calendar -->
+        <section id="content-calendar" class="hidden max-w-4xl mx-auto space-y-6">
+            <!-- Komende Matchen -->
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5">
+                <h2 class="font-bold text-lg text-slate-800 mb-4 flex justify-between items-center">
+                    <span>Komende Wedstrijden</span>
+                </h2>
+                <div class="space-y-4" id="calendar-upcoming-list">
+                    <!-- Dynamic upcoming matches rows -->
+                </div>
+            </div>
+
+            <!-- Gespeelde Matchen -->
             <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5">
                 <h2 class="font-bold text-lg text-slate-800 mb-4 flex justify-between items-center">
                     <span>Ingevoerde Uitslagen <span class="text-xs font-normal text-slate-500">(Na 120 min)</span></span>
                 </h2>
-                <div class="space-y-3" id="matches-list">
+                <div class="space-y-3" id="calendar-played-list">
                     <!-- Dynamic matches rows -->
                 </div>
             </div>
@@ -159,6 +170,21 @@
             } catch (e) {
                 console.warn('Could not load upcoming matches:', e);
             }
+
+            try {
+                const responsePlayed = await fetch('played_matches.json');
+                if (responsePlayed.ok) {
+                    const playedData = await responsePlayed.json();
+                    if (playedData && playedData.length > 0) {
+                        // Vervang de handmatige data uit data.js met de API data
+                        matches.length = 0; 
+                        matches.push(...playedData);
+                    }
+                }
+            } catch (e) {
+                console.warn('Could not load played matches:', e);
+            }
+
             renderAll();
         }
 
@@ -246,7 +272,7 @@
 
             renderLeaderboard();
             setupPlayerSelect();
-            renderMatches();
+            renderCalendar();
             renderTeamPerformance();
         }
 
@@ -256,7 +282,14 @@
 
             calculatedData.forEach((row, index) => {
                 const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-50 transition-colors group border-b border-slate-100";
+                tr.className = "hover:bg-slate-100 transition-colors cursor-pointer group border-b border-slate-200";
+                tr.onclick = () => {
+                    const select = document.getElementById('player-select');
+                    select.value = index;
+                    renderPlayerDetail();
+                    switchTab('player');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                };
                 
                 let rankBadge = `<span class="font-bold text-slate-500">${index + 1}</span>`;
                 if (index === 0) rankBadge = `<span class="bg-amber-100 text-amber-700 px-2 py-0.5 rounded text-xs font-bold border border-amber-200 shadow-sm">1</span>`;
@@ -361,27 +394,66 @@
             document.getElementById('player-detail-content').classList.remove('hidden');
         }
 
-        function renderMatches() {
-            const container = document.getElementById('matches-list');
-            container.innerHTML = '';
+        function renderCalendar() {
+            // Render Played Matches
+            const playedContainer = document.getElementById('calendar-played-list');
+            playedContainer.innerHTML = '';
 
             if (matches.length === 0) {
-                container.innerHTML = `<p class="text-slate-500 text-sm text-center py-6">Nog geen wedstrijden gespeeld.</p>`;
-                return;
+                playedContainer.innerHTML = `<p class="text-slate-500 text-sm text-center py-6">Nog geen wedstrijden gespeeld.</p>`;
+            } else {
+                matches.forEach(match => {
+                    const div = document.createElement('div');
+                    div.className = "flex justify-between items-center bg-slate-50 px-4 py-3 rounded-lg border border-slate-200";
+                    div.innerHTML = `
+                        <span class="w-5/12 font-semibold text-sm text-slate-700 text-right">${match.thuis}</span>
+                        <span class="w-2/12 text-center bg-white text-[#002f6c] font-black px-2 py-1 rounded text-sm border border-slate-300 shadow-sm">
+                            ${match.goalsThuis} - ${match.goalsUit}
+                        </span>
+                        <span class="w-5/12 font-semibold text-sm text-slate-700 text-left">${match.uit}</span>
+                    `;
+                    playedContainer.appendChild(div);
+                });
             }
 
-            matches.forEach(match => {
-                const div = document.createElement('div');
-                div.className = "flex justify-between items-center bg-slate-50 px-4 py-3 rounded-lg border border-slate-200";
-                div.innerHTML = `
-                    <span class="w-5/12 font-semibold text-sm text-slate-700 text-right">${match.thuis}</span>
-                    <span class="w-2/12 text-center bg-white text-[#002f6c] font-black px-2 py-1 rounded text-sm border border-slate-300 shadow-sm">
-                        ${match.goalsThuis} - ${match.goalsUit}
-                    </span>
-                    <span class="w-5/12 font-semibold text-sm text-slate-700 text-left">${match.uit}</span>
-                `;
-                container.appendChild(div);
-            });
+            // Render Upcoming Matches
+            const upcomingContainer = document.getElementById('calendar-upcoming-list');
+            upcomingContainer.innerHTML = '';
+
+            if (upcomingMatches.length === 0) {
+                upcomingContainer.innerHTML = `<p class="text-slate-500 text-sm text-center py-6">Geen komende wedstrijden gevonden.</p>`;
+            } else {
+                upcomingMatches.forEach(match => {
+                    const matchDate = new Date(match.date);
+                    const timeString = matchDate.toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' });
+                    const dateString = matchDate.toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+                    // Find who selected these teams
+                    const homeSelectors = participants.filter(p => p.selectie.some(s => s.ploeg === match.homeTeam)).map(p => p.naam);
+                    const awaySelectors = participants.filter(p => p.selectie.some(s => s.ploeg === match.awayTeam)).map(p => p.naam);
+
+                    let homeBadges = homeSelectors.map(name => `<span class="inline-block bg-indigo-100 text-indigo-700 text-[10px] px-1.5 py-0.5 rounded font-bold mr-1">${name}</span>`).join('');
+                    let awayBadges = awaySelectors.map(name => `<span class="inline-block bg-indigo-100 text-indigo-700 text-[10px] px-1.5 py-0.5 rounded font-bold ml-1">${name}</span>`).join('');
+
+                    const div = document.createElement('div');
+                    div.className = "bg-slate-50 p-4 rounded-lg border border-slate-200";
+                    div.innerHTML = `
+                        <div class="text-center text-xs font-semibold text-slate-500 mb-3">${dateString} om ${timeString}</div>
+                        <div class="flex justify-between items-center">
+                            <div class="w-5/12 text-right">
+                                <div class="font-bold text-[#002f6c] text-base mb-1">${match.homeTeam}</div>
+                                <div class="flex flex-wrap justify-end gap-1">${homeBadges}</div>
+                            </div>
+                            <div class="w-2/12 text-center text-slate-300 font-black text-xl">VS</div>
+                            <div class="w-5/12 text-left">
+                                <div class="font-bold text-[#002f6c] text-base mb-1">${match.awayTeam}</div>
+                                <div class="flex flex-wrap justify-start gap-1">${awayBadges}</div>
+                            </div>
+                        </div>
+                    `;
+                    upcomingContainer.appendChild(div);
+                });
+            }
         }
 
         function renderTeamPerformance() {
@@ -426,7 +498,7 @@
         // TAB SWITCH UTILS
         // ==========================================
         function switchTab(tabId) {
-            const tabs = ['leaderboard', 'player', 'matches', 'teams'];
+            const tabs = ['leaderboard', 'player', 'calendar', 'teams'];
             tabs.forEach(t => {
                 const btn = document.getElementById(`tab-${t}`);
                 const content = document.getElementById(`content-${t}`);
