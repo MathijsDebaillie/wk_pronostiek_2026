@@ -3,69 +3,70 @@
 // ==========================================
 
 // Deelnemers en hun 10 gekozen ploegen met wegingen (10 t/m 1)
+// ZORG DAT DEZE NAMEN EXACT OVEREENKOMEN MET DE ENGELSE NAMEN VAN DE API
 const participants = [
     {
         "naam": "Mathijs",
         "goalsGuessed": 279,
         "selectie": [
-            { "ploeg": "Spanje", "weging": 10 },
-            { "ploeg": "Frankrijk", "weging": 9 },
-            { "ploeg": "Argentinië", "weging": 8 },
+            { "ploeg": "Spain", "weging": 10 },
+            { "ploeg": "France", "weging": 9 },
+            { "ploeg": "Argentina", "weging": 8 },
             { "ploeg": "Uruguay", "weging": 7 },
             { "ploeg": "Colombia", "weging": 6 },
-            { "ploeg": "Noorwegen", "weging": 5 },
+            { "ploeg": "Norway", "weging": 5 },
             { "ploeg": "Japan", "weging": 4 },
             { "ploeg": "Mexico", "weging": 3 },
-            { "ploeg": "Ivoorkust", "weging": 2 },
-            { "ploeg": "Zweden", "weging": 1 }
+            { "ploeg": "Côte d'Ivoire", "weging": 2 },
+            { "ploeg": "Sweden", "weging": 1 }
         ]
     },
     {
         "naam": "Tiebe",
         "goalsGuessed": 278,
         "selectie": [
-            { "ploeg": "Frankrijk", "weging": 10 },
-            { "ploeg": "Spanje", "weging": 9 },
-            { "ploeg": "Engeland", "weging": 8 },
-            { "ploeg": "Noorwegen", "weging": 7 },
+            { "ploeg": "France", "weging": 10 },
+            { "ploeg": "Spain", "weging": 9 },
+            { "ploeg": "England", "weging": 8 },
+            { "ploeg": "Norway", "weging": 7 },
             { "ploeg": "Japan", "weging": 6 },
             { "ploeg": "Colombia", "weging": 5 },
-            { "ploeg": "Zweden", "weging": 4 },
+            { "ploeg": "Sweden", "weging": 4 },
             { "ploeg": "Mexico", "weging": 3 },
-            { "ploeg": "Turkije", "weging": 2 },
-            { "ploeg": "Saudi-Arabië", "weging": 1 }
+            { "ploeg": "Turkey", "weging": 2 },
+            { "ploeg": "Saudi Arabia", "weging": 1 }
         ]
     },
     {
         "naam": "Papa Wouter",
         "goalsGuessed": 266,
         "selectie": [
-            { "ploeg": "Spanje", "weging": 10 },
-            { "ploeg": "Argentinië", "weging": 9 },
-            { "ploeg": "Frankrijk", "weging": 8 },
+            { "ploeg": "Spain", "weging": 10 },
+            { "ploeg": "Argentina", "weging": 9 },
+            { "ploeg": "France", "weging": 8 },
             { "ploeg": "Uruguay", "weging": 7 },
             { "ploeg": "Japan", "weging": 6 },
             { "ploeg": "Colombia", "weging": 5 },
             { "ploeg": "Mexico", "weging": 4 },
-            { "ploeg": "Noorwegen", "weging": 3 },
-            { "ploeg": "Bosnië", "weging": 2 },
-            { "ploeg": "Ivoorkust", "weging": 1 }
+            { "ploeg": "Norway", "weging": 3 },
+            { "ploeg": "Bosnia and Herzegovina", "weging": 2 },
+            { "ploeg": "Côte d'Ivoire", "weging": 1 }
         ]
     },
     {
         "naam": "Moes",
         "goalsGuessed": 274,
         "selectie": [
-            { "ploeg": "Frankrijk", "weging": 10 },
-            { "ploeg": "Spanje", "weging": 9 },
-            { "ploeg": "Argentinië", "weging": 8 },
+            { "ploeg": "France", "weging": 10 },
+            { "ploeg": "Spain", "weging": 9 },
+            { "ploeg": "Argentina", "weging": 8 },
             { "ploeg": "Uruguay", "weging": 7 },
             { "ploeg": "Japan", "weging": 6 },
             { "ploeg": "Colombia", "weging": 5 },
-            { "ploeg": "Oostenrijk", "weging": 4 },
-            { "ploeg": "Noorwegen", "weging": 3 },
+            { "ploeg": "Austria", "weging": 4 },
+            { "ploeg": "Norway", "weging": 3 },
             { "ploeg": "Paraguay", "weging": 2 },
-            { "ploeg": "Zweden", "weging": 1 }
+            { "ploeg": "Sweden", "weging": 1 }
         ]
     }
 ];
@@ -77,7 +78,7 @@ const matches = [];
 
 // Categorieën op basis van het reglementenformulier (optioneel voor styling/checks)
 const teamCategories = {
-    "favorieten": ["Frankrijk", "Spanje", "Argentinië", "Engeland", "Portugal", "Brazilië", "Nederland", "Marokko", "België", "Duitsland"],
-    "outsiders": ["Kroatië", "Colombia", "Senegal", "Mexico", "Verenigde Staten", "Uruguay", "Japan", "Zwitserland", "Iran", "Turkije", "Ecuador", "Oostenrijk", "Zuid-Korea", "Australië", "Algerije", "Egypte", "Canada", "Noorwegen"],
-    "underdogs": ["Panama", "Ivoorkust", "Zweden", "Paraguay", "Tsjechië", "Schotland", "Tunesië", "DR Congo", "Oezbekistan", "Qatar", "Irak", "Zuid-Afrika", "Saudi-Arabië", "Jordanië", "Bosnië-Herzegovina", "Kaapverdië", "Ghana", "Curaçao", "Haïti", "Nieuw-Zeeland"]
+    "favorieten": ["France", "Spain", "Argentina", "England", "Portugal", "Brazil", "Netherlands", "Morocco", "Belgium", "Germany"],
+    "outsiders": ["Croatia", "Colombia", "Senegal", "Mexico", "United States", "Uruguay", "Japan", "Switzerland", "Iran", "Turkey", "Ecuador", "Austria", "South Korea", "Australia", "Algeria", "Egypt", "Canada", "Norway"],
+    "underdogs": ["Panama", "Côte d'Ivoire", "Sweden", "Paraguay", "Czechia", "Scotland", "Tunisia", "DR Congo", "Uzbekistan", "Qatar", "Iraq", "South Africa", "Saudi Arabia", "Jordan", "Bosnia and Herzegovina", "Cape Verde", "Ghana", "Curaçao", "Haiti", "New Zealand"]
 };

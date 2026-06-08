@@ -418,22 +418,52 @@
 
             // Render Upcoming Matches
             const upcomingContainer = document.getElementById('calendar-upcoming-list');
+            
+            // Controleer of de checkbox al bestaat, zo niet, voeg hem toe
+            let filterDiv = document.getElementById('calendar-filter-div');
+            if (!filterDiv) {
+                const titleElement = upcomingContainer.previousElementSibling;
+                filterDiv = document.createElement('div');
+                filterDiv.id = 'calendar-filter-div';
+                filterDiv.className = "mb-4 pb-4 border-b border-slate-100";
+                filterDiv.innerHTML = `
+                    <label class="flex items-center space-x-2 text-sm text-slate-600 font-medium cursor-pointer w-fit">
+                        <input type="checkbox" id="filter-relevant-matches" class="rounded text-[#002f6c] focus:ring-[#002f6c]" checked onchange="renderCalendar()">
+                        <span>Toon enkel matchen met gekozen ploegen</span>
+                    </label>
+                `;
+                titleElement.insertAdjacentElement('afterend', filterDiv);
+            }
+
+            const showOnlyRelevant = document.getElementById('filter-relevant-matches') ? document.getElementById('filter-relevant-matches').checked : true;
+
             upcomingContainer.innerHTML = '';
 
-            if (upcomingMatches.length === 0) {
-                upcomingContainer.innerHTML = `<p class="text-slate-500 text-sm text-center py-6">Geen komende wedstrijden gevonden.</p>`;
+            let matchesToRender = upcomingMatches;
+
+            // Pre-calculate selectors so we can filter
+            const enrichedMatches = upcomingMatches.map(match => {
+                const homeSelectors = participants.filter(p => p.selectie.some(s => s.ploeg === match.homeTeam)).map(p => p.naam);
+                const awaySelectors = participants.filter(p => p.selectie.some(s => s.ploeg === match.awayTeam)).map(p => p.naam);
+                return { ...match, homeSelectors, awaySelectors };
+            });
+
+            if (showOnlyRelevant) {
+                matchesToRender = enrichedMatches.filter(m => m.homeSelectors.length > 0 || m.awaySelectors.length > 0);
             } else {
-                upcomingMatches.forEach(match => {
+                matchesToRender = enrichedMatches;
+            }
+
+            if (matchesToRender.length === 0) {
+                upcomingContainer.innerHTML = `<p class="text-slate-500 text-sm text-center py-6">Geen matchen gevonden voor deze filter.</p>`;
+            } else {
+                matchesToRender.forEach(match => {
                     const matchDate = new Date(match.date);
                     const timeString = matchDate.toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' });
                     const dateString = matchDate.toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' });
 
-                    // Find who selected these teams
-                    const homeSelectors = participants.filter(p => p.selectie.some(s => s.ploeg === match.homeTeam)).map(p => p.naam);
-                    const awaySelectors = participants.filter(p => p.selectie.some(s => s.ploeg === match.awayTeam)).map(p => p.naam);
-
-                    let homeBadges = homeSelectors.map(name => `<span class="inline-block bg-indigo-100 text-indigo-700 text-[10px] px-1.5 py-0.5 rounded font-bold mr-1">${name}</span>`).join('');
-                    let awayBadges = awaySelectors.map(name => `<span class="inline-block bg-indigo-100 text-indigo-700 text-[10px] px-1.5 py-0.5 rounded font-bold ml-1">${name}</span>`).join('');
+                    let homeBadges = match.homeSelectors.map(name => `<span class="inline-block bg-indigo-100 text-indigo-700 text-[10px] px-1.5 py-0.5 rounded font-bold mr-1">${name}</span>`).join('');
+                    let awayBadges = match.awaySelectors.map(name => `<span class="inline-block bg-indigo-100 text-indigo-700 text-[10px] px-1.5 py-0.5 rounded font-bold ml-1">${name}</span>`).join('');
 
                     const div = document.createElement('div');
                     div.className = "bg-slate-50 p-4 rounded-lg border border-slate-200";
