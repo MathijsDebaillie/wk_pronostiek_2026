@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WK Mexico 2026 - Familie Pronostiek Dashboard</title>
+    <title>WK 2026 - Vrienden van de Nuts Pronostiek Dashboard</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
     </style>
 </head>
+
 <body class="bg-slate-900 text-slate-100 min-h-screen pb-12">
 
     <!-- Header Banner -->
-    <header class="bg-gradient-to-r from-teal-600 to-emerald-600 shadow-xl border-b border-emerald-500/20 text-white py-8 px-4 text-center relative overflow-hidden">
+    <header
+        class="bg-gradient-to-r from-teal-600 to-emerald-600 shadow-xl border-b border-emerald-500/20 text-white py-8 px-4 text-center relative overflow-hidden">
         <div class="absolute inset-0 bg-black/10 mix-blend-overlay"></div>
         <div class="max-w-4xl mx-auto relative z-10">
-            <span class="text-xs font-bold uppercase tracking-widest bg-emerald-800/50 px-3 py-1 rounded-full text-emerald-200 border border-emerald-500/30">15e Editie</span>
+            <span
+                class="text-xs font-bold uppercase tracking-widest bg-emerald-800/50 px-3 py-1 rounded-full text-emerald-200 border border-emerald-500/30">15e
+                Editie</span>
             <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mt-2">PRONOSTIEK WK MEXICO 2026</h1>
             <p class="text-emerald-100/80 text-sm md:text-base mt-2 max-w-xl mx-auto font-medium">
                 Automatische live-berekening van de familiestand op basis van strategische ploegweging.
@@ -27,16 +35,19 @@
 
     <!-- Main Container -->
     <main class="max-w-6xl mx-auto px-4 mt-8">
-        
+
         <!-- Navigation Tabs -->
         <div class="flex border-b border-slate-700 space-x-2 mb-6 overflow-x-auto pb-1">
-            <button id="tab-leaderboard" onclick="switchTab('leaderboard')" class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all bg-slate-800 text-teal-400 border-b-2 border-teal-500 whitespace-nowrap">
+            <button id="tab-leaderboard" onclick="switchTab('leaderboard')"
+                class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all bg-slate-800 text-teal-400 border-b-2 border-teal-500 whitespace-nowrap">
                 🏆 Klassement
             </button>
-            <button id="tab-matches" onclick="switchTab('matches')" class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 whitespace-nowrap">
+            <button id="tab-matches" onclick="switchTab('matches')"
+                class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 whitespace-nowrap">
                 ⚽ Gespeelde Matchen
             </button>
-            <button id="tab-teams" onclick="switchTab('teams')" class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 whitespace-nowrap">
+            <button id="tab-teams" onclick="switchTab('teams')"
+                class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 whitespace-nowrap">
                 📊 Team Prestaties
             </button>
         </div>
@@ -44,17 +55,19 @@
         <!-- Tab: Leaderboard -->
         <section id="content-leaderboard" class="space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-                
+
                 <!-- Standings Table -->
                 <div class="lg:col-span-2 bg-slate-800 rounded-xl border border-slate-700/60 shadow-xl overflow-hidden">
                     <div class="p-5 border-b border-slate-700 flex justify-between items-center bg-slate-800/50">
                         <h2 class="font-bold text-lg text-slate-200">Huidige Rangschikking</h2>
-                        <span class="text-xs text-slate-400 bg-slate-700 px-2.5 py-1 rounded-md font-medium">Gesorteerd op totaalpunten</span>
+                        <span class="text-xs text-slate-400 bg-slate-700 px-2.5 py-1 rounded-md font-medium">Gesorteerd
+                            op totaalpunten</span>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-900/50 text-slate-400 text-xs font-semibold uppercase tracking-wider border-b border-slate-700">
+                                <tr
+                                    class="bg-slate-900/50 text-slate-400 text-xs font-semibold uppercase tracking-wider border-b border-slate-700">
                                     <th class="py-3 px-4 text-center w-12">Pos</th>
                                     <th class="py-3 px-4">Deelnemer</th>
                                     <th class="py-3 px-4 text-right pr-6">Totaal Punten</th>
@@ -68,16 +81,21 @@
                 </div>
 
                 <!-- Participant Detail Sidebar -->
-                <div id="detail-sidebar" class="bg-slate-800 rounded-xl border border-slate-700/60 shadow-xl p-5 sticky top-6">
+                <div id="detail-sidebar"
+                    class="bg-slate-800 rounded-xl border border-slate-700/60 shadow-xl p-5 sticky top-6">
                     <h2 class="font-bold text-lg text-slate-200 mb-1" id="detail-title">Selecteer een deelnemer</h2>
-                    <p class="text-xs text-slate-400 mb-4" id="detail-subtitle">Klik op een naam in de tabel om de individuele scoreopbouw te zien.</p>
-                    
+                    <p class="text-xs text-slate-400 mb-4" id="detail-subtitle">Klik op een naam in de tabel om de
+                        individuele scoreopbouw te zien.</p>
+
                     <div id="detail-content" class="hidden space-y-3">
-                        <div class="bg-slate-900/60 rounded-lg p-3 border border-slate-700/40 flex justify-between items-center">
-                            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Totale score</span>
+                        <div
+                            class="bg-slate-900/60 rounded-lg p-3 border border-slate-700/40 flex justify-between items-center">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Totale
+                                score</span>
                             <span class="text-xl font-black text-emerald-400" id="detail-total-points">0 pt</span>
                         </div>
-                        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider pt-2">Gekozen Ploegen & Weging</div>
+                        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider pt-2">Gekozen Ploegen &
+                            Weging</div>
                         <div class="space-y-2 max-h-[400px] overflow-y-auto pr-1" id="detail-teams-list">
                             <!-- Dynamic team scores -->
                         </div>
@@ -91,7 +109,8 @@
         <section id="content-matches" class="hidden max-w-2xl mx-auto">
             <div class="bg-slate-800 rounded-xl border border-slate-700/60 shadow-xl p-5">
                 <h2 class="font-bold text-lg text-slate-200 mb-4 flex justify-between items-center">
-                    <span>Ingevoerde Uitslagen <span class="text-xs font-normal text-slate-400">(Na 120 min)</span></span>
+                    <span>Ingevoerde Uitslagen <span class="text-xs font-normal text-slate-400">(Na 120
+                            min)</span></span>
                 </h2>
                 <div class="space-y-3" id="matches-list">
                     <!-- Dynamic matches rows -->
@@ -122,7 +141,7 @@
         // Bereken alle statistieken per ploeg
         function calculateTeamStats() {
             const stats = {};
-            
+
             matches.forEach(match => {
                 if (!stats[match.thuis]) stats[match.thuis] = { winst: 0, gelijk: 0, verlies: 0, goals: 0, basisPunten: 0 };
                 if (!stats[match.uit]) stats[match.uit] = { winst: 0, gelijk: 0, verlies: 0, goals: 0, basisPunten: 0 };
@@ -157,7 +176,7 @@
                 let totalPoints = 0;
                 const detailedSelection = participant.selectie.map(sel => {
                     const stats = teamStats[sel.ploeg] || { winst: 0, gelijk: 0, verlies: 0, goals: 0, basisPunten: 0 };
-                    
+
                     // Formule: (Winst/Gelijk score * weging) + Goals gemaakt
                     const scoreMacht = stats.basisPunten * sel.weging;
                     const scoreGoals = stats.goals;
@@ -192,7 +211,7 @@
         // ==========================================
         // UI RENDERING FUNCTIONS
         // ==========================================
-        
+
         let calculatedData = [];
         let upcomingMatches = [];
 
@@ -202,7 +221,7 @@
                 if (response.ok) {
                     upcomingMatches = await response.json();
                 }
-            } catch(e) {
+            } catch (e) {
                 console.warn('Could not load upcoming matches:', e);
             }
             renderAll();
@@ -223,7 +242,7 @@
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-slate-700/30 transition-colors cursor-pointer group border-b border-slate-700/30";
                 tr.onclick = () => showDetail(index);
-                
+
                 let rankBadge = `<span class="font-bold text-slate-400">${index + 1}</span>`;
                 if (index === 0) rankBadge = `<span class="bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded text-xs font-bold border border-amber-500/30">1</span>`;
                 if (index === 1) rankBadge = `<span class="bg-slate-400/20 text-slate-300 px-2 py-0.5 rounded text-xs font-bold border border-slate-400/30">2</span>`;
@@ -246,7 +265,7 @@
             document.getElementById('detail-title').innerText = data.naam;
             document.getElementById('detail-subtitle').innerText = "Individuele score per gekozen land";
             document.getElementById('detail-total-points').innerText = `${data.totaalPunten} pt`;
-            
+
             const listContainer = document.getElementById('detail-teams-list');
             listContainer.innerHTML = '';
 
@@ -257,7 +276,7 @@
 
                 const div = document.createElement('div');
                 div.className = "bg-slate-900/40 p-3 rounded-lg border border-slate-700/40 hover:border-slate-600 transition-all flex flex-col";
-                
+
                 // Check for upcoming match
                 const upcomingMatch = upcomingMatches.find(m => m.homeTeam === item.ploeg || m.awayTeam === item.ploeg);
                 let upcomingHtml = '';
@@ -265,7 +284,7 @@
                     const matchDate = new Date(upcomingMatch.date);
                     const isHome = upcomingMatch.homeTeam === item.ploeg;
                     const opponent = isHome ? upcomingMatch.awayTeam : upcomingMatch.homeTeam;
-                    
+
                     const timeString = matchDate.toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' });
                     const dateString = matchDate.toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit' });
 
@@ -333,7 +352,7 @@
 
             const stats = calculateTeamStats();
             const allTeams = [...new Set(participants.flatMap(p => p.selectie.map(s => s.ploeg)))];
-            
+
             const sortedTeams = honestTeamPointsList(allTeams, stats);
 
             if (sortedTeams.length === 0) {
@@ -373,7 +392,7 @@
             tabs.forEach(t => {
                 const btn = document.getElementById(`tab-${t}`);
                 const content = document.getElementById(`content-${t}`);
-                
+
                 if (t === tabId) {
                     btn.className = "px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all bg-slate-800 text-teal-400 border-b-2 border-teal-500 whitespace-nowrap";
                     content.classList.remove('hidden');
@@ -388,4 +407,5 @@
         window.onload = initData;
     </script>
 </body>
+
 </html>
