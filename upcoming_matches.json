@@ -1,17 +1,522 @@
 [
   {
-    "date": "2026-06-11T20:00:00Z",
+    "date": "2026-06-11T19:00:00Z",
     "homeTeam": "Mexico",
-    "awayTeam": "Oostenrijk"
+    "awayTeam": "South Africa"
   },
   {
-    "date": "2026-06-12T15:00:00Z",
-    "homeTeam": "België",
+    "date": "2026-06-12T02:00:00Z",
+    "homeTeam": "South Korea",
+    "awayTeam": "Czechia"
+  },
+  {
+    "date": "2026-06-12T19:00:00Z",
+    "homeTeam": "Canada",
+    "awayTeam": "Bosnia-Herzegovina"
+  },
+  {
+    "date": "2026-06-13T01:00:00Z",
+    "homeTeam": "United States",
+    "awayTeam": "Paraguay"
+  },
+  {
+    "date": "2026-06-13T19:00:00Z",
+    "homeTeam": "Qatar",
+    "awayTeam": "Switzerland"
+  },
+  {
+    "date": "2026-06-13T22:00:00Z",
+    "homeTeam": "Brazil",
+    "awayTeam": "Morocco"
+  },
+  {
+    "date": "2026-06-14T01:00:00Z",
+    "homeTeam": "Haiti",
+    "awayTeam": "Scotland"
+  },
+  {
+    "date": "2026-06-14T04:00:00Z",
+    "homeTeam": "Australia",
+    "awayTeam": "Turkey"
+  },
+  {
+    "date": "2026-06-14T17:00:00Z",
+    "homeTeam": "Germany",
+    "awayTeam": "Curaçao"
+  },
+  {
+    "date": "2026-06-14T20:00:00Z",
+    "homeTeam": "Netherlands",
+    "awayTeam": "Japan"
+  },
+  {
+    "date": "2026-06-14T23:00:00Z",
+    "homeTeam": "Ivory Coast",
+    "awayTeam": "Ecuador"
+  },
+  {
+    "date": "2026-06-15T02:00:00Z",
+    "homeTeam": "Sweden",
+    "awayTeam": "Tunisia"
+  },
+  {
+    "date": "2026-06-15T16:00:00Z",
+    "homeTeam": "Spain",
+    "awayTeam": "Cape Verde Islands"
+  },
+  {
+    "date": "2026-06-15T19:00:00Z",
+    "homeTeam": "Belgium",
+    "awayTeam": "Egypt"
+  },
+  {
+    "date": "2026-06-15T22:00:00Z",
+    "homeTeam": "Saudi Arabia",
+    "awayTeam": "Uruguay"
+  },
+  {
+    "date": "2026-06-16T01:00:00Z",
+    "homeTeam": "Iran",
+    "awayTeam": "New Zealand"
+  },
+  {
+    "date": "2026-06-16T19:00:00Z",
+    "homeTeam": "France",
+    "awayTeam": "Senegal"
+  },
+  {
+    "date": "2026-06-16T22:00:00Z",
+    "homeTeam": "Iraq",
+    "awayTeam": "Norway"
+  },
+  {
+    "date": "2026-06-17T01:00:00Z",
+    "homeTeam": "Argentina",
+    "awayTeam": "Algeria"
+  },
+  {
+    "date": "2026-06-17T04:00:00Z",
+    "homeTeam": "Austria",
+    "awayTeam": "Jordan"
+  },
+  {
+    "date": "2026-06-17T17:00:00Z",
+    "homeTeam": "Portugal",
+    "awayTeam": "Congo DR"
+  },
+  {
+    "date": "2026-06-17T20:00:00Z",
+    "homeTeam": "England",
+    "awayTeam": "Croatia"
+  },
+  {
+    "date": "2026-06-17T23:00:00Z",
+    "homeTeam": "Ghana",
+    "awayTeam": "Panama"
+  },
+  {
+    "date": "2026-06-18T02:00:00Z",
+    "homeTeam": "Uzbekistan",
+    "awayTeam": "Colombia"
+  },
+  {
+    "date": "2026-06-18T16:00:00Z",
+    "homeTeam": "Czechia",
+    "awayTeam": "South Africa"
+  },
+  {
+    "date": "2026-06-18T19:00:00Z",
+    "homeTeam": "Switzerland",
+    "awayTeam": "Bosnia-Herzegovina"
+  },
+  {
+    "date": "2026-06-18T22:00:00Z",
+    "homeTeam": "Canada",
+    "awayTeam": "Qatar"
+  },
+  {
+    "date": "2026-06-19T01:00:00Z",
+    "homeTeam": "Mexico",
+    "awayTeam": "South Korea"
+  },
+  {
+    "date": "2026-06-19T19:00:00Z",
+    "homeTeam": "United States",
+    "awayTeam": "Australia"
+  },
+  {
+    "date": "2026-06-19T22:00:00Z",
+    "homeTeam": "Scotland",
+    "awayTeam": "Morocco"
+  },
+  {
+    "date": "2026-06-20T00:30:00Z",
+    "homeTeam": "Brazil",
+    "awayTeam": "Haiti"
+  },
+  {
+    "date": "2026-06-20T03:00:00Z",
+    "homeTeam": "Turkey",
+    "awayTeam": "Paraguay"
+  },
+  {
+    "date": "2026-06-20T17:00:00Z",
+    "homeTeam": "Netherlands",
+    "awayTeam": "Sweden"
+  },
+  {
+    "date": "2026-06-20T20:00:00Z",
+    "homeTeam": "Germany",
+    "awayTeam": "Ivory Coast"
+  },
+  {
+    "date": "2026-06-21T00:00:00Z",
+    "homeTeam": "Ecuador",
+    "awayTeam": "Curaçao"
+  },
+  {
+    "date": "2026-06-21T04:00:00Z",
+    "homeTeam": "Tunisia",
+    "awayTeam": "Japan"
+  },
+  {
+    "date": "2026-06-21T16:00:00Z",
+    "homeTeam": "Spain",
+    "awayTeam": "Saudi Arabia"
+  },
+  {
+    "date": "2026-06-21T19:00:00Z",
+    "homeTeam": "Belgium",
+    "awayTeam": "Iran"
+  },
+  {
+    "date": "2026-06-21T22:00:00Z",
+    "homeTeam": "Uruguay",
+    "awayTeam": "Cape Verde Islands"
+  },
+  {
+    "date": "2026-06-22T01:00:00Z",
+    "homeTeam": "New Zealand",
+    "awayTeam": "Egypt"
+  },
+  {
+    "date": "2026-06-22T17:00:00Z",
+    "homeTeam": "Argentina",
+    "awayTeam": "Austria"
+  },
+  {
+    "date": "2026-06-22T21:00:00Z",
+    "homeTeam": "France",
+    "awayTeam": "Iraq"
+  },
+  {
+    "date": "2026-06-23T00:00:00Z",
+    "homeTeam": "Norway",
+    "awayTeam": "Senegal"
+  },
+  {
+    "date": "2026-06-23T03:00:00Z",
+    "homeTeam": "Jordan",
+    "awayTeam": "Algeria"
+  },
+  {
+    "date": "2026-06-23T17:00:00Z",
+    "homeTeam": "Portugal",
+    "awayTeam": "Uzbekistan"
+  },
+  {
+    "date": "2026-06-23T20:00:00Z",
+    "homeTeam": "England",
+    "awayTeam": "Ghana"
+  },
+  {
+    "date": "2026-06-23T23:00:00Z",
+    "homeTeam": "Panama",
+    "awayTeam": "Croatia"
+  },
+  {
+    "date": "2026-06-24T02:00:00Z",
+    "homeTeam": "Colombia",
+    "awayTeam": "Congo DR"
+  },
+  {
+    "date": "2026-06-24T19:00:00Z",
+    "homeTeam": "Switzerland",
     "awayTeam": "Canada"
   },
   {
-    "date": "2026-06-12T18:00:00Z",
-    "homeTeam": "Brazilië",
-    "awayTeam": "Japan"
+    "date": "2026-06-24T19:00:00Z",
+    "homeTeam": "Bosnia-Herzegovina",
+    "awayTeam": "Qatar"
+  },
+  {
+    "date": "2026-06-24T22:00:00Z",
+    "homeTeam": "Morocco",
+    "awayTeam": "Haiti"
+  },
+  {
+    "date": "2026-06-24T22:00:00Z",
+    "homeTeam": "Scotland",
+    "awayTeam": "Brazil"
+  },
+  {
+    "date": "2026-06-25T01:00:00Z",
+    "homeTeam": "Czechia",
+    "awayTeam": "Mexico"
+  },
+  {
+    "date": "2026-06-25T01:00:00Z",
+    "homeTeam": "South Africa",
+    "awayTeam": "South Korea"
+  },
+  {
+    "date": "2026-06-25T20:00:00Z",
+    "homeTeam": "Ecuador",
+    "awayTeam": "Germany"
+  },
+  {
+    "date": "2026-06-25T20:00:00Z",
+    "homeTeam": "Curaçao",
+    "awayTeam": "Ivory Coast"
+  },
+  {
+    "date": "2026-06-25T23:00:00Z",
+    "homeTeam": "Tunisia",
+    "awayTeam": "Netherlands"
+  },
+  {
+    "date": "2026-06-25T23:00:00Z",
+    "homeTeam": "Japan",
+    "awayTeam": "Sweden"
+  },
+  {
+    "date": "2026-06-26T02:00:00Z",
+    "homeTeam": "Turkey",
+    "awayTeam": "United States"
+  },
+  {
+    "date": "2026-06-26T02:00:00Z",
+    "homeTeam": "Paraguay",
+    "awayTeam": "Australia"
+  },
+  {
+    "date": "2026-06-26T19:00:00Z",
+    "homeTeam": "Norway",
+    "awayTeam": "France"
+  },
+  {
+    "date": "2026-06-26T19:00:00Z",
+    "homeTeam": "Senegal",
+    "awayTeam": "Iraq"
+  },
+  {
+    "date": "2026-06-27T00:00:00Z",
+    "homeTeam": "Uruguay",
+    "awayTeam": "Spain"
+  },
+  {
+    "date": "2026-06-27T00:00:00Z",
+    "homeTeam": "Cape Verde Islands",
+    "awayTeam": "Saudi Arabia"
+  },
+  {
+    "date": "2026-06-27T03:00:00Z",
+    "homeTeam": "New Zealand",
+    "awayTeam": "Belgium"
+  },
+  {
+    "date": "2026-06-27T03:00:00Z",
+    "homeTeam": "Egypt",
+    "awayTeam": "Iran"
+  },
+  {
+    "date": "2026-06-27T21:00:00Z",
+    "homeTeam": "Panama",
+    "awayTeam": "England"
+  },
+  {
+    "date": "2026-06-27T21:00:00Z",
+    "homeTeam": "Croatia",
+    "awayTeam": "Ghana"
+  },
+  {
+    "date": "2026-06-27T23:30:00Z",
+    "homeTeam": "Colombia",
+    "awayTeam": "Portugal"
+  },
+  {
+    "date": "2026-06-27T23:30:00Z",
+    "homeTeam": "Congo DR",
+    "awayTeam": "Uzbekistan"
+  },
+  {
+    "date": "2026-06-28T02:00:00Z",
+    "homeTeam": "Jordan",
+    "awayTeam": "Argentina"
+  },
+  {
+    "date": "2026-06-28T02:00:00Z",
+    "homeTeam": "Algeria",
+    "awayTeam": "Austria"
+  },
+  {
+    "date": "2026-06-28T19:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-06-29T17:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-06-29T20:30:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-06-30T01:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-06-30T17:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-06-30T21:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-01T01:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-01T16:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-01T20:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-02T00:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-02T19:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-02T23:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-03T03:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-03T18:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-03T22:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-04T01:30:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-04T17:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-04T21:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-05T20:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-06T00:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-06T19:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-07T00:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-07T16:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-07T20:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-09T20:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-10T19:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-11T21:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-12T01:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-14T19:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-15T19:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-18T21:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
+  },
+  {
+    "date": "2026-07-19T19:00:00Z",
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
   }
 ]
