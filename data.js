@@ -82,3 +82,52 @@ const teamCategories = {
     "outsiders": ["Croatia", "Colombia", "Senegal", "Mexico", "United States", "Uruguay", "Japan", "Switzerland", "Iran", "Turkey", "Ecuador", "Austria", "South Korea", "Australia", "Algeria", "Egypt", "Canada", "Norway"],
     "underdogs": ["Panama", "Côte d'Ivoire", "Sweden", "Paraguay", "Czechia", "Scotland", "Tunisia", "DR Congo", "Uzbekistan", "Qatar", "Iraq", "South Africa", "Saudi Arabia", "Jordan", "Bosnia and Herzegovina", "Cape Verde", "Ghana", "Curaçao", "Haiti", "New Zealand"]
 };
+
+// ==========================================
+// VERTALINGEN (ENGELS -> NEDERLANDS)
+// ==========================================
+// Vul deze lijst gerust aan als je op het scherm nog ergens een Engelse naam ziet staan!
+const teamTranslations = {
+    "Spain": "Spanje",
+    "France": "Frankrijk",
+    "Argentina": "Argentinië",
+    "England": "Engeland",
+    "Brazil": "Brazilië",
+    "Netherlands": "Nederland",
+    "Belgium": "België",
+    "Germany": "Duitsland",
+    "Croatia": "Kroatië",
+    "United States": "Verenigde Staten",
+    "Switzerland": "Zwitserland",
+    "South Korea": "Zuid-Korea",
+    "Australia": "Australië",
+    "Algeria": "Algerije",
+    "Egypt": "Egypte",
+    "Norway": "Noorwegen",
+    "Sweden": "Zweden",
+    "Czechia": "Tsjechië",
+    "Scotland": "Schotland",
+    "Tunisia": "Tunesië",
+    "South Africa": "Zuid-Afrika",
+    "Saudi Arabia": "Saudi-Arabië",
+    "Cape Verde Islands": "Kaapverdië",
+    "Cape Verde": "Kaapverdië",
+    "Ivory Coast": "Ivoorkust",
+    "Côte d'Ivoire": "Ivoorkust",
+    "Morocco": "Marokko",
+    "Turkey": "Turkije",
+    "Austria": "Oostenrijk",
+    "Poland": "Polen",
+    "Denmark": "Denemarken",
+    "Italy": "Italië",
+    "Bosnia and Herzegovina": "Bosnië en Herzegovina",
+    "Bosnia-Herzegovina": "Bosnië en Herzegovina",
+    "Republic of Ireland": "Ierland",
+    "Northern Ireland": "Noord-Ierland",
+    "Greece": "Griekenland"
+};
+
+function translateTeam(englishName) {
+    if (!englishName) return '';
+    return teamTranslations[englishName] || englishName;
+}
