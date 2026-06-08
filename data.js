@@ -131,3 +131,32 @@ function translateTeam(englishName) {
     if (!englishName) return '';
     return teamTranslations[englishName] || englishName;
 }
+
+// ==========================================
+// LANDENCODES VOOR VLAGGEN (ISO 3166-1 alpha-2)
+// ==========================================
+const countryCodes = {
+    "Spain": "es", "France": "fr", "Argentina": "ar", "England": "gb-eng", "Brazil": "br",
+    "Netherlands": "nl", "Belgium": "be", "Germany": "de", "Croatia": "hr", "United States": "us",
+    "Switzerland": "ch", "South Korea": "kr", "Australia": "au", "Algeria": "dz", "Egypt": "eg",
+    "Norway": "no", "Sweden": "se", "Czechia": "cz", "Scotland": "gb-sct", "Tunisia": "tn",
+    "South Africa": "za", "Saudi Arabia": "sa", "Cape Verde Islands": "cv", "Cape Verde": "cv",
+    "Ivory Coast": "ci", "Côte d'Ivoire": "ci", "Morocco": "ma", "Turkey": "tr", "Austria": "at",
+    "Poland": "pl", "Denmark": "dk", "Italy": "it", "Bosnia and Herzegovina": "ba",
+    "Bosnia-Herzegovina": "ba", "Republic of Ireland": "ie", "Northern Ireland": "gb-nir",
+    "Greece": "gr", "Uruguay": "uy", "Colombia": "co", "Japan": "jp", "Mexico": "mx",
+    "Portugal": "pt", "Senegal": "sn", "Iran": "ir", "Ecuador": "ec", "Canada": "ca",
+    "Panama": "pa", "Paraguay": "py", "DR Congo": "cd", "Congo DR": "cd", "Uzbekistan": "uz",
+    "Qatar": "qa", "Iraq": "iq", "Jordan": "jo", "Ghana": "gh", "Curaçao": "cw", "Haiti": "ht",
+    "New Zealand": "nz", "Chile": "cl", "Peru": "pe", "Wales": "gb-wls", "Cameroon": "cm",
+    "Serbia": "rs", "Mali": "ml"
+};
+
+function getFlagHtml(englishName, extraClasses = "mr-1.5") {
+    if (!englishName) return '';
+    const code = countryCodes[englishName];
+    if (code) {
+        return `<img src="https://flagcdn.com/${code}.svg" class="inline-block w-4 h-3 object-cover shadow-[0_0_2px_rgba(0,0,0,0.2)] rounded-[1px] ${extraClasses}" alt="${englishName}">`;
+    }
+    return '';
+}
