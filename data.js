@@ -71,12 +71,9 @@ const participants = [
 ];
 
 // Handmatige invoer van gespeelde wedstrijden (Uitslag na 120 minuten!)
-const matches = [
-    { "thuis": "Spanje", "uit": "Portugal", "goalsThuis": 2, "goalsUit": 1 },
-    { "thuis": "Frankrijk", "uit": "Panama", "goalsThuis": 3, "goalsUit": 0 },
-    { "thuis": "Argentinië", "uit": "Saudi-Arabië", "goalsThuis": 1, "goalsUit": 1 }, // Gelijkspel na 120 min
-    { "thuis": "België", "uit": "Kroatië", "goalsThuis": 0, "goalsUit": 2 }
-];
+// OPMERKING: Deze lijst is nu leeggemaakt omdat de scores automatisch via de API
+// worden binnengehaald. Mocht de API ooit falen, kan je ze hier alsnog manueel ingeven.
+const matches = [];
 
 // Categorieën op basis van het reglementenformulier (optioneel voor styling/checks)
 const teamCategories = {
