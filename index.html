@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WK Mexico 2026 - Familie Pronostiek Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen pb-12">
+
+    <!-- Header Banner -->
+    <header class="bg-gradient-to-r from-teal-600 to-emerald-600 shadow-xl border-b border-emerald-500/20 text-white py-8 px-4 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/10 mix-blend-overlay"></div>
+        <div class="max-w-4xl mx-auto relative z-10">
+            <span class="text-xs font-bold uppercase tracking-widest bg-emerald-800/50 px-3 py-1 rounded-full text-emerald-200 border border-emerald-500/30">15e Editie</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mt-2">PRONOSTIEK WK MEXICO 2026</h1>
+            <p class="text-emerald-100/80 text-sm md:text-base mt-2 max-w-xl mx-auto font-medium">
+                Automatische live-berekening van de familiestand op basis van strategische ploegweging.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4 mt-8">
+        
+        <!-- Navigation Tabs -->
+        <div class="flex border-b border-slate-700 space-x-2 mb-6 overflow-x-auto pb-1">
+            <button id="tab-leaderboard" onclick="switchTab('leaderboard')" class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all bg-slate-800 text-teal-400 border-b-2 border-teal-500 whitespace-nowrap">
+                🏆 Klassement
+            </button>
+            <button id="tab-matches" onclick="switchTab('matches')" class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 whitespace-nowrap">
+                ⚽ Gespeelde Matchen
+            </button>
+            <button id="tab-teams" onclick="switchTab('teams')" class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 whitespace-nowrap">
+                📊 Team Prestaties
+            </button>
+        </div>
+
+        <!-- Tab: Leaderboard -->
+        <section id="content-leaderboard" class="space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+                
+                <!-- Standings Table -->
+                <div class="lg:col-span-2 bg-slate-800 rounded-xl border border-slate-700/60 shadow-xl overflow-hidden">
+                    <div class="p-5 border-b border-slate-700 flex justify-between items-center bg-slate-800/50">
+                        <h2 class="font-bold text-lg text-slate-200">Huidige Rangschikking</h2>
+                        <span class="text-xs text-slate-400 bg-slate-700 px-2.5 py-1 rounded-md font-medium">Gesorteerd op totaalpunten</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-900/50 text-slate-400 text-xs font-semibold uppercase tracking-wider border-b border-slate-700">
+                                    <th class="py-3 px-4 text-center w-12">Pos</th>
+                                    <th class="py-3 px-4">Deelnemer</th>
+                                    <th class="py-3 px-4 text-right pr-6">Totaal Punten</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboard-body" class="divide-y divide-slate-700/40">
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Participant Detail Sidebar -->
+                <div id="detail-sidebar" class="bg-slate-800 rounded-xl border border-slate-700/60 shadow-xl p-5 sticky top-6">
+                    <h2 class="font-bold text-lg text-slate-200 mb-1" id="detail-title">Selecteer een deelnemer</h2>
+                    <p class="text-xs text-slate-400 mb-4" id="detail-subtitle">Klik op een naam in de tabel om de individuele scoreopbouw te zien.</p>
+                    
+                    <div id="detail-content" class="hidden space-y-3">
+                        <div class="bg-slate-900/60 rounded-lg p-3 border border-slate-700/40 flex justify-between items-center">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Totale score</span>
+                            <span class="text-xl font-black text-emerald-400" id="detail-total-points">0 pt</span>
+                        </div>
+                        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider pt-2">Gekozen Ploegen & Weging</div>
+                        <div class="space-y-2 max-h-[400px] overflow-y-auto pr-1" id="detail-teams-list">
+                            <!-- Dynamic team scores -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Tab: Matches -->
+        <section id="content-matches" class="hidden max-w-2xl mx-auto">
+            <div class="bg-slate-800 rounded-xl border border-slate-700/60 shadow-xl p-5">
+                <h2 class="font-bold text-lg text-slate-200 mb-4 flex justify-between items-center">
+                    <span>Ingevoerde Uitslagen <span class="text-xs font-normal text-slate-400">(Na 120 min)</span></span>
+                </h2>
+                <div class="space-y-3" id="matches-list">
+                    <!-- Dynamic matches rows -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: Teams -->
+        <section id="content-teams" class="hidden">
+            <div class="bg-slate-800 rounded-xl border border-slate-700/60 shadow-xl p-5">
+                <h2 class="font-bold text-lg text-slate-200 mb-4">Globale Team Scores</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="teams-grid">
+                    <!-- Dynamic grid of teams and their points -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Core Logic and Data Setup -->
+    <script src="data.js"></script>
+    <script>
+
+        // ==========================================
+        // ENGINE / BEREKENINGSLOGICA
+        // ==========================================
+
+        // Bereken alle statistieken per ploeg
+        function calculateTeamStats() {
+            const stats = {};
+            
+            matches.forEach(match => {
+                if (!stats[match.thuis]) stats[match.thuis] = { winst: 0, gelijk: 0, verlies: 0, goals: 0, basisPunten: 0 };
+                if (!stats[match.uit]) stats[match.uit] = { winst: 0, gelijk: 0, verlies: 0, goals: 0, basisPunten: 0 };
+
+                stats[match.thuis].goals += match.goalsThuis;
+                stats[match.uit].goals += match.goalsUit;
+
+                if (match.goalsThuis > match.goalsUit) {
+                    stats[match.thuis].winst++;
+                    stats[match.thuis].basisPunten += 3;
+                    stats[match.uit].verlies++;
+                } else if (match.goalsThuis < match.goalsUit) {
+                    stats[match.uit].winst++;
+                    stats[match.uit].basisPunten += 3;
+                    stats[match.thuis].verlies++;
+                } else {
+                    stats[match.thuis].gelijk++;
+                    stats[match.thuis].basisPunten += 1;
+                    stats[match.uit].gelijk++;
+                    stats[match.uit].basisPunten += 1;
+                }
+            });
+
+            return stats;
+        }
+
+        // Bereken de totale stand van de deelnemers
+        function calculateLeaderboard() {
+            const teamStats = calculateTeamStats();
+
+            const leaderboard = participants.map(participant => {
+                let totalPoints = 0;
+                const detailedSelection = participant.selectie.map(sel => {
+                    const stats = teamStats[sel.ploeg] || { winst: 0, gelijk: 0, verlies: 0, goals: 0, basisPunten: 0 };
+                    
+                    // Formule: (Winst/Gelijk score * weging) + Goals gemaakt
+                    const scoreMacht = stats.basisPunten * sel.weging;
+                    const scoreGoals = stats.goals;
+                    const totaalPloegPunten = scoreMacht + scoreGoals;
+
+                    totalPoints += totaalPloegPunten;
+
+                    return {
+                        ploeg: sel.ploeg,
+                        weging: sel.weging,
+                        winst: stats.winst,
+                        gelijk: stats.gelijk,
+                        goals: stats.goals,
+                        punten: totaalPloegPunten
+                    };
+                });
+
+                // Sorteer de selectie van de speler op weging voor weergave
+                detailedSelection.sort((a, b) => b.weging - a.weging);
+
+                return {
+                    naam: participant.naam,
+                    totaalPunten: totalPoints,
+                    details: detailedSelection
+                };
+            });
+
+            // Sorteer op totaal aantal punten (hoog naar laag)
+            return leaderboard.sort((a, b) => b.totaalPunten - a.totaalPunten);
+        }
+
+        // ==========================================
+        // UI RENDERING FUNCTIONS
+        // ==========================================
+        
+        let calculatedData = [];
+        let upcomingMatches = [];
+
+        async function initData() {
+            try {
+                const response = await fetch('upcoming_matches.json');
+                if (response.ok) {
+                    upcomingMatches = await response.json();
+                }
+            } catch(e) {
+                console.warn('Could not load upcoming matches:', e);
+            }
+            renderAll();
+        }
+
+        function renderAll() {
+            calculatedData = calculateLeaderboard();
+            renderLeaderboard();
+            renderMatches();
+            renderTeamPerformance();
+        }
+
+        function renderLeaderboard() {
+            const tbody = document.getElementById('leaderboard-body');
+            tbody.innerHTML = '';
+
+            calculatedData.forEach((row, index) => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-700/30 transition-colors cursor-pointer group border-b border-slate-700/30";
+                tr.onclick = () => showDetail(index);
+                
+                let rankBadge = `<span class="font-bold text-slate-400">${index + 1}</span>`;
+                if (index === 0) rankBadge = `<span class="bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded text-xs font-bold border border-amber-500/30">1</span>`;
+                if (index === 1) rankBadge = `<span class="bg-slate-400/20 text-slate-300 px-2 py-0.5 rounded text-xs font-bold border border-slate-400/30">2</span>`;
+                if (index === 2) rankBadge = `<span class="bg-amber-700/20 text-amber-600 px-2 py-0.5 rounded text-xs font-bold border border-amber-700/30">3</span>`;
+
+                tr.innerHTML = `
+                    <td class="py-3.5 px-4 text-center">${rankBadge}</td>
+                    <td class="py-3.5 px-4 font-semibold text-slate-200 group-hover:text-teal-400 transition-colors">${row.naam}</td>
+                    <td class="py-3.5 px-4 text-right pr-6 font-bold text-emerald-400 text-base">${row.totaalPunten} <span class="text-xs text-slate-500 font-normal">pt</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Standaard de eerste tonen in het zijpaneel bij laden
+            if (calculatedData.length > 0) showDetail(0);
+        }
+
+        function showDetail(index) {
+            const data = calculatedData[index];
+            document.getElementById('detail-title').innerText = data.naam;
+            document.getElementById('detail-subtitle').innerText = "Individuele score per gekozen land";
+            document.getElementById('detail-total-points').innerText = `${data.totaalPunten} pt`;
+            
+            const listContainer = document.getElementById('detail-teams-list');
+            listContainer.innerHTML = '';
+
+            data.details.forEach(item => {
+                let catColor = "bg-slate-700 text-slate-300";
+                if (teamCategories.favorieten.includes(item.ploeg)) catColor = "bg-rose-500/10 text-rose-400 border border-rose-500/20";
+                else if (teamCategories.underdogs.includes(item.ploeg)) catColor = "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20";
+
+                const div = document.createElement('div');
+                div.className = "bg-slate-900/40 p-3 rounded-lg border border-slate-700/40 hover:border-slate-600 transition-all flex flex-col";
+                
+                // Check for upcoming match
+                const upcomingMatch = upcomingMatches.find(m => m.homeTeam === item.ploeg || m.awayTeam === item.ploeg);
+                let upcomingHtml = '';
+                if (upcomingMatch) {
+                    const matchDate = new Date(upcomingMatch.date);
+                    const isHome = upcomingMatch.homeTeam === item.ploeg;
+                    const opponent = isHome ? upcomingMatch.awayTeam : upcomingMatch.homeTeam;
+                    
+                    const timeString = matchDate.toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' });
+                    const dateString = matchDate.toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit' });
+
+                    upcomingHtml = `
+                        <div class="mt-2 bg-indigo-500/10 border border-indigo-500/20 rounded px-2 py-1.5 flex items-center justify-between">
+                            <div class="flex items-center space-x-1.5">
+                                <span class="text-[10px] uppercase tracking-wider text-indigo-400 font-bold bg-indigo-500/20 px-1.5 py-0.5 rounded">🔜 Match</span>
+                                <span class="text-xs text-slate-300 font-medium">vs ${opponent}</span>
+                            </div>
+                            <span class="text-[10px] text-slate-400 font-medium">${dateString} ${timeString}</span>
+                        </div>
+                    `;
+                }
+
+                div.innerHTML = `
+                    <div class="flex justify-between items-center w-full">
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="font-bold text-sm text-slate-200">${item.ploeg}</span>
+                                <span class="text-[10px] px-1.5 py-0.2 rounded font-medium ${catColor}">W${item.weging}</span>
+                            </div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">
+                                ${item.winst}W - ${item.gelijk}G | ⚽ ${item.goals} goals
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="font-bold text-sm text-emerald-400">+${item.punten}</span>
+                            <span class="text-[10px] text-slate-500 block">pt</span>
+                        </div>
+                    </div>
+                    ${upcomingHtml}
+                `;
+                listContainer.appendChild(div);
+            });
+
+            document.getElementById('detail-content').classList.remove('hidden');
+        }
+
+        function renderMatches() {
+            const container = document.getElementById('matches-list');
+            container.innerHTML = '';
+
+            if (matches.length === 0) {
+                container.innerHTML = `<p class="text-slate-400 text-sm text-center py-6">Nog geen wedstrijden gespeeld.</p>`;
+                return;
+            }
+
+            matches.forEach(match => {
+                const div = document.createElement('div');
+                div.className = "flex justify-between items-center bg-slate-900/40 px-4 py-3 rounded-lg border border-slate-700/40";
+                div.innerHTML = `
+                    <span class="w-5/12 font-medium text-sm text-slate-300 text-right">${match.thuis}</span>
+                    <span class="w-2/12 text-center bg-slate-800 text-slate-200 font-bold px-2 py-1 rounded text-sm border border-slate-700">
+                        ${match.goalsThuis} - ${match.goalsUit}
+                    </span>
+                    <span class="w-5/12 font-medium text-sm text-slate-300 text-left">${match.uit}</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderTeamPerformance() {
+            const grid = document.getElementById('teams-grid');
+            grid.innerHTML = '';
+
+            const stats = calculateTeamStats();
+            const allTeams = [...new Set(participants.flatMap(p => p.selectie.map(s => s.ploeg)))];
+            
+            const sortedTeams = honestTeamPointsList(allTeams, stats);
+
+            if (sortedTeams.length === 0) {
+                grid.innerHTML = `<p class="text-slate-400 text-sm col-span-full text-center py-6">Nog geen data beschikbaar.</p>`;
+                return;
+            }
+
+            sortedTeams.forEach(t => {
+                const div = document.createElement('div');
+                div.className = "bg-slate-950/40 p-3 rounded-lg border border-slate-800 flex justify-between items-center";
+                div.innerHTML = `
+                    <div>
+                        <span class="font-semibold text-sm text-slate-300 block">${t.name}</span>
+                        <span class="text-[11px] text-slate-500">${t.w}W-${t.g}G-${t.v}V</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs text-slate-400 font-medium block">Basis</span>
+                        <span class="text-xs font-bold text-teal-400">${t.bp} pt</span>
+                    </div>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        function honestTeamPointsList(allTeams, stats) {
+            return honestTeamsList = anonymous = allTeams.map(name => {
+                const s = stats[name] || { winst: 0, gelijk: 0, verlies: 0, goals: 0, basisPunten: 0 };
+                return { name, bp: s.basisPunten, w: s.winst, g: s.gelijk, v: s.verlies };
+            }).sort((a, b) => b.bp - a.bp);
+        }
+
+        // ==========================================
+        // TAB SWITCH UTILS
+        // ==========================================
+        function switchTab(tabId) {
+            const tabs = ['leaderboard', 'matches', 'teams'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                const content = document.getElementById(`content-${t}`);
+                
+                if (t === tabId) {
+                    btn.className = "px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all bg-slate-800 text-teal-400 border-b-2 border-teal-500 whitespace-nowrap";
+                    content.classList.remove('hidden');
+                } else {
+                    btn.className = "px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 whitespace-nowrap";
+                    content.classList.add('hidden');
+                }
+            });
+        }
+
+        // Bootstrappen
+        window.onload = initData;
+    </script>
+</body>
+</html>
