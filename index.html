@@ -30,7 +30,7 @@
             <img src="logo.webp" alt="WK 2026 Logo" class="h-32 object-contain mb-4" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/en/thumb/8/87/2026_FIFA_World_Cup_Logo.svg/300px-2026_FIFA_World_Cup_Logo.svg.png'" />
             <h1 class="text-2xl md:text-4xl font-extrabold tracking-tight text-[#002f6c] uppercase">WK 2026 pronostiek - Vrienden van de Nuts</h1>
             <div class="mt-4 inline-flex items-center space-x-2 bg-rose-50 text-rose-700 px-4 py-2 rounded-full border border-rose-200 font-semibold shadow-sm">
-                <span>⚽ Totaal goals toernooi:</span>
+                <span>⚽ Totaal goals tornooi:</span>
                 <span id="header-total-goals" class="text-xl font-black">0</span>
             </div>
         </div>
@@ -330,24 +330,15 @@
                 const lbSection = document.getElementById('content-leaderboard');
                 container = document.createElement('div');
                 container.id = 'trophies-container';
-                container.className = 'grid grid-cols-1 md:grid-cols-3 gap-4 mb-6';
+                container.className = 'grid grid-cols-1 md:grid-cols-2 gap-4 mb-6';
                 lbSection.insertBefore(container, lbSection.firstChild);
             }
             if (calculatedData.length === 0) return;
 
-            const nostradamus = [...calculatedData].sort((a, b) => Math.abs(a.goalsGuessed - totalTournamentGoals) - Math.abs(b.goalsGuessed - totalTournamentGoals))[0];
             const schutter = [...calculatedData].sort((a, b) => b.participantGoals - a.participantGoals)[0];
             const underdog = [...calculatedData].sort((a, b) => b.underdogPoints - a.underdogPoints)[0];
 
             container.innerHTML = `
-                <div class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
-                    <div class="text-4xl">🔮</div>
-                    <div>
-                        <div class="text-xs font-bold text-indigo-200 uppercase tracking-wider">Nostradamus</div>
-                        <div class="font-black text-xl leading-tight">${nostradamus.naam}</div>
-                        <div class="text-[11px] text-indigo-100 mt-1">Gokte ${nostradamus.goalsGuessed} goals (verschil: ${Math.abs(nostradamus.goalsGuessed - totalTournamentGoals)})</div>
-                    </div>
-                </div>
                 <div class="bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
                     <div class="text-4xl">🎯</div>
                     <div>
@@ -609,16 +600,24 @@
             }
 
             sortedTeams.forEach(t => {
+                const selectors = participants.filter(p => p.selectie.some(s => s.ploeg === t.name)).map(p => p.naam);
+                const badges = selectors.map(name => `<span class="inline-block bg-indigo-100 text-indigo-700 text-[10px] px-1.5 py-0.5 rounded font-bold mr-1 mb-1">${name}</span>`).join('');
+
                 const div = document.createElement('div');
-                div.className = "bg-slate-50 p-3 rounded-lg border border-slate-200 flex justify-between items-center";
+                div.className = "bg-slate-50 p-3 rounded-lg border border-slate-200 flex flex-col justify-between";
                 div.innerHTML = `
-                    <div>
-                        <span class="font-bold text-sm text-slate-800 flex items-center">${getFlagHtml(t.name, 'mr-2')}${translateTeam(t.name)}</span>
-                        <span class="text-[11px] text-slate-500 font-medium">${t.w}W-${t.g}G-${t.v}V</span>
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <span class="font-bold text-sm text-slate-800 flex items-center">${getFlagHtml(t.name, 'mr-2')}${translateTeam(t.name)}</span>
+                            <span class="text-[11px] text-slate-500 font-medium">${t.w}W-${t.g}G-${t.v}V</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs text-slate-400 font-semibold block uppercase tracking-wider">Basis</span>
+                            <span class="text-xs font-black text-[#002f6c]">${t.bp} pt</span>
+                        </div>
                     </div>
-                    <div class="text-right">
-                        <span class="text-xs text-slate-400 font-semibold block uppercase tracking-wider">Basis</span>
-                        <span class="text-xs font-black text-[#002f6c]">${t.bp} pt</span>
+                    <div class="flex flex-wrap mt-1">
+                        ${badges}
                     </div>
                 `;
                 grid.appendChild(div);
