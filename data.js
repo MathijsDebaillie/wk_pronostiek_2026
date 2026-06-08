@@ -37,7 +37,7 @@ const participants = [
         ]
     },
     {
-        "naam": "PW",
+        "naam": "Papa Wouter",
         "goalsGuessed": 266,
         "selectie": [
             { "ploeg": "Spanje", "weging": 10 },

@@ -411,7 +411,7 @@
         }
 
         function honestTeamPointsList(allTeams, stats) {
-            return honestTeamsList = anonymous = allTeams.map(name => {
+            return allTeams.map(name => {
                 const s = stats[name] || { winst: 0, gelijk: 0, verlies: 0, goals: 0, basisPunten: 0 };
                 return { name, bp: s.basisPunten, w: s.winst, g: s.gelijk, v: s.verlies };
             }).sort((a, b) => b.bp - a.bp);
