@@ -47,9 +47,9 @@ async function fetchSchedule() {
         const finished = (data.matches || []).filter(m => m.status === 'FINISHED');
         const playedMatches = finished.map(match => {
             // Reglement: Score na 120 minuten telt. Penalty's tellen als gelijkspel.
-            // football-data.org 'fullTime' bevat de score inclusief eventuele extra time (maar excl. penalty's).
-            const homeScore = match.score?.fullTime?.home !== null ? match.score.fullTime.home : 0;
-            const awayScore = match.score?.fullTime?.away !== null ? match.score.fullTime.away : 0;
+            // football-data.org 'fullTime' bevat de score inclusief eventuele extra time (maar excl. penalty's). In v4 is er ook 'regularTime'.
+            const homeScore = match.score?.fullTime?.home ?? match.score?.regularTime?.home ?? 0;
+            const awayScore = match.score?.fullTime?.away ?? match.score?.regularTime?.away ?? 0;
 
             return {
                 date: match.utcDate,
