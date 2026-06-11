@@ -52,6 +52,10 @@
                     <span class="text-base leading-none">🚀</span>
                     <span id="header-rising" class="text-sm font-black">-</span>
                 </div>
+                <div class="inline-flex items-center space-x-1.5 bg-purple-50 text-purple-700 px-3 py-1.5 rounded-full border border-purple-200 font-semibold shadow-sm" title="Meester Voorspeller">
+                    <span class="text-base leading-none">🔮</span>
+                    <span id="header-voorspeller" class="text-sm font-black">-</span>
+                </div>
             </div>
         </div>
     </header>
@@ -252,10 +256,27 @@
         function calculateLeaderboard() {
             const teamStats = calculateTeamStats();
 
+            let predictions = {};
+            try {
+                predictions = JSON.parse(localStorage.getItem('wk_predictions')) || {};
+            } catch(e) {}
+
             const leaderboard = participants.map(participant => {
                 let totalPoints = 0;
                 let underdogPoints = 0;
                 let participantGoals = 0;
+                let voorspellerPoints = 0;
+
+                // Check gespeelde matchen voor exacte scores
+                matches.forEach(match => {
+                    const matchId = match.thuis + '_' + match.uit;
+                    if (predictions[matchId] && predictions[matchId][participant.naam]) {
+                        const pred = predictions[matchId][participant.naam];
+                        if (pred.home === match.goalsThuis && pred.away === match.goalsUit) {
+                            voorspellerPoints++;
+                        }
+                    }
+                });
 
                 const detailedSelection = participant.selectie.map(sel => {
                     const stats = teamStats[sel.ploeg] || { winst: 0, gelijk: 0, verlies: 0, goals: 0, basisPunten: 0 };
@@ -289,6 +310,7 @@
                     totaalPunten: totalPoints,
                     underdogPoints: underdogPoints,
                     participantGoals: participantGoals,
+                    voorspellerPoints: voorspellerPoints,
                     details: detailedSelection,
                     delta: 0
                 };
@@ -350,7 +372,7 @@
                 const lbSection = document.getElementById('content-leaderboard');
                 container = document.createElement('div');
                 container.id = 'trophies-container';
-                container.className = 'grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 mb-6';
+                container.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 mb-6';
                 lbSection.appendChild(container);
             }
             if (calculatedData.length === 0) return;
@@ -358,10 +380,12 @@
             const schutter = [...calculatedData].sort((a, b) => b.participantGoals - a.participantGoals)[0];
             const underdog = [...calculatedData].sort((a, b) => b.underdogPoints - a.underdogPoints)[0];
             const risingStar = [...calculatedData].sort((a, b) => b.delta - a.delta)[0];
+            const voorspeller = [...calculatedData].sort((a, b) => b.voorspellerPoints - a.voorspellerPoints)[0];
 
             document.getElementById('header-schutter').innerText = schutter.naam;
             document.getElementById('header-underdog').innerText = underdog.naam;
             document.getElementById('header-rising').innerText = risingStar.naam;
+            document.getElementById('header-voorspeller').innerText = voorspeller.naam;
 
             container.innerHTML = `
                 <div class="bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
@@ -386,6 +410,14 @@
                         <div class="text-xs font-bold text-emerald-200 uppercase tracking-wider">Rising Star</div>
                         <div class="font-black text-xl leading-tight">${risingStar.naam}</div>
                         <div class="text-[11px] text-emerald-100 mt-1">Snelste stijger (+${risingStar.delta > 0 ? risingStar.delta : 0} posities)</div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-purple-400 to-fuchsia-600 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
+                    <div class="text-4xl">🔮</div>
+                    <div>
+                        <div class="text-xs font-bold text-purple-200 uppercase tracking-wider">Meester Voorspeller</div>
+                        <div class="font-black text-xl leading-tight">${voorspeller.naam}</div>
+                        <div class="text-[11px] text-purple-100 mt-1">${voorspeller.voorspellerPoints} exacte scores</div>
                     </div>
                 </div>
             `;
@@ -605,13 +637,39 @@
                     let homeBadges = match.homeSelectors.map(name => `<span class="inline-block bg-indigo-100 text-indigo-700 text-[10px] px-1.5 py-0.5 rounded font-bold mr-1">${name}</span>`).join('');
                     let awayBadges = match.awaySelectors.map(name => `<span class="inline-block bg-indigo-100 text-indigo-700 text-[10px] px-1.5 py-0.5 rounded font-bold ml-1">${name}</span>`).join('');
 
+                    // Pronostieken ophalen
+                    const matchId = match.homeTeam + '_' + match.awayTeam;
+                    let predictions = {};
+                    try {
+                        predictions = JSON.parse(localStorage.getItem('wk_predictions')) || {};
+                    } catch(e) {}
+                    const matchPreds = predictions[matchId] || {};
+                    
+                    let predHtml = '';
+                    if (Object.keys(matchPreds).length > 0) {
+                        const badges = Object.entries(matchPreds).map(([speler, pred]) => {
+                            return `<span class="inline-block bg-white text-slate-700 text-[10px] px-2 py-1 rounded border border-slate-200 shadow-sm mr-2 mb-1"><span class="font-bold">${speler}:</span> ${pred.home} - ${pred.away}</span>`;
+                        }).join('');
+                        predHtml = `<div class="mt-4 pt-3 border-t border-slate-200"><div class="text-xs font-semibold text-slate-500 mb-2">Ingediende pronostieken:</div><div class="flex flex-wrap">${badges}</div></div>`;
+                    }
+
+                    // Tijdslimiet check (5 minuten voor de match)
+                    const nu = new Date();
+                    const deadline = new Date(matchDate.getTime() - 5 * 60000);
+                    const kanVoorspellen = nu < deadline;
+
+                    const voorspelBtnHtml = kanVoorspellen 
+                        ? `<button onclick="openVoorspelModal('${match.homeTeam}', '${match.awayTeam}')" class="text-[10px] bg-purple-100 text-purple-700 hover:bg-purple-200 px-2 py-1 rounded font-bold shadow-sm transition-colors border border-purple-200 flex items-center mt-1 w-full justify-center">🎯 Voorspel</button>`
+                        : `<span class="text-[10px] bg-slate-100 text-slate-400 px-2 py-1 rounded font-bold shadow-sm border border-slate-200 flex items-center mt-1 w-full justify-center" title="Deadline verstreken">🔒 Gesloten</span>`;
+
                     const div = document.createElement('div');
                     div.className = "bg-slate-50 p-4 rounded-lg border border-slate-200";
                     div.innerHTML = `
                         <div class="relative mb-4 flex items-center justify-center pb-2 border-b border-slate-100">
                             <div class="text-xs font-semibold text-slate-500">${dateString} om ${timeString}</div>
-                            <div class="absolute right-0">
-                                <button onclick="openSimulationModal('${match.homeTeam}', '${match.awayTeam}')" class="text-[10px] bg-orange-100 text-orange-700 hover:bg-orange-200 px-2 py-1 rounded font-bold shadow-sm transition-colors border border-orange-200 flex items-center">🔮 Simuleer</button>
+                            <div class="absolute right-0 flex flex-col items-end">
+                                <button onclick="openSimulationModal('${match.homeTeam}', '${match.awayTeam}')" class="text-[10px] bg-orange-100 text-orange-700 hover:bg-orange-200 px-2 py-1 rounded font-bold shadow-sm transition-colors border border-orange-200 flex items-center w-full justify-center">🔮 Simuleer</button>
+                                ${voorspelBtnHtml}
                             </div>
                         </div>
                         
@@ -651,6 +709,7 @@
                                 <div class="flex flex-wrap justify-start gap-1">${awayBadges}</div>
                             </div>
                         </div>
+                        ${predHtml}
                     `;
                     upcomingContainer.appendChild(div);
                 });
@@ -754,6 +813,71 @@
         }
 
         // ==========================================
+        // VOORSPEL MODUS
+        // ==========================================
+        let currentPredHome = '';
+        let currentPredAway = '';
+
+        function openVoorspelModal(home, away) {
+            currentPredHome = home;
+            currentPredAway = away;
+            document.getElementById('pred-home-name').innerHTML = `${getFlagHtml(home)} ${translateTeam(home)}`;
+            document.getElementById('pred-away-name').innerHTML = `${getFlagHtml(away, 'mr-2')} ${translateTeam(away)}`;
+            
+            // Populate select
+            const select = document.getElementById('pred-speler-select');
+            select.innerHTML = '<option value="" disabled selected>Kies wie je bent...</option>';
+            participants.forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p.naam;
+                opt.innerText = p.naam;
+                select.appendChild(opt);
+            });
+
+            // Reset goals
+            document.getElementById('pred-home-goals').value = 0;
+            document.getElementById('pred-away-goals').value = 0;
+
+            document.getElementById('voorspel-modal').classList.remove('hidden');
+        }
+
+        function closeVoorspelModal() {
+            document.getElementById('voorspel-modal').classList.add('hidden');
+        }
+
+        function saveVoorspelling() {
+            const speler = document.getElementById('pred-speler-select').value;
+            if (!speler) {
+                alert("Kies eerst een speler!");
+                return;
+            }
+
+            const homeGoals = parseInt(document.getElementById('pred-home-goals').value, 10) || 0;
+            const awayGoals = parseInt(document.getElementById('pred-away-goals').value, 10) || 0;
+
+            const matchId = currentPredHome + '_' + currentPredAway;
+            
+            let predictions = {};
+            try {
+                predictions = JSON.parse(localStorage.getItem('wk_predictions')) || {};
+            } catch(e) {}
+
+            if (!predictions[matchId]) {
+                predictions[matchId] = {};
+            }
+
+            predictions[matchId][speler] = {
+                home: homeGoals,
+                away: awayGoals
+            };
+
+            localStorage.setItem('wk_predictions', JSON.stringify(predictions));
+            
+            closeVoorspelModal();
+            renderAll(); // Re-render to show the new prediction on the card
+        }
+
+        // ==========================================
         // TAB SWITCH UTILS
         // ==========================================
         function switchTab(tabId) {
@@ -799,6 +923,42 @@
                 </div>
                 <button onclick="applySimulation()" class="w-full bg-[#002f6c] hover:bg-blue-900 text-white font-bold py-3 rounded-lg transition-colors">
                     Bereken Klassement
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Voorspel Modal -->
+    <div id="voorspel-modal" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden">
+            <div class="bg-purple-700 p-4 text-white flex justify-between items-center">
+                <h3 class="font-bold text-lg">🎯 Voorspel Uitslag</h3>
+                <button onclick="closeVoorspelModal()" class="text-white/70 hover:text-white text-2xl leading-none">&times;</button>
+            </div>
+            <div class="p-6">
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Wie vult dit in?</label>
+                    <select id="pred-speler-select" class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 shadow-sm">
+                        <!-- Vullen via JS -->
+                    </select>
+                </div>
+
+                <div class="flex justify-between items-center mb-6">
+                    <div class="text-center w-5/12">
+                        <div id="pred-home-name" class="font-bold text-slate-800 flex justify-center items-center">Thuis</div>
+                    </div>
+                    <div class="w-2/12 text-center text-slate-300 font-black">VS</div>
+                    <div class="text-center w-5/12">
+                        <div id="pred-away-name" class="font-bold text-slate-800 flex justify-center items-center">Uit</div>
+                    </div>
+                </div>
+                <div class="flex justify-center items-center space-x-4 mb-6">
+                    <input type="number" id="pred-home-goals" min="0" value="0" class="w-16 h-12 text-center text-xl font-bold border border-slate-300 rounded-lg focus:ring-purple-500 focus:border-purple-500">
+                    <span class="text-slate-400 font-bold">-</span>
+                    <input type="number" id="pred-away-goals" min="0" value="0" class="w-16 h-12 text-center text-xl font-bold border border-slate-300 rounded-lg focus:ring-purple-500 focus:border-purple-500">
+                </div>
+                <button onclick="saveVoorspelling()" class="w-full bg-purple-700 hover:bg-purple-800 text-white font-bold py-3 rounded-lg transition-colors">
+                    Opslaan
                 </button>
             </div>
         </div>
