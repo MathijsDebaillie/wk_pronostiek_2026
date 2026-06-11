@@ -617,8 +617,16 @@
 
             // Pre-calculate selectors so we can filter
             const enrichedMatches = upcomingMatches.map(match => {
-                const homeSelectors = participants.filter(p => p.selectie.some(s => s.ploeg === match.homeTeam)).map(p => p.naam);
-                const awaySelectors = participants.filter(p => p.selectie.some(s => s.ploeg === match.awayTeam)).map(p => p.naam);
+                const homeSelectors = participants.reduce((acc, p) => {
+                    const sel = p.selectie.find(s => s.ploeg === match.homeTeam);
+                    if (sel) acc.push({ name: p.naam, weging: sel.weging, team: match.homeTeam });
+                    return acc;
+                }, []);
+                const awaySelectors = participants.reduce((acc, p) => {
+                    const sel = p.selectie.find(s => s.ploeg === match.awayTeam);
+                    if (sel) acc.push({ name: p.naam, weging: sel.weging, team: match.awayTeam });
+                    return acc;
+                }, []);
                 return { ...match, homeSelectors, awaySelectors };
             });
 
@@ -636,8 +644,18 @@
                     const timeString = matchDate.toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' });
                     const dateString = matchDate.toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' });
 
-                    let homeBadges = match.homeSelectors.map(name => `<span class="inline-block bg-indigo-100 text-indigo-700 text-[10px] px-1.5 py-0.5 rounded font-bold mr-1">${name}</span>`).join('');
-                    let awayBadges = match.awaySelectors.map(name => `<span class="inline-block bg-indigo-100 text-indigo-700 text-[10px] px-1.5 py-0.5 rounded font-bold ml-1">${name}</span>`).join('');
+                    const getBadgeHtml = (selector, isHome) => {
+                        let catColor = "bg-slate-200 text-slate-700 border-slate-200";
+                        if (typeof teamCategories !== 'undefined') {
+                            if (teamCategories.favorieten && teamCategories.favorieten.includes(selector.team)) catColor = "bg-rose-100 text-rose-700 border-rose-200";
+                            else if (teamCategories.underdogs && teamCategories.underdogs.includes(selector.team)) catColor = "bg-sky-100 text-sky-700 border-sky-200";
+                        }
+                        const marginClass = isHome ? 'mr-1' : 'ml-1';
+                        return `<span class="inline-flex items-center bg-indigo-50 border border-indigo-100 rounded pl-1.5 pr-0.5 py-0.5 mb-1 ${marginClass} shadow-sm"><span class="text-indigo-700 text-[10px] font-bold mr-1.5">${selector.name}</span><span class="text-[9px] px-1 py-[1px] rounded font-bold border shadow-sm ${catColor}">W${selector.weging}</span></span>`;
+                    };
+
+                    let homeBadges = match.homeSelectors.map(sel => getBadgeHtml(sel, true)).join('');
+                    let awayBadges = match.awaySelectors.map(sel => getBadgeHtml(sel, false)).join('');
 
                     // Pronostieken ophalen
                     const matchId = match.homeTeam + '_' + match.awayTeam;
