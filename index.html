@@ -502,9 +502,10 @@
             listContainer.innerHTML = '';
 
             data.details.forEach(item => {
-                let catColor = "bg-slate-200 text-slate-700";
+                let catColor = "bg-slate-100 text-slate-600 border border-slate-200";
                 if (typeof teamCategories !== 'undefined') {
                     if (teamCategories.favorieten && teamCategories.favorieten.includes(item.ploeg)) catColor = "bg-rose-100 text-rose-700 border border-rose-200";
+                    else if (teamCategories.outsiders && teamCategories.outsiders.includes(item.ploeg)) catColor = "bg-amber-100 text-amber-700 border border-amber-200";
                     else if (teamCategories.underdogs && teamCategories.underdogs.includes(item.ploeg)) catColor = "bg-sky-100 text-sky-700 border border-sky-200";
                 }
 
@@ -538,7 +539,7 @@
                         <div>
                             <div class="flex items-center space-x-2">
                                 <span class="font-bold text-sm text-[#002f6c] flex items-center">${getFlagHtml(item.ploeg)}${translateTeam(item.ploeg)}</span>
-                                <span class="text-[10px] px-1.5 py-0.2 rounded font-bold shadow-sm ${catColor}">W${item.weging}</span>
+                                <span class="text-[9px] px-1 py-[1px] rounded font-bold shadow-sm ${catColor}">W${item.weging}</span>
                             </div>
                             <div class="text-[11px] text-slate-500 mt-0.5 font-medium">
                                 ${item.winst}W - ${item.gelijk}G | ⚽ ${item.goals} goals
@@ -645,9 +646,10 @@
                     const dateString = matchDate.toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' });
 
                     const getBadgeHtml = (selector, isHome) => {
-                        let catColor = "bg-slate-200 text-slate-700 border-slate-200";
+                        let catColor = "bg-slate-100 text-slate-600 border-slate-200";
                         if (typeof teamCategories !== 'undefined') {
                             if (teamCategories.favorieten && teamCategories.favorieten.includes(selector.team)) catColor = "bg-rose-100 text-rose-700 border-rose-200";
+                            else if (teamCategories.outsiders && teamCategories.outsiders.includes(selector.team)) catColor = "bg-amber-100 text-amber-700 border-amber-200";
                             else if (teamCategories.underdogs && teamCategories.underdogs.includes(selector.team)) catColor = "bg-sky-100 text-sky-700 border-sky-200";
                         }
                         const marginClass = isHome ? 'mr-1' : 'ml-1';
