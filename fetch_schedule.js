@@ -52,6 +52,7 @@ async function fetchSchedule() {
             const awayScore = match.score?.fullTime?.away !== null ? match.score.fullTime.away : 0;
 
             return {
+                date: match.utcDate,
                 thuis: match.homeTeam?.name || 'Onbekend',
                 uit: match.awayTeam?.name || 'Onbekend',
                 goalsThuis: homeScore,

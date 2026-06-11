@@ -54,7 +54,7 @@
                     <span class="text-base leading-none">🚀</span>
                     <span id="header-rising" class="text-sm font-black">-</span>
                 </div>
-                <div class="inline-flex items-center space-x-1.5 bg-purple-50 text-purple-700 px-3 py-1.5 rounded-full border border-purple-200 font-semibold shadow-sm" title="Meester Voorspeller">
+                <div class="inline-flex items-center space-x-1.5 bg-purple-50 text-purple-700 px-3 py-1.5 rounded-full border border-purple-200 font-semibold shadow-sm" title="Meester Pronostikeur">
                     <span class="text-base leading-none">🔮</span>
                     <span id="header-voorspeller" class="text-sm font-black">-</span>
                 </div>
@@ -341,34 +341,46 @@
             // Sorteer op totaal aantal punten
             leaderboard.sort((a, b) => b.totaalPunten - a.totaalPunten);
 
-            // Bereken Deltas via localStorage
-            if (simulatedMatches.length === 0) {
-                const historyKey = `wk_leaderboard_history_${matches.length}`;
-                const currentRanking = leaderboard.map((p, idx) => ({ naam: p.naam, rank: idx + 1 }));
-                localStorage.setItem(historyKey, JSON.stringify(currentRanking));
-                
-                const prevHistoryKey = `wk_leaderboard_history_${matches.length > 0 ? matches.length - 1 : 0}`;
-                const prevRankingStr = localStorage.getItem(prevHistoryKey);
-                if (prevRankingStr) {
-                    const prevRanking = JSON.parse(prevRankingStr);
-                    leaderboard.forEach((p, idx) => {
-                        const currentRank = idx + 1;
-                        const prevObj = prevRanking.find(pr => pr.naam === p.naam);
-                        p.delta = prevObj ? (prevObj.rank - currentRank) : 0;
+            // Bereken punten gescoord in de afgelopen 48 uur (voor de Rising Star)
+            const now = new Date();
+            const fortyEightHoursAgo = new Date(now.getTime() - 48 * 60 * 60 * 1000);
+            
+            const recentMatches = [...matches, ...simulatedMatches].filter(match => {
+                if (simulatedMatches.includes(match)) return true; // Gesimuleerde matches zijn 'nu'
+                if (!match.date) return false;
+                const matchDate = new Date(match.date);
+                return matchDate >= fortyEightHoursAgo;
+            });
+
+            const recentStats = {};
+            recentMatches.forEach(match => {
+                if (!recentStats[match.thuis]) recentStats[match.thuis] = { basisPunten: 0, goals: 0 };
+                if (!recentStats[match.uit]) recentStats[match.uit] = { basisPunten: 0, goals: 0 };
+
+                recentStats[match.thuis].goals += match.goalsThuis;
+                recentStats[match.uit].goals += match.goalsUit;
+
+                if (match.goalsThuis > match.goalsUit) {
+                    recentStats[match.thuis].basisPunten += 3;
+                } else if (match.goalsThuis < match.goalsUit) {
+                    recentStats[match.uit].basisPunten += 3;
+                } else {
+                    recentStats[match.thuis].basisPunten += 1;
+                    recentStats[match.uit].basisPunten += 1;
+                }
+            });
+
+            leaderboard.forEach(p => {
+                const participantDef = participants.find(part => part.naam === p.naam);
+                let recentPts = 0;
+                if (participantDef) {
+                    participantDef.selectie.forEach(sel => {
+                        const s = recentStats[sel.ploeg] || { basisPunten: 0, goals: 0 };
+                        recentPts += (s.basisPunten * sel.weging) + s.goals;
                     });
                 }
-            } else {
-                const prevHistoryKey = `wk_leaderboard_history_${matches.length}`;
-                const prevRankingStr = localStorage.getItem(prevHistoryKey);
-                if (prevRankingStr) {
-                    const prevRanking = JSON.parse(prevRankingStr);
-                    leaderboard.forEach((p, idx) => {
-                        const currentRank = idx + 1;
-                        const prevObj = prevRanking.find(pr => pr.naam === p.naam);
-                        p.delta = prevObj ? (prevObj.rank - currentRank) : 0;
-                    });
-                }
-            }
+                p.delta = recentPts;
+            });
 
             return leaderboard;
         }
@@ -431,19 +443,17 @@
                     <div>
                         <div class="text-xs font-bold text-emerald-200 uppercase tracking-wider">Rising Star</div>
                         <div class="font-black text-xl leading-tight">${risingStar.naam}</div>
-                        <div class="text-[11px] text-emerald-100 mt-1">Snelste stijger (+${risingStar.delta > 0 ? risingStar.delta : 0} posities)</div>
+                        <div class="text-[11px] text-emerald-100 mt-1">Meeste punten (+${risingStar.delta > 0 ? risingStar.delta : 0} pt in de laatste 2 dagen)</div>
                     </div>
                 </div>
-                <!-- Tijdelijk uitgeschakeld ivm ontbrekende database
                 <div class="bg-gradient-to-br from-purple-400 to-fuchsia-600 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
                     <div class="text-4xl">🔮</div>
                     <div>
-                        <div class="text-xs font-bold text-purple-200 uppercase tracking-wider">Meester Voorspeller</div>
+                        <div class="text-xs font-bold text-purple-200 uppercase tracking-wider">Meester Pronostikeur</div>
                         <div class="font-black text-xl leading-tight">${voorspeller.naam}</div>
                         <div class="text-[11px] text-purple-100 mt-1">${voorspeller.voorspellerPoints} exacte scores</div>
                     </div>
                 </div>
-                -->
             `;
         }
 
@@ -469,11 +479,9 @@
                 if (index === 1) rankBadge = `<span class="bg-slate-200 text-slate-600 px-2 py-0.5 rounded text-xs font-bold border border-slate-300 shadow-sm">2</span>`;
                 if (index === 2) rankBadge = `<span class="bg-orange-100 text-orange-700 px-2 py-0.5 rounded text-xs font-bold border border-orange-200 shadow-sm">3</span>`;
 
-                let deltaHtml = '<div class="text-slate-300 font-bold ml-2 w-4 text-center flex-none">-</div>';
+                let deltaHtml = '<div class="text-slate-300 font-bold ml-2 w-10 text-center flex-none text-xs"></div>';
                 if (row.delta > 0) {
-                    deltaHtml = `<div class="text-emerald-500 font-bold ml-2 text-[10px] w-4 text-center flex flex-col items-center justify-center leading-none flex-none">▲<span class="mt-0.5">${row.delta}</span></div>`;
-                } else if (row.delta < 0) {
-                    deltaHtml = `<div class="text-rose-500 font-bold ml-2 text-[10px] w-4 text-center flex flex-col items-center justify-center leading-none flex-none">▼<span class="mt-0.5">${Math.abs(row.delta)}</span></div>`;
+                    deltaHtml = `<div class="text-emerald-500 font-bold ml-2 text-[10px] w-10 text-center flex items-center justify-center bg-emerald-50 rounded-full px-1 py-0.5 border border-emerald-100">+${row.delta} pt</div>`;
                 }
 
                 const goalDiff = Math.abs(row.goalsGuessed - totalTournamentGoals);
