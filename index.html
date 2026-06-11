@@ -434,10 +434,24 @@
             }
             if (calculatedData.length === 0) return;
 
-            const schutter = [...calculatedData].sort((a, b) => b.participantGoals - a.participantGoals)[0];
-            const underdog = [...calculatedData].sort((a, b) => b.underdogPoints - a.underdogPoints)[0];
-            const risingStar = [...calculatedData].sort((a, b) => b.delta - a.delta)[0];
-            const voorspeller = [...calculatedData].sort((a, b) => b.voorspellerPoints - a.voorspellerPoints)[0];
+            function getTrophyWinner(data, key) {
+                const maxVal = Math.max(...data.map(p => p[key]));
+                if (maxVal === 0) {
+                    return { naam: 'Norberto', [key]: 0 };
+                }
+                const winners = data.filter(p => p[key] === maxVal).map(p => p.naam);
+                let winnerName = winners.join(', ');
+                if (winners.length > 1) {
+                    const lastComma = winnerName.lastIndexOf(', ');
+                    winnerName = winnerName.substring(0, lastComma) + ' & ' + winnerName.substring(lastComma + 2);
+                }
+                return { naam: winnerName, [key]: maxVal };
+            }
+
+            const schutter = getTrophyWinner(calculatedData, 'participantGoals');
+            const underdog = getTrophyWinner(calculatedData, 'underdogPoints');
+            const risingStar = getTrophyWinner(calculatedData, 'delta');
+            const voorspeller = getTrophyWinner(calculatedData, 'voorspellerPoints');
 
             document.getElementById('header-schutter').innerText = schutter.naam;
             document.getElementById('header-underdog').innerText = underdog.naam;
