@@ -4,7 +4,7 @@ const path = require('path');
 const API_KEY = process.env.FOOTBALL_DATA_API_KEY;
 // 2000 is the competition ID for the FIFA World Cup on football-data.org
 // Fetching all matches (FINISHED, SCHEDULED, TIMED, IN_PLAY, PAUSED)
-const API_URL = 'https://api.football-data.org/v4/competitions/2000/matches';
+const API_URL = `https://api.football-data.org/v4/competitions/2000/matches?_buster=${Date.now()}`;
 
 async function fetchSchedule() {
     if (!API_KEY) {
@@ -19,7 +19,8 @@ async function fetchSchedule() {
         const response = await fetch(API_URL, {
             headers: {
                 'X-Auth-Token': API_KEY
-            }
+            },
+            cache: 'no-store'
         });
 
         if (!response.ok) {
@@ -48,6 +49,7 @@ async function fetchSchedule() {
         const playedMatches = finished.map(match => {
             // Reglement: Score na 120 minuten telt. Penalty's tellen als gelijkspel.
             // football-data.org 'fullTime' bevat de score inclusief eventuele extra time (maar excl. penalty's). In v4 is er ook 'regularTime'.
+            console.log(`Scores API voor ${match.homeTeam?.name}:`, JSON.stringify(match.score));
             const homeScore = match.score?.fullTime?.home ?? match.score?.regularTime?.home ?? 0;
             const awayScore = match.score?.fullTime?.away ?? match.score?.regularTime?.away ?? 0;
 
