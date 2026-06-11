@@ -68,11 +68,11 @@
             <button id="tab-leaderboard" onclick="switchTab('leaderboard')" class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all bg-white text-[#002f6c] border-b-2 border-[#002f6c] whitespace-nowrap shadow-sm">
                 🏆 Klassement
             </button>
-            <button id="tab-player" onclick="switchTab('player')" class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all text-slate-500 hover:text-slate-800 hover:bg-slate-100 whitespace-nowrap">
-                👤 Speler
-            </button>
             <button id="tab-calendar" onclick="switchTab('calendar')" class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all text-slate-500 hover:text-slate-800 hover:bg-slate-100 whitespace-nowrap">
                 📅 Kalender & Matchen
+            </button>
+            <button id="tab-player" onclick="switchTab('player')" class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all text-slate-500 hover:text-slate-800 hover:bg-slate-100 whitespace-nowrap">
+                👤 Speler
             </button>
             <button id="tab-teams" onclick="switchTab('teams')" class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all text-slate-500 hover:text-slate-800 hover:bg-slate-100 whitespace-nowrap">
                 📊 Team Prestaties
@@ -653,7 +653,7 @@
                             else if (teamCategories.underdogs && teamCategories.underdogs.includes(selector.team)) catColor = "bg-sky-100 text-sky-700 border-sky-200";
                         }
                         const marginClass = isHome ? 'mr-1' : 'ml-1';
-                        return `<span class="inline-flex items-center bg-indigo-50 border border-indigo-100 rounded pl-1.5 pr-0.5 py-0.5 mb-1 ${marginClass} shadow-sm"><span class="text-indigo-700 text-[10px] font-bold mr-1.5">${selector.name}</span><span class="text-[9px] px-1 py-[1px] rounded font-bold border shadow-sm ${catColor}">W${selector.weging}</span></span>`;
+                        return `<span class="inline-flex items-center bg-indigo-50 border border-indigo-100 rounded pl-1.5 pr-0.5 py-0.5 mb-1 ${marginClass} shadow-sm"><span class="text-indigo-700 text-[10px] font-bold mr-1.5">${selector.name}</span><span class="text-[8px] px-1 py-0 rounded font-bold border shadow-sm ${catColor}">W${selector.weging}</span></span>`;
                     };
 
                     let homeBadges = match.homeSelectors.map(sel => getBadgeHtml(sel, true)).join('');
