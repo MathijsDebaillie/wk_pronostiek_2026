@@ -412,6 +412,7 @@
                         <div class="text-[11px] text-emerald-100 mt-1">Snelste stijger (+${risingStar.delta > 0 ? risingStar.delta : 0} posities)</div>
                     </div>
                 </div>
+                <!-- Tijdelijk uitgeschakeld ivm ontbrekende database
                 <div class="bg-gradient-to-br from-purple-400 to-fuchsia-600 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
                     <div class="text-4xl">🔮</div>
                     <div>
@@ -420,6 +421,7 @@
                         <div class="text-[11px] text-purple-100 mt-1">${voorspeller.voorspellerPoints} exacte scores</div>
                     </div>
                 </div>
+                -->
             `;
         }
 
@@ -646,21 +648,23 @@
                     const matchPreds = predictions[matchId] || {};
                     
                     let predHtml = '';
+                    // Voorspel modus tijdelijk uitgeschakeld
+                    /*
                     if (Object.keys(matchPreds).length > 0) {
                         const badges = Object.entries(matchPreds).map(([speler, pred]) => {
                             return `<span class="inline-block bg-white text-slate-700 text-[10px] px-2 py-1 rounded border border-slate-200 shadow-sm mr-2 mb-1"><span class="font-bold">${speler}:</span> ${pred.home} - ${pred.away}</span>`;
                         }).join('');
                         predHtml = `<div class="mt-4 pt-3 border-t border-slate-200"><div class="text-xs font-semibold text-slate-500 mb-2">Ingediende pronostieken:</div><div class="flex flex-wrap">${badges}</div></div>`;
                     }
+                    */
 
                     // Tijdslimiet check (5 minuten voor de match)
                     const nu = new Date();
                     const deadline = new Date(matchDate.getTime() - 5 * 60000);
                     const kanVoorspellen = nu < deadline;
 
-                    const voorspelBtnHtml = kanVoorspellen 
-                        ? `<button onclick="openVoorspelModal('${match.homeTeam}', '${match.awayTeam}')" class="text-[10px] bg-purple-100 text-purple-700 hover:bg-purple-200 px-2 py-1.5 rounded font-bold shadow-sm transition-colors border border-purple-200 w-[90px] text-center">🔮 Voorspel</button>`
-                        : `<span class="text-[10px] bg-slate-100 text-slate-400 px-2 py-1.5 rounded font-bold shadow-sm border border-slate-200 w-[90px] text-center" title="Deadline verstreken">🔒 Gesloten</span>`;
+                    // Voorspel modus tijdelijk uitgeschakeld tot database is gekoppeld
+                    const voorspelBtnHtml = '';
 
                     const div = document.createElement('div');
                     div.className = "bg-slate-50 p-4 rounded-lg border border-slate-200";
