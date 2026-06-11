@@ -191,7 +191,7 @@
 
         const supabaseUrl = 'https://ofqghuymkbnifpgdavzg.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mcWdodXlta2JuaWZwZ2RhdnpnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyMDM0NDYsImV4cCI6MjA5Njc3OTQ0Nn0.pKlpmXFv6zwSYF3l73KQHS-xxd1-S3jHAfoK5vpu8e8';
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
         let calculatedData = [];
         let upcomingMatches = [];
@@ -223,7 +223,7 @@
             }
 
             try {
-                const { data, error } = await supabase.from('predictions').select('*');
+                const { data, error } = await supabaseClient.from('predictions').select('*');
                 if (!error && data) {
                     supabasePredictions = {};
                     data.forEach(p => {
@@ -908,7 +908,7 @@
             };
 
             // Supabase update (check if exists, then update or insert)
-            const { data: existingData } = await supabase
+            const { data: existingData } = await supabaseClient
                 .from('predictions')
                 .select('id')
                 .eq('match_id', matchId)
@@ -916,13 +916,13 @@
 
             if (existingData && existingData.length > 0) {
                 // Update
-                await supabase
+                await supabaseClient
                     .from('predictions')
                     .update({ home_goals: homeGoals, away_goals: awayGoals })
                     .eq('id', existingData[0].id);
             } else {
                 // Insert
-                await supabase
+                await supabaseClient
                     .from('predictions')
                     .insert({ match_id: matchId, speler: speler, home_goals: homeGoals, away_goals: awayGoals });
             }
