@@ -97,11 +97,6 @@
 
         <!-- Tab: Leaderboard -->
         <section id="content-leaderboard" class="space-y-6">
-            <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 flex justify-between items-center shadow-sm">
-                <span class="font-bold text-blue-800">Totaal aantal goals:</span>
-                <span id="leaderboard-total-goals" class="text-xl font-black text-blue-900">0</span>
-            </div>
-
             <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
                 <div class="p-5 border-b border-slate-200 flex justify-between items-center bg-slate-50">
                     <h2 class="font-bold text-lg text-slate-800">Klassement Vrienden van de Nuts</h2>
@@ -115,8 +110,8 @@
                                 class="bg-slate-100 text-slate-600 text-xs font-semibold uppercase tracking-wider border-b border-slate-200">
                                 <th class="py-3 px-4 text-center w-12">Pos</th>
                                 <th class="py-3 px-4">Deelnemer</th>
-                                <th class="py-3 px-4 text-center">Gegokte Goals</th>
-                                <th class="py-3 px-4 text-right pr-6">Totaal Punten</th>
+                                <th class="py-3 px-4 text-center">Totaal Punten</th>
+                                <th class="py-3 px-4 text-right pr-6">Gegokte Goals</th>
                             </tr>
                         </thead>
                         <tbody id="leaderboard-body" class="divide-y divide-slate-100">
@@ -126,10 +121,18 @@
                 </div>
             </div>
 
+            <!-- Trophies container will be placed here -->
+            <div id="trophies-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 mb-6"></div>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 flex justify-between items-center shadow-sm mb-6">
+                <span class="font-bold text-blue-800">Totaal aantal goals:</span>
+                <span id="leaderboard-total-goals" class="text-xl font-black text-blue-900">0</span>
+            </div>
+
             <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
                 <div class="p-5 border-b border-slate-200 flex justify-between items-center bg-slate-50">
                     <h2 class="font-bold text-lg text-slate-800">Aquafin Klassement</h2>
-                    <span class="text-xs text-slate-500 bg-slate-200 px-2.5 py-1 rounded-md font-medium">Top 3 & Vrienden van de Nuts</span>
+                    <span class="text-xs text-slate-500 bg-slate-200 px-2.5 py-1 rounded-md font-medium">Top 3, Vrienden & Laatste 3</span>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
@@ -138,8 +141,8 @@
                                 class="bg-slate-100 text-slate-600 text-xs font-semibold uppercase tracking-wider border-b border-slate-200">
                                 <th class="py-3 px-4 text-center w-12">Pos</th>
                                 <th class="py-3 px-4">Deelnemer</th>
-                                <th class="py-3 px-4 text-center">Gegokte Goals</th>
-                                <th class="py-3 px-4 text-right pr-6">Totaal Punten</th>
+                                <th class="py-3 px-4 text-center">Totaal Punten</th>
+                                <th class="py-3 px-4 text-right pr-6">Gegokte Goals</th>
                             </tr>
                         </thead>
                         <tbody id="aquafin-leaderboard-body" class="divide-y divide-slate-100">
@@ -582,10 +585,12 @@
                         </div>
                     </td>
                     <td class="py-3.5 px-4 font-bold text-[#002f6c]">${row.naam}</td>
-                    <td class="py-3.5 px-4 text-center">
+                    <td class="py-3.5 px-4 text-center font-black text-[#002f6c] text-lg">
+                        ${row.totaalPunten} <span class="text-xs text-slate-500 font-normal">pt</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right pr-6">
                         <div class="text-sm font-semibold text-slate-700">${row.goalsGuessed}</div>
                     </td>
-                    <td class="py-3.5 px-4 text-right pr-6 font-black text-[#002f6c] text-lg">${row.totaalPunten} <span class="text-xs text-slate-500 font-normal">pt</span></td>
                 `;
                 tbody.appendChild(tr);
             });
@@ -604,6 +609,12 @@
                         if (index + 1 < aquafinData.length) indicesToShow.add(index + 1);
                     }
                 });
+
+                // Laatste 3 spelers toevoegen
+                const totalPlayers = aquafinData.length;
+                if (totalPlayers > 0) indicesToShow.add(totalPlayers - 1);
+                if (totalPlayers > 1) indicesToShow.add(totalPlayers - 2);
+                if (totalPlayers > 2) indicesToShow.add(totalPlayers - 3);
 
                 const sortedIndices = Array.from(indicesToShow).sort((a, b) => a - b);
                 
@@ -648,10 +659,12 @@
                             ${row.naam}
                             ${isStandard ? '<span class="ml-2 bg-indigo-100 text-indigo-700 border border-indigo-200 text-[9px] px-1.5 py-0.5 rounded uppercase tracking-wider font-bold">VvdNuts</span>' : ''}
                         </td>
-                        <td class="py-3.5 px-4 text-center">
+                        <td class="py-3.5 px-4 text-center font-black text-[#002f6c] text-lg">
+                            ${row.totaalPunten} <span class="text-xs text-slate-500 font-normal">pt</span>
+                        </td>
+                        <td class="py-3.5 px-4 text-right pr-6">
                             <div class="text-sm font-semibold text-slate-700">${row.goalsGuessed}</div>
                         </td>
-                        <td class="py-3.5 px-4 text-right pr-6 font-black text-[#002f6c] text-lg">${row.totaalPunten} <span class="text-xs text-slate-500 font-normal">pt</span></td>
                     `;
                     aquafinBody.appendChild(tr);
                 }
