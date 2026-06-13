@@ -43,10 +43,10 @@
             <h1 class="text-2xl md:text-4xl font-extrabold tracking-tight text-[#002f6c] uppercase">WK 2026 pronostiek -
                 Vrienden van de Nuts</h1>
             <div class="mt-4 flex flex-wrap justify-center items-center gap-2">
-                <div class="inline-flex items-center space-x-1.5 bg-rose-50 text-rose-700 px-3 py-1.5 rounded-full border border-rose-200 font-semibold shadow-sm"
-                    title="Totaal aantal goals tornooi">
-                    <span class="text-base leading-none">⚽</span>
-                    <span id="header-total-goals" class="text-sm font-black">0</span>
+                <div class="inline-flex items-center space-x-1.5 bg-yellow-50 text-yellow-700 px-3 py-1.5 rounded-full border border-yellow-200 font-semibold shadow-sm"
+                    title="Huidige Leider">
+                    <span class="text-base leading-none">🏆</span>
+                    <span id="header-leader" class="text-sm font-black">-</span>
                 </div>
                 <div class="inline-flex items-center space-x-1.5 bg-amber-50 text-amber-700 px-3 py-1.5 rounded-full border border-amber-200 font-semibold shadow-sm"
                     title="Gouden Schutter">
@@ -97,9 +97,14 @@
 
         <!-- Tab: Leaderboard -->
         <section id="content-leaderboard" class="space-y-6">
+            <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 flex justify-between items-center shadow-sm">
+                <span class="font-bold text-blue-800">Totaal aantal goals:</span>
+                <span id="leaderboard-total-goals" class="text-xl font-black text-blue-900">0</span>
+            </div>
+
             <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
                 <div class="p-5 border-b border-slate-200 flex justify-between items-center bg-slate-50">
-                    <h2 class="font-bold text-lg text-slate-800">Huidige Rangschikking</h2>
+                    <h2 class="font-bold text-lg text-slate-800">Klassement Vrienden van de Nuts</h2>
                     <span class="text-xs text-slate-500 bg-slate-200 px-2.5 py-1 rounded-md font-medium">Gesorteerd op
                         totaalpunten</span>
                 </div>
@@ -115,6 +120,29 @@
                             </tr>
                         </thead>
                         <tbody id="leaderboard-body" class="divide-y divide-slate-100">
+                            <!-- Dynamic rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="p-5 border-b border-slate-200 flex justify-between items-center bg-slate-50">
+                    <h2 class="font-bold text-lg text-slate-800">Aquafin Klassement</h2>
+                    <span class="text-xs text-slate-500 bg-slate-200 px-2.5 py-1 rounded-md font-medium">Top 3 & Vrienden van de Nuts</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr
+                                class="bg-slate-100 text-slate-600 text-xs font-semibold uppercase tracking-wider border-b border-slate-200">
+                                <th class="py-3 px-4 text-center w-12">Pos</th>
+                                <th class="py-3 px-4">Deelnemer</th>
+                                <th class="py-3 px-4 text-center">Gegokte Goals</th>
+                                <th class="py-3 px-4 text-right pr-6">Totaal Punten</th>
+                            </tr>
+                        </thead>
+                        <tbody id="aquafin-leaderboard-body" class="divide-y divide-slate-100">
                             <!-- Dynamic rows -->
                         </tbody>
                     </table>
@@ -317,12 +345,12 @@
         }
 
         // Bereken de totale stand van de deelnemers
-        function calculateLeaderboard() {
+        function calculateLeaderboard(partList = participants) {
             const teamStats = calculateTeamStats();
 
             let predictions = supabasePredictions || {};
 
-            const leaderboard = participants.map(participant => {
+            const leaderboard = partList.map(participant => {
                 let totalPoints = 0;
                 let underdogPoints = 0;
                 let participantGoals = 0;
@@ -410,7 +438,7 @@
             });
 
             leaderboard.forEach(p => {
-                const participantDef = participants.find(part => part.naam === p.naam);
+                const participantDef = partList.find(part => part.naam === p.naam);
                 let recentPts = 0;
                 if (participantDef) {
                     participantDef.selectie.forEach(sel => {
@@ -428,10 +456,17 @@
         // UI RENDERING FUNCTIONS
         // ==========================================
 
-        function renderAll() {
-            calculatedData = calculateLeaderboard();
+        let aquafinData = [];
 
-            document.getElementById('header-total-goals').innerText = totalTournamentGoals;
+        function renderAll() {
+            calculatedData = calculateLeaderboard(participants);
+            aquafinData = calculateLeaderboard(allParticipants);
+
+            if (calculatedData.length > 0) {
+                document.getElementById('header-leader').innerText = calculatedData[0].naam;
+            }
+            const lgGoals = document.getElementById('leaderboard-total-goals');
+            if (lgGoals) lgGoals.innerText = totalTournamentGoals;
 
             renderLeaderboard();
             setupPlayerSelect();
@@ -554,6 +589,73 @@
                 `;
                 tbody.appendChild(tr);
             });
+
+            const aquafinBody = document.getElementById('aquafin-leaderboard-body');
+            if (aquafinBody) {
+                aquafinBody.innerHTML = '';
+                
+                const indicesToShow = new Set([0, 1, 2]); // Top 3
+                const standardNames = participants.map(p => p.naam);
+                
+                aquafinData.forEach((row, index) => {
+                    if (standardNames.includes(row.naam)) {
+                        if (index - 1 >= 0) indicesToShow.add(index - 1);
+                        indicesToShow.add(index);
+                        if (index + 1 < aquafinData.length) indicesToShow.add(index + 1);
+                    }
+                });
+
+                const sortedIndices = Array.from(indicesToShow).sort((a, b) => a - b);
+                
+                for (let i = 0; i < sortedIndices.length; i++) {
+                    const index = sortedIndices[i];
+                    
+                    if (i > 0 && sortedIndices[i] > sortedIndices[i-1] + 1) {
+                        const dotsTr = document.createElement('tr');
+                        dotsTr.className = "bg-slate-50 border-b border-slate-200";
+                        dotsTr.innerHTML = `
+                            <td colspan="4" class="py-2 text-center text-slate-400 font-black tracking-[0.3em] text-lg">
+                                ...
+                            </td>
+                        `;
+                        aquafinBody.appendChild(dotsTr);
+                    }
+                    
+                    const row = aquafinData[index];
+                    const tr = document.createElement('tr');
+                    
+                    const isStandard = standardNames.includes(row.naam);
+                    tr.className = isStandard ? "bg-indigo-50/50 border-b border-slate-200" : "bg-white border-b border-slate-200 hover:bg-slate-50 transition-colors";
+                    
+                    let rankBadge = `<span class="font-bold text-slate-500">${index + 1}</span>`;
+                    if (index === 0) rankBadge = `<span class="bg-amber-100 text-amber-700 px-2 py-0.5 rounded text-xs font-bold border border-amber-200 shadow-sm">1</span>`;
+                    if (index === 1) rankBadge = `<span class="bg-slate-200 text-slate-600 px-2 py-0.5 rounded text-xs font-bold border border-slate-300 shadow-sm">2</span>`;
+                    if (index === 2) rankBadge = `<span class="bg-orange-100 text-orange-700 px-2 py-0.5 rounded text-xs font-bold border border-orange-200 shadow-sm">3</span>`;
+
+                    let deltaHtml = '<div class="text-slate-300 font-bold ml-2 w-12 text-center flex-none text-xs"></div>';
+                    if (row.delta > 0) {
+                        deltaHtml = `<div class="text-emerald-500 font-bold ml-2 text-[10px] whitespace-nowrap text-center flex items-center justify-center bg-emerald-50 rounded-full px-2 py-0.5 border border-emerald-100">+${row.delta} pt</div>`;
+                    }
+
+                    tr.innerHTML = `
+                        <td class="py-3.5 px-4">
+                            <div class="flex items-center justify-center">
+                                ${rankBadge}
+                                ${deltaHtml}
+                            </div>
+                        </td>
+                        <td class="py-3.5 px-4 font-bold text-[#002f6c] flex items-center">
+                            ${row.naam}
+                            ${isStandard ? '<span class="ml-2 bg-indigo-100 text-indigo-700 border border-indigo-200 text-[9px] px-1.5 py-0.5 rounded uppercase tracking-wider font-bold">VvdNuts</span>' : ''}
+                        </td>
+                        <td class="py-3.5 px-4 text-center">
+                            <div class="text-sm font-semibold text-slate-700">${row.goalsGuessed}</div>
+                        </td>
+                        <td class="py-3.5 px-4 text-right pr-6 font-black text-[#002f6c] text-lg">${row.totaalPunten} <span class="text-xs text-slate-500 font-normal">pt</span></td>
+                    `;
+                    aquafinBody.appendChild(tr);
+                }
+            }
         }
 
         function setupPlayerSelect() {
