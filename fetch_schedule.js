@@ -31,7 +31,7 @@ async function fetchSchedule() {
         const data = await response.json();
         
         // 1. Upcoming Matches
-        const upcoming = (data.matches || []).filter(m => m.status === 'SCHEDULED' || m.status === 'TIMED');
+        const upcoming = (data.matches || []).filter(m => ['SCHEDULED', 'TIMED', 'IN_PLAY', 'PAUSED'].includes(m.status));
         const upcomingMatches = upcoming.map(match => {
             return {
                 date: match.utcDate,
