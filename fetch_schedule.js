@@ -30,6 +30,17 @@ async function fetchSchedule() {
 
         const data = await response.json();
         
+        // --- DEBUG: Print status van Brazil en Morocco matchen ---
+        const braMar = (data.matches || []).filter(m => 
+            (m.homeTeam?.name && m.homeTeam.name.includes("Brazil")) ||
+            (m.awayTeam?.name && m.awayTeam.name.includes("Brazil")) ||
+            (m.homeTeam?.name && m.homeTeam.name.includes("Morocco")) ||
+            (m.awayTeam?.name && m.awayTeam.name.includes("Morocco"))
+        );
+        console.log("\\n=== DEBUG INFO MATCH === ");
+        braMar.forEach(m => console.log(`${m.homeTeam?.name} vs ${m.awayTeam?.name} -> Status: ${m.status}`));
+        console.log("==========================\\n");
+        
         // 1. Upcoming Matches
         const upcoming = (data.matches || []).filter(m => ['SCHEDULED', 'TIMED', 'IN_PLAY', 'PAUSED'].includes(m.status));
         const upcomingMatches = upcoming.map(match => {
