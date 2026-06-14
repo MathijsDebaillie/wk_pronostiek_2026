@@ -44,14 +44,40 @@ async function fetchSchedule() {
         fs.writeFileSync(upcomingPath, JSON.stringify(upcomingMatches, null, 2), 'utf-8');
         console.log(`Successfully saved ${upcomingMatches.length} upcoming matches.`);
 
+        let existingPlayedMatches = [];
+        try {
+            const playedPath = path.join(__dirname, 'played_matches.json');
+            if (fs.existsSync(playedPath)) {
+                const fileContent = fs.readFileSync(playedPath, 'utf-8');
+                existingPlayedMatches = JSON.parse(fileContent);
+            }
+        } catch (e) {
+            console.error('Could not read existing played matches:', e);
+        }
+
         // 2. Played Matches (Finished)
         const finished = (data.matches || []).filter(m => m.status === 'FINISHED');
         const playedMatches = finished.map(match => {
             // Reglement: Score na 120 minuten telt. Penalty's tellen als gelijkspel.
             // football-data.org 'fullTime' bevat de score inclusief eventuele extra time (maar excl. penalty's). In v4 is er ook 'regularTime'.
             console.log(`Scores API voor ${match.homeTeam?.name}:`, JSON.stringify(match.score));
-            const homeScore = match.score?.fullTime?.home ?? match.score?.regularTime?.home ?? 0;
-            const awayScore = match.score?.fullTime?.away ?? match.score?.regularTime?.away ?? 0;
+            
+            let homeScore = match.score?.fullTime?.home ?? match.score?.regularTime?.home;
+            let awayScore = match.score?.fullTime?.away ?? match.score?.regularTime?.away;
+
+            // Als er null doorkomt, proberen we de score uit de reeds opgeslagen json te halen (zodat we hem niet "veranderen" naar 0)
+            if (homeScore === null || awayScore === null || homeScore === undefined || awayScore === undefined) {
+                const existingMatch = existingPlayedMatches.find(
+                    m => m.thuis === match.homeTeam?.name && m.uit === match.awayTeam?.name
+                );
+                if (existingMatch) {
+                    homeScore = existingMatch.goalsThuis;
+                    awayScore = existingMatch.goalsUit;
+                } else {
+                    homeScore = 0;
+                    awayScore = 0;
+                }
+            }
 
             return {
                 date: match.utcDate,
