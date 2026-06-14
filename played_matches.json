@@ -54,5 +54,12 @@
     "uit": "Turkey",
     "goalsThuis": 2,
     "goalsUit": 0
+  },
+  {
+    "date": "2026-06-14T17:00:00Z",
+    "thuis": "Germany",
+    "uit": "Curaçao",
+    "goalsThuis": 7,
+    "goalsUit": 1
   }
 ]
