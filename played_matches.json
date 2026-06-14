@@ -17,8 +17,8 @@
     "date": "2026-06-12T19:00:00Z",
     "thuis": "Canada",
     "uit": "Bosnia-Herzegovina",
-    "goalsThuis": 1,
-    "goalsUit": 1
+    "goalsThuis": 0,
+    "goalsUit": 0
   },
   {
     "date": "2026-06-13T01:00:00Z",
@@ -33,5 +33,26 @@
     "uit": "Switzerland",
     "goalsThuis": 1,
     "goalsUit": 1
+  },
+  {
+    "date": "2026-06-13T22:00:00Z",
+    "thuis": "Brazil",
+    "uit": "Morocco",
+    "goalsThuis": 1,
+    "goalsUit": 1
+  },
+  {
+    "date": "2026-06-14T01:00:00Z",
+    "thuis": "Haiti",
+    "uit": "Scotland",
+    "goalsThuis": 0,
+    "goalsUit": 1
+  },
+  {
+    "date": "2026-06-14T04:00:00Z",
+    "thuis": "Australia",
+    "uit": "Turkey",
+    "goalsThuis": 2,
+    "goalsUit": 0
   }
 ]
