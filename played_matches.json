@@ -75,5 +75,12 @@
     "uit": "Ecuador",
     "goalsThuis": 1,
     "goalsUit": 0
+  },
+  {
+    "date": "2026-06-15T02:00:00Z",
+    "thuis": "Sweden",
+    "uit": "Tunisia",
+    "goalsThuis": 5,
+    "goalsUit": 1
   }
 ]
