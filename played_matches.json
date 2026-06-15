@@ -89,5 +89,12 @@
     "uit": "Cape Verde Islands",
     "goalsThuis": 0,
     "goalsUit": 0
+  },
+  {
+    "date": "2026-06-15T19:00:00Z",
+    "thuis": "Belgium",
+    "uit": "Egypt",
+    "goalsThuis": 1,
+    "goalsUit": 1
   }
 ]
