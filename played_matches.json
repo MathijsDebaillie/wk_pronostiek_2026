@@ -82,5 +82,12 @@
     "uit": "Tunisia",
     "goalsThuis": 5,
     "goalsUit": 1
+  },
+  {
+    "date": "2026-06-15T16:00:00Z",
+    "thuis": "Spain",
+    "uit": "Cape Verde Islands",
+    "goalsThuis": 0,
+    "goalsUit": 0
   }
 ]
