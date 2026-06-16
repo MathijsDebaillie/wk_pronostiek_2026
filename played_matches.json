@@ -110,5 +110,12 @@
     "uit": "New Zealand",
     "goalsThuis": 2,
     "goalsUit": 2
+  },
+  {
+    "date": "2026-06-16T19:00:00Z",
+    "thuis": "France",
+    "uit": "Senegal",
+    "goalsThuis": 3,
+    "goalsUit": 1
   }
 ]
