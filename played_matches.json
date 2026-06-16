@@ -103,5 +103,12 @@
     "uit": "Uruguay",
     "goalsThuis": 1,
     "goalsUit": 1
+  },
+  {
+    "date": "2026-06-16T01:00:00Z",
+    "thuis": "Iran",
+    "uit": "New Zealand",
+    "goalsThuis": 2,
+    "goalsUit": 2
   }
 ]
