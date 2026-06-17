@@ -117,5 +117,12 @@
     "uit": "Senegal",
     "goalsThuis": 3,
     "goalsUit": 1
+  },
+  {
+    "date": "2026-06-16T22:00:00Z",
+    "thuis": "Iraq",
+    "uit": "Norway",
+    "goalsThuis": 1,
+    "goalsUit": 4
   }
 ]
