@@ -138,5 +138,19 @@
     "uit": "Jordan",
     "goalsThuis": 3,
     "goalsUit": 1
+  },
+  {
+    "date": "2026-06-17T17:00:00Z",
+    "thuis": "Portugal",
+    "uit": "Congo DR",
+    "goalsThuis": 1,
+    "goalsUit": 1
+  },
+  {
+    "date": "2026-06-17T20:00:00Z",
+    "thuis": "England",
+    "uit": "Croatia",
+    "goalsThuis": 4,
+    "goalsUit": 2
   }
 ]
