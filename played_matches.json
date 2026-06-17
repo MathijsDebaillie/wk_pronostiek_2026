@@ -124,5 +124,19 @@
     "uit": "Norway",
     "goalsThuis": 1,
     "goalsUit": 4
+  },
+  {
+    "date": "2026-06-17T01:00:00Z",
+    "thuis": "Argentina",
+    "uit": "Algeria",
+    "goalsThuis": 3,
+    "goalsUit": 0
+  },
+  {
+    "date": "2026-06-17T04:00:00Z",
+    "thuis": "Austria",
+    "uit": "Jordan",
+    "goalsThuis": 3,
+    "goalsUit": 1
   }
 ]
