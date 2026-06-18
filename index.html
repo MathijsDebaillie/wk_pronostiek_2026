@@ -48,7 +48,7 @@
                     <span class="text-base leading-none">🏆</span>
                     <span id="header-leader" class="text-sm font-black">-</span>
                 </div>
-                <div class="inline-flex items-center space-x-1.5 bg-amber-50 text-amber-700 px-3 py-1.5 rounded-full border border-amber-200 font-semibold shadow-sm"
+                <div class="inline-flex items-center space-x-1.5 bg-orange-50 text-orange-700 px-3 py-1.5 rounded-full border border-orange-200 font-semibold shadow-sm"
                     title="Gouden Schutter">
                     <span class="text-base leading-none">🎯</span>
                     <span id="header-schutter" class="text-sm font-black">-</span>
@@ -642,42 +642,42 @@
             document.getElementById('header-voorspeller').innerText = voorspeller.naam;
 
             container.innerHTML = `
-                <div class="bg-gradient-to-br from-indigo-500 to-blue-700 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
+                <div class="bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
                     <div class="text-4xl">🏆</div>
                     <div>
-                        <div class="text-xs font-bold text-indigo-100 uppercase tracking-wider">De Koploper</div>
+                        <div class="text-xs font-bold text-yellow-100 uppercase tracking-wider">De Koploper</div>
                         <div class="font-black text-xl leading-tight">${leider.naam}</div>
-                        <div class="text-[11px] text-indigo-100 mt-1">${leider.totaalPunten} punten</div>
+                        <div class="text-[11px] text-yellow-100 mt-1">${leider.totaalPunten} punten</div>
                     </div>
                 </div>
-                <div class="bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
+                <div class="bg-gradient-to-br from-orange-400 to-orange-500 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
                     <div class="text-4xl">🎯</div>
                     <div>
-                        <div class="text-xs font-bold text-amber-100 uppercase tracking-wider">Gouden Schutter</div>
+                        <div class="text-xs font-bold text-orange-100 uppercase tracking-wider">Gouden Schutter</div>
                         <div class="font-black text-xl leading-tight">${schutter.naam}</div>
-                        <div class="text-[11px] text-amber-100 mt-1">${schutter.participantGoals} goals door ploegen</div>
+                        <div class="text-[11px] text-orange-100 mt-1">${schutter.participantGoals} goals door ploegen</div>
                     </div>
                 </div>
-                <div class="bg-gradient-to-br from-sky-400 to-blue-600 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
+                <div class="bg-gradient-to-br from-sky-400 to-sky-500 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
                     <div class="text-4xl">🐶</div>
                     <div>
-                        <div class="text-xs font-bold text-sky-200 uppercase tracking-wider">Underdog Hero</div>
+                        <div class="text-xs font-bold text-sky-100 uppercase tracking-wider">Underdog Hero</div>
                         <div class="font-black text-xl leading-tight">${underdog.naam}</div>
                         <div class="text-[11px] text-sky-100 mt-1">${underdog.underdogPoints} pt via underdogs</div>
                     </div>
                 </div>
-                <div class="bg-gradient-to-br from-emerald-400 to-teal-600 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
+                <div class="bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
                     <div class="text-4xl">🚀</div>
                     <div>
-                        <div class="text-xs font-bold text-emerald-200 uppercase tracking-wider">Rising Star</div>
+                        <div class="text-xs font-bold text-emerald-100 uppercase tracking-wider">Rising Star</div>
                         <div class="font-black text-xl leading-tight">${risingStar.naam}</div>
                         <div class="text-[11px] text-emerald-100 mt-1">+${risingStar.delta > 0 ? risingStar.delta : 0} pt in de laatste 2 dagen</div>
                     </div>
                 </div>
-                <div class="bg-gradient-to-br from-purple-400 to-fuchsia-600 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
+                <div class="bg-gradient-to-br from-purple-400 to-purple-500 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
                     <div class="text-4xl">🔮</div>
                     <div>
-                        <div class="text-xs font-bold text-purple-200 uppercase tracking-wider">Meester Pronostikeur</div>
+                        <div class="text-xs font-bold text-purple-100 uppercase tracking-wider">Meester Pronostikeur</div>
                         <div class="font-black text-xl leading-tight">${voorspeller.naam}</div>
                         <div class="text-[11px] text-purple-100 mt-1">${voorspeller.voorspellerPoints} exacte scores</div>
                     </div>
