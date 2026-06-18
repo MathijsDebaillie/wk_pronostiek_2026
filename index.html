@@ -129,6 +129,9 @@
                 <span id="leaderboard-total-goals" class="text-xl font-black text-blue-900">0</span>
             </div>
 
+            <!-- Trophies History per Round -->
+            <div id="rounds-history-container"></div>
+
             <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
                 <div class="p-5 border-b border-slate-200 flex justify-between items-center bg-slate-50">
                     <h2 class="font-bold text-lg text-slate-800">Aquafin Klassement</h2>
@@ -314,11 +317,11 @@
         }
 
         // Bereken alle statistieken per ploeg
-        function calculateTeamStats() {
+        function calculateTeamStats(customMatches = null) {
             const stats = {};
-            totalTournamentGoals = 0;
+            let tempTotalGoals = 0;
 
-            const allMatches = [...matches, ...simulatedMatches];
+            const allMatches = customMatches || [...matches, ...simulatedMatches];
 
             allMatches.forEach(match => {
                 if (!stats[match.thuis]) stats[match.thuis] = { winst: 0, gelijk: 0, verlies: 0, goals: 0, basisPunten: 0 };
@@ -326,7 +329,7 @@
 
                 stats[match.thuis].goals += match.goalsThuis;
                 stats[match.uit].goals += match.goalsUit;
-                totalTournamentGoals += match.goalsThuis + match.goalsUit;
+                tempTotalGoals += match.goalsThuis + match.goalsUit;
 
                 if (match.goalsThuis > match.goalsUit) {
                     stats[match.thuis].winst++;
@@ -344,12 +347,16 @@
                 }
             });
 
+            if (!customMatches) {
+                totalTournamentGoals = tempTotalGoals;
+            }
+
             return stats;
         }
 
         // Bereken de totale stand van de deelnemers
-        function calculateLeaderboard(partList = participants) {
-            const teamStats = calculateTeamStats();
+        function calculateLeaderboard(partList = participants, customMatches = null) {
+            const teamStats = calculateTeamStats(customMatches);
 
             let predictions = supabasePredictions || {};
 
@@ -360,7 +367,8 @@
                 let voorspellerPoints = 0;
 
                 // Check gespeelde matchen voor exacte scores
-                matches.forEach(match => {
+                const matchesToCheck = customMatches || matches;
+                matchesToCheck.forEach(match => {
                     const matchId = match.thuis + '_' + match.uit;
                     if (predictions[matchId] && predictions[matchId][participant.naam]) {
                         const pred = predictions[matchId][participant.naam];
@@ -415,8 +423,9 @@
             const now = new Date();
             const fortyEightHoursAgo = new Date(now.getTime() - 48 * 60 * 60 * 1000);
 
-            const recentMatches = [...matches, ...simulatedMatches].filter(match => {
-                if (simulatedMatches.includes(match)) return true; // Gesimuleerde matches zijn 'nu'
+            const allMatchesToCheck = customMatches || [...matches, ...simulatedMatches];
+            const recentMatches = allMatchesToCheck.filter(match => {
+                if (!customMatches && simulatedMatches.includes(match)) return true; // Gesimuleerde matches zijn 'nu'
                 if (!match.date) return false;
                 const matchDate = new Date(match.date);
                 return matchDate >= fortyEightHoursAgo;
@@ -460,10 +469,112 @@
         // ==========================================
 
         let aquafinData = [];
+        let roundHistoriesData = [];
+
+        function calculateRoundHistories() {
+            roundHistoriesData = [];
+            if (!matches || matches.length === 0) return;
+
+            const sortedMatches = [...matches].sort((a, b) => new Date(a.date) - new Date(b.date));
+            let teamPlayCounts = {};
+            let currentRoundTarget = 1;
+            let processedMatches = [];
+            const TOTAL_TEAMS = 48; // Total teams in WK 2026
+
+            sortedMatches.forEach(match => {
+                processedMatches.push(match);
+                teamPlayCounts[match.thuis] = (teamPlayCounts[match.thuis] || 0) + 1;
+                teamPlayCounts[match.uit] = (teamPlayCounts[match.uit] || 0) + 1;
+
+                const counts = Object.values(teamPlayCounts);
+                
+                // A round ends when ALL 48 teams have played at least currentRoundTarget times
+                if (counts.length >= TOTAL_TEAMS && counts.every(c => c >= currentRoundTarget)) {
+                    // Calculate leaderboard at this point
+                    const historyData = calculateLeaderboard(participants, processedMatches);
+                    
+                    function getTrophyWinner(data, key) {
+                        const maxVal = Math.max(...data.map(p => p[key]));
+                        if (maxVal === 0) return { naam: 'Norberto', [key]: 0 };
+                        const winners = data.filter(p => p[key] === maxVal).map(p => p.naam);
+                        let winnerName = winners.join(', ');
+                        if (winners.length > 1) {
+                            const lastComma = winnerName.lastIndexOf(', ');
+                            winnerName = winnerName.substring(0, lastComma) + ' & ' + winnerName.substring(lastComma + 2);
+                        }
+                        return { naam: winnerName, [key]: maxVal };
+                    }
+
+                    const schutter = getTrophyWinner(historyData, 'participantGoals');
+                    const underdog = getTrophyWinner(historyData, 'underdogPoints');
+                    const voorspeller = getTrophyWinner(historyData, 'voorspellerPoints');
+
+                    roundHistoriesData.push({
+                        round: currentRoundTarget,
+                        schutter: schutter.naam,
+                        underdog: underdog.naam,
+                        voorspeller: voorspeller.naam
+                    });
+
+                    currentRoundTarget++;
+                }
+            });
+        }
+
+        function renderRoundHistories() {
+            let container = document.getElementById('rounds-history-container');
+            if (!container) return; 
+            
+            if (roundHistoriesData.length === 0) {
+                container.innerHTML = '';
+                return;
+            }
+
+            let html = `
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden mb-6">
+                <div class="p-5 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
+                    <h2 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                        <span class="text-xl">⏳</span> Historiek Trofeeën per Ronde
+                    </h2>
+                    <span class="text-xs text-slate-500 bg-slate-200 px-2.5 py-1 rounded-md font-medium">Stand na elke volledige ronde</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100 text-slate-600 text-xs font-semibold uppercase tracking-wider border-b border-slate-200">
+                                <th class="py-3 px-4 text-center">Ronde</th>
+                                <th class="py-3 px-4 text-center">🎯 Gouden Schutter</th>
+                                <th class="py-3 px-4 text-center">🐶 Underdog Hero</th>
+                                <th class="py-3 px-4 text-center">🔮 Meester Pronostikeur</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+            `;
+
+            roundHistoriesData.forEach(history => {
+                html += `
+                    <tr class="hover:bg-slate-50 transition-colors">
+                        <td class="py-3 px-4 text-center font-bold text-slate-700 bg-slate-50 border-r border-slate-100 w-24">Ronde ${history.round}</td>
+                        <td class="py-3 px-4 text-center font-semibold text-amber-700">${history.schutter}</td>
+                        <td class="py-3 px-4 text-center font-semibold text-sky-700">${history.underdog}</td>
+                        <td class="py-3 px-4 text-center font-semibold text-purple-700">${history.voorspeller}</td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            `;
+            container.innerHTML = html;
+        }
 
         function renderAll() {
             calculatedData = calculateLeaderboard(participants);
             aquafinData = calculateLeaderboard(allParticipants);
+            calculateRoundHistories();
 
             if (calculatedData.length > 0) {
                 document.getElementById('header-leader').innerText = calculatedData[0].naam;
@@ -472,6 +583,7 @@
             if (lgGoals) lgGoals.innerText = totalTournamentGoals;
 
             renderLeaderboard();
+            renderRoundHistories();
             setupPlayerSelect();
             renderCalendar();
             renderTeamPerformance();
