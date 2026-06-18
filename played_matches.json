@@ -173,5 +173,12 @@
     "uit": "South Africa",
     "goalsThuis": 1,
     "goalsUit": 1
+  },
+  {
+    "date": "2026-06-18T19:00:00Z",
+    "thuis": "Switzerland",
+    "uit": "Bosnia-Herzegovina",
+    "goalsThuis": 4,
+    "goalsUit": 1
   }
 ]
