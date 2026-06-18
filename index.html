@@ -122,7 +122,7 @@
             </div>
 
             <!-- Trophies container will be placed here -->
-            <div id="trophies-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 mb-6"></div>
+            <div id="trophies-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 lg:grid-cols-3 gap-4 mt-8 mb-6"></div>
 
             <!-- Trophies History per Round -->
             <div id="rounds-history-container"></div>
@@ -508,9 +508,11 @@
                     const schutter = getTrophyWinner(historyData, 'participantGoals');
                     const underdog = getTrophyWinner(historyData, 'underdogPoints');
                     const voorspeller = getTrophyWinner(historyData, 'voorspellerPoints');
+                    const leider = getTrophyWinner(historyData, 'totaalPunten');
 
                     roundHistoriesData.push({
                         round: currentRoundTarget,
+                        leider: { naam: leider.naam, score: leider.totaalPunten },
                         schutter: { naam: schutter.naam, score: schutter.participantGoals },
                         underdog: { naam: underdog.naam, score: underdog.underdogPoints },
                         voorspeller: { naam: voorspeller.naam, score: voorspeller.voorspellerPoints }
@@ -543,6 +545,7 @@
                         <thead>
                             <tr class="bg-slate-100 text-slate-600 text-xs font-semibold uppercase tracking-wider border-b border-slate-200">
                                 <th class="py-3 px-4 text-center">Ronde</th>
+                                <th class="py-3 px-4 text-center">🏆 Leider</th>
                                 <th class="py-3 px-4 text-center">🎯 Gouden Schutter</th>
                                 <th class="py-3 px-4 text-center">🐶 Underdog Hero</th>
                                 <th class="py-3 px-4 text-center">🔮 Meester Pronostikeur</th>
@@ -555,6 +558,10 @@
                 html += `
                     <tr class="hover:bg-slate-50 transition-colors">
                         <td class="py-3 px-4 text-center font-bold text-slate-700 bg-slate-50 border-r border-slate-100 w-24">Ronde ${history.round}</td>
+                        <td class="py-3 px-4 text-center">
+                            <div class="font-bold text-blue-800">${history.leider.naam}</div>
+                            <div class="text-[10px] font-bold text-blue-700 bg-blue-100/60 rounded-full px-2 py-0.5 inline-block mt-0.5 border border-blue-200">${history.leider.score} pt</div>
+                        </td>
                         <td class="py-3 px-4 text-center">
                             <div class="font-semibold text-amber-700">${history.schutter.naam}</div>
                             <div class="text-[10px] font-bold text-amber-600 bg-amber-100/50 rounded-full px-2 py-0.5 inline-block mt-0.5 border border-amber-200">${history.schutter.score} goals</div>
@@ -604,7 +611,7 @@
                 const lbSection = document.getElementById('content-leaderboard');
                 container = document.createElement('div');
                 container.id = 'trophies-container';
-                container.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 mb-6';
+                container.className = 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 lg:grid-cols-3 gap-4 mt-8 mb-6';
                 lbSection.appendChild(container);
             }
             if (calculatedData.length === 0) return;
@@ -627,6 +634,7 @@
             const underdog = getTrophyWinner(calculatedData, 'underdogPoints');
             const risingStar = getTrophyWinner(calculatedData, 'delta');
             const voorspeller = getTrophyWinner(calculatedData, 'voorspellerPoints');
+            const leider = getTrophyWinner(calculatedData, 'totaalPunten');
 
             document.getElementById('header-schutter').innerText = schutter.naam;
             document.getElementById('header-underdog').innerText = underdog.naam;
@@ -634,6 +642,14 @@
             document.getElementById('header-voorspeller').innerText = voorspeller.naam;
 
             container.innerHTML = `
+                <div class="bg-gradient-to-br from-indigo-500 to-blue-700 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
+                    <div class="text-4xl">🏆</div>
+                    <div>
+                        <div class="text-xs font-bold text-indigo-100 uppercase tracking-wider">De Koploper</div>
+                        <div class="font-black text-xl leading-tight">${leider.naam}</div>
+                        <div class="text-[11px] text-indigo-100 mt-1">${leider.totaalPunten} punten</div>
+                    </div>
+                </div>
                 <div class="bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl p-4 text-white shadow-md flex items-center space-x-4">
                     <div class="text-4xl">🎯</div>
                     <div>
