@@ -229,5 +229,12 @@
     "uit": "Sweden",
     "goalsThuis": 5,
     "goalsUit": 1
+  },
+  {
+    "date": "2026-06-20T20:00:00Z",
+    "thuis": "Germany",
+    "uit": "Ivory Coast",
+    "goalsThuis": 2,
+    "goalsUit": 1
   }
 ]
