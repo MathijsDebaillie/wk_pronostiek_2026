@@ -215,5 +215,12 @@
     "uit": "Haiti",
     "goalsThuis": 3,
     "goalsUit": 0
+  },
+  {
+    "date": "2026-06-20T03:00:00Z",
+    "thuis": "Turkey",
+    "uit": "Paraguay",
+    "goalsThuis": 0,
+    "goalsUit": 1
   }
 ]
