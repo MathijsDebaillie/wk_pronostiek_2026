@@ -222,5 +222,12 @@
     "uit": "Paraguay",
     "goalsThuis": 0,
     "goalsUit": 1
+  },
+  {
+    "date": "2026-06-20T17:00:00Z",
+    "thuis": "Netherlands",
+    "uit": "Sweden",
+    "goalsThuis": 5,
+    "goalsUit": 1
   }
 ]
