@@ -201,5 +201,12 @@
     "uit": "Australia",
     "goalsThuis": 2,
     "goalsUit": 0
+  },
+  {
+    "date": "2026-06-19T22:00:00Z",
+    "thuis": "Scotland",
+    "uit": "Morocco",
+    "goalsThuis": 0,
+    "goalsUit": 1
   }
 ]
