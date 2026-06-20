@@ -208,5 +208,12 @@
     "uit": "Morocco",
     "goalsThuis": 0,
     "goalsUit": 1
+  },
+  {
+    "date": "2026-06-20T00:30:00Z",
+    "thuis": "Brazil",
+    "uit": "Haiti",
+    "goalsThuis": 3,
+    "goalsUit": 0
   }
 ]
