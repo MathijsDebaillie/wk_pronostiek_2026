@@ -236,5 +236,12 @@
     "uit": "Ivory Coast",
     "goalsThuis": 2,
     "goalsUit": 1
+  },
+  {
+    "date": "2026-06-21T00:00:00Z",
+    "thuis": "Ecuador",
+    "uit": "Curaçao",
+    "goalsThuis": 0,
+    "goalsUit": 0
   }
 ]
