@@ -255,7 +255,14 @@
     "date": "2026-06-21T16:00:00Z",
     "thuis": "Spain",
     "uit": "Saudi Arabia",
-    "goalsThuis": 5,
+    "goalsThuis": 4,
+    "goalsUit": 0
+  },
+  {
+    "date": "2026-06-21T19:00:00Z",
+    "thuis": "Belgium",
+    "uit": "Iran",
+    "goalsThuis": 0,
     "goalsUit": 0
   }
 ]
