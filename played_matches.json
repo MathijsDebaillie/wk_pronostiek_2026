@@ -278,5 +278,12 @@
     "uit": "Egypt",
     "goalsThuis": 1,
     "goalsUit": 3
+  },
+  {
+    "date": "2026-06-22T17:00:00Z",
+    "thuis": "Argentina",
+    "uit": "Austria",
+    "goalsThuis": 2,
+    "goalsUit": 0
   }
 ]
