@@ -925,75 +925,120 @@
             if (enrichedPlayedMatches.length === 0) {
                 playedContainer.innerHTML = `<p class="text-slate-500 text-sm text-center py-6">Nog geen wedstrijden gespeeld.</p>`;
             } else {
-                // Sorteer op datum indien beschikbaar, anders behoud originele volgorde
+                // Sorteer op datum
+                enrichedPlayedMatches.sort((a, b) => new Date(a.date) - new Date(b.date));
+                
+                let teamCounts = {};
+                let matchesByRound = {};
+                let maxRound = 1;
+
                 enrichedPlayedMatches.forEach(match => {
-                    let homeBadges = match.homeSelectors.map(sel => getBadgeHtml(sel, true)).join('');
-                    let awayBadges = match.awaySelectors.map(sel => getBadgeHtml(sel, false)).join('');
+                    teamCounts[match.thuis] = (teamCounts[match.thuis] || 0) + 1;
+                    teamCounts[match.uit] = (teamCounts[match.uit] || 0) + 1;
+                    const round = Math.max(teamCounts[match.thuis], teamCounts[match.uit]);
+                    if (!matchesByRound[round]) matchesByRound[round] = [];
+                    matchesByRound[round].push(match);
+                    if (round > maxRound) maxRound = round;
+                });
 
-                    // Pronostieken ophalen
-                    const matchId = match.thuis + '_' + match.uit;
-                    const matchPreds = supabasePredictions[matchId] || {};
+                // Render rounds descending so the latest round is at the top
+                Object.keys(matchesByRound).sort((a, b) => b - a).forEach(roundStr => {
+                    const round = parseInt(roundStr);
+                    const isLastRound = round === maxRound;
+                    const roundMatches = matchesByRound[round];
+                    
+                    const roundContainerId = `played-round-${round}-content`;
+                    const roundIconId = `played-round-${round}-icon`;
+                    
+                    const roundHeader = document.createElement('div');
+                    roundHeader.className = "mb-2 mt-4 first:mt-0";
+                    roundHeader.innerHTML = `
+                        <button onclick="toggleAccordion('${roundContainerId}', '${roundIconId}')" class="w-full px-4 py-3 flex justify-between items-center bg-indigo-50 border border-indigo-100 rounded-lg hover:bg-indigo-100 transition-colors shadow-sm">
+                            <h3 class="font-bold text-indigo-900 flex items-center">
+                                <span>Ronde ${round}</span>
+                                <span class="ml-2 text-xs font-semibold bg-white text-indigo-700 px-2 py-0.5 rounded-full border border-indigo-200 shadow-sm">${roundMatches.length} ${roundMatches.length === 1 ? 'match' : 'matchen'}</span>
+                            </h3>
+                            <span id="${roundIconId}" class="transform transition-transform duration-200 text-indigo-500 ${isLastRound ? 'rotate-180' : ''}">▼</span>
+                        </button>
+                    `;
+                    playedContainer.appendChild(roundHeader);
+                    
+                    const roundContent = document.createElement('div');
+                    roundContent.id = roundContainerId;
+                    roundContent.className = `space-y-3 mt-3 transition-all ${isLastRound ? '' : 'hidden'}`;
 
-                    let predHtml = '';
-                    if (Object.keys(matchPreds).length > 0) {
-                        const badges = Object.entries(matchPreds).map(([speler, pred]) => {
-                            const isCorrect = (pred.home === match.goalsThuis && pred.away === match.goalsUit);
-                            const badgeColorClass = isCorrect ? "bg-emerald-100 text-emerald-800 border-emerald-300" : "bg-white text-slate-700 border-slate-200";
-                            return `<span class="inline-block ${badgeColorClass} text-[10px] px-2 py-1 rounded border shadow-sm mr-2 mb-1"><span class="font-bold">${speler}:</span> ${pred.home} - ${pred.away}</span>`;
-                        }).join('');
-                        predHtml = `<div class="mt-4 pt-3 border-t border-slate-200"><div class="text-xs font-semibold text-slate-500 mb-2">Ingediende pronostieken:</div><div class="flex flex-wrap">${badges}</div></div>`;
-                    }
+                    // Sorteer matches binnen de ronde (nieuwste eerst)
+                    roundMatches.reverse().forEach(match => {
+                        let homeBadges = match.homeSelectors.map(sel => getBadgeHtml(sel, true)).join('');
+                        let awayBadges = match.awaySelectors.map(sel => getBadgeHtml(sel, false)).join('');
 
-                    const matchDate = match.date ? new Date(match.date) : null;
-                    const dateStringHtml = matchDate ? `<div class="text-xs font-semibold text-slate-500 flex items-center justify-center text-center whitespace-nowrap mb-4 pb-3 border-b border-slate-100">${matchDate.toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' })}</div>` : '';
+                        // Pronostieken ophalen
+                        const matchId = match.thuis + '_' + match.uit;
+                        const matchPreds = supabasePredictions[matchId] || {};
 
-                    const div = document.createElement('div');
-                    div.className = "bg-slate-50 p-4 rounded-lg border border-slate-200 mb-3";
-                    div.innerHTML = `
-                        ${dateStringHtml}
-                        <!-- Mobile Layout -->
-                        <div class="flex flex-col md:hidden space-y-3">
-                            <div class="flex flex-col items-center text-center">
-                                <div class="font-bold text-[#002f6c] text-base mb-1 flex items-center justify-center">${getFlagHtml(match.thuis)}${translateTeam(match.thuis)}</div>
-                                <div class="flex flex-wrap justify-center gap-1">${homeBadges}</div>
-                            </div>
-                            
-                            <div class="flex flex-col items-center justify-center relative py-1">
-                                <div class="absolute inset-0 flex items-center">
-                                    <div class="w-full border-t border-slate-200"></div>
+                        let predHtml = '';
+                        if (Object.keys(matchPreds).length > 0) {
+                            const badges = Object.entries(matchPreds).map(([speler, pred]) => {
+                                const isCorrect = (pred.home === match.goalsThuis && pred.away === match.goalsUit);
+                                const badgeColorClass = isCorrect ? "bg-emerald-100 text-emerald-800 border-emerald-300" : "bg-white text-slate-700 border-slate-200";
+                                return `<span class="inline-block ${badgeColorClass} text-[10px] px-2 py-1 rounded border shadow-sm mr-2 mb-1"><span class="font-bold">${speler}:</span> ${pred.home} - ${pred.away}</span>`;
+                            }).join('');
+                            predHtml = `<div class="mt-4 pt-3 border-t border-slate-200"><div class="text-xs font-semibold text-slate-500 mb-2">Ingediende pronostieken:</div><div class="flex flex-wrap">${badges}</div></div>`;
+                        }
+
+                        const matchDate = match.date ? new Date(match.date) : null;
+                        const dateStringHtml = matchDate ? `<div class="text-xs font-semibold text-slate-500 flex items-center justify-center text-center whitespace-nowrap mb-4 pb-3 border-b border-slate-100">${matchDate.toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' })}</div>` : '';
+
+                        const div = document.createElement('div');
+                        div.className = "bg-white p-4 rounded-lg border border-slate-200 mb-3 shadow-sm";
+                        div.innerHTML = `
+                            ${dateStringHtml}
+                            <!-- Mobile Layout -->
+                            <div class="flex flex-col md:hidden space-y-3">
+                                <div class="flex flex-col items-center text-center">
+                                    <div class="font-bold text-[#002f6c] text-base mb-1 flex items-center justify-center">${getFlagHtml(match.thuis)}${translateTeam(match.thuis)}</div>
+                                    <div class="flex flex-wrap justify-center gap-1">${homeBadges}</div>
                                 </div>
-                                <div class="relative bg-slate-50 px-3 flex flex-col items-center">
-                                    <span class="bg-white text-[#002f6c] font-black px-3 py-1 rounded text-sm border border-slate-300 shadow-sm whitespace-nowrap">
+                                
+                                <div class="flex flex-col items-center justify-center relative py-1">
+                                    <div class="absolute inset-0 flex items-center">
+                                        <div class="w-full border-t border-slate-200"></div>
+                                    </div>
+                                    <div class="relative bg-white px-3 flex flex-col items-center">
+                                        <span class="bg-slate-50 text-[#002f6c] font-black px-3 py-1 rounded text-sm border border-slate-300 shadow-sm whitespace-nowrap">
+                                            ${match.goalsThuis} - ${match.goalsUit}
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex flex-col items-center text-center">
+                                    <div class="font-bold text-[#002f6c] text-base mb-1 flex items-center justify-center">${getFlagHtml(match.uit)}${translateTeam(match.uit)}</div>
+                                    <div class="flex flex-wrap justify-center gap-1">${awayBadges}</div>
+                                </div>
+                            </div>
+
+                            <!-- Desktop Layout -->
+                            <div class="hidden md:flex justify-between items-center">
+                                <div class="w-5/12 text-right">
+                                    <div class="font-bold text-[#002f6c] text-base mb-1 flex items-center justify-end">${translateTeam(match.thuis)}${getFlagHtml(match.thuis, 'ml-2 mr-0')}</div>
+                                    <div class="flex flex-wrap justify-end gap-1">${homeBadges}</div>
+                                </div>
+                                <div class="w-2/12 flex flex-col items-center justify-center">
+                                    <span class="bg-slate-50 text-[#002f6c] font-black px-3 py-1 rounded text-sm border border-slate-300 shadow-sm whitespace-nowrap">
                                         ${match.goalsThuis} - ${match.goalsUit}
                                     </span>
                                 </div>
+                                <div class="w-5/12 text-left">
+                                    <div class="font-bold text-[#002f6c] text-base mb-1 flex items-center justify-start">${getFlagHtml(match.uit, 'mr-2')}${translateTeam(match.uit)}</div>
+                                    <div class="flex flex-wrap justify-start gap-1">${awayBadges}</div>
+                                </div>
                             </div>
-                            
-                            <div class="flex flex-col items-center text-center">
-                                <div class="font-bold text-[#002f6c] text-base mb-1 flex items-center justify-center">${getFlagHtml(match.uit)}${translateTeam(match.uit)}</div>
-                                <div class="flex flex-wrap justify-center gap-1">${awayBadges}</div>
-                            </div>
-                        </div>
-
-                        <!-- Desktop Layout -->
-                        <div class="hidden md:flex justify-between items-center">
-                            <div class="w-5/12 text-right">
-                                <div class="font-bold text-[#002f6c] text-base mb-1 flex items-center justify-end">${translateTeam(match.thuis)}${getFlagHtml(match.thuis, 'ml-2 mr-0')}</div>
-                                <div class="flex flex-wrap justify-end gap-1">${homeBadges}</div>
-                            </div>
-                            <div class="w-2/12 flex flex-col items-center justify-center">
-                                <span class="bg-white text-[#002f6c] font-black px-3 py-1 rounded text-sm border border-slate-300 shadow-sm whitespace-nowrap">
-                                    ${match.goalsThuis} - ${match.goalsUit}
-                                </span>
-                            </div>
-                            <div class="w-5/12 text-left">
-                                <div class="font-bold text-[#002f6c] text-base mb-1 flex items-center justify-start">${getFlagHtml(match.uit, 'mr-2')}${translateTeam(match.uit)}</div>
-                                <div class="flex flex-wrap justify-start gap-1">${awayBadges}</div>
-                            </div>
-                        </div>
-                        ${predHtml}
-                    `;
-                    playedContainer.appendChild(div);
+                            ${predHtml}
+                        `;
+                        roundContent.appendChild(div);
+                    });
+                    
+                    playedContainer.appendChild(roundContent);
                 });
             }
 
