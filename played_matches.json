@@ -173,5 +173,110 @@
     "uit": "South Africa",
     "goalsThuis": 1,
     "goalsUit": 1
+  },
+  {
+    "date": "2026-06-18T19:00:00Z",
+    "thuis": "Switzerland",
+    "uit": "Bosnia-Herzegovina",
+    "goalsThuis": 4,
+    "goalsUit": 1
+  },
+  {
+    "date": "2026-06-18T22:00:00Z",
+    "thuis": "Canada",
+    "uit": "Qatar",
+    "goalsThuis": 6,
+    "goalsUit": 0
+  },
+  {
+    "date": "2026-06-19T01:00:00Z",
+    "thuis": "Mexico",
+    "uit": "South Korea",
+    "goalsThuis": 1,
+    "goalsUit": 0
+  },
+  {
+    "date": "2026-06-19T19:00:00Z",
+    "thuis": "United States",
+    "uit": "Australia",
+    "goalsThuis": 2,
+    "goalsUit": 0
+  },
+  {
+    "date": "2026-06-19T22:00:00Z",
+    "thuis": "Scotland",
+    "uit": "Morocco",
+    "goalsThuis": 0,
+    "goalsUit": 1
+  },
+  {
+    "date": "2026-06-20T00:30:00Z",
+    "thuis": "Brazil",
+    "uit": "Haiti",
+    "goalsThuis": 3,
+    "goalsUit": 0
+  },
+  {
+    "date": "2026-06-20T03:00:00Z",
+    "thuis": "Turkey",
+    "uit": "Paraguay",
+    "goalsThuis": 0,
+    "goalsUit": 1
+  },
+  {
+    "date": "2026-06-20T17:00:00Z",
+    "thuis": "Netherlands",
+    "uit": "Sweden",
+    "goalsThuis": 5,
+    "goalsUit": 1
+  },
+  {
+    "date": "2026-06-20T20:00:00Z",
+    "thuis": "Germany",
+    "uit": "Ivory Coast",
+    "goalsThuis": 2,
+    "goalsUit": 1
+  },
+  {
+    "date": "2026-06-21T00:00:00Z",
+    "thuis": "Ecuador",
+    "uit": "Curaçao",
+    "goalsThuis": 0,
+    "goalsUit": 0
+  },
+  {
+    "date": "2026-06-21T04:00:00Z",
+    "thuis": "Tunisia",
+    "uit": "Japan",
+    "goalsThuis": 0,
+    "goalsUit": 4
+  },
+  {
+    "date": "2026-06-21T16:00:00Z",
+    "thuis": "Spain",
+    "uit": "Saudi Arabia",
+    "goalsThuis": 4,
+    "goalsUit": 0
+  },
+  {
+    "date": "2026-06-21T19:00:00Z",
+    "thuis": "Belgium",
+    "uit": "Iran",
+    "goalsThuis": 0,
+    "goalsUit": 0
+  },
+  {
+    "date": "2026-06-21T22:00:00Z",
+    "thuis": "Uruguay",
+    "uit": "Cape Verde Islands",
+    "goalsThuis": 2,
+    "goalsUit": 2
+  },
+  {
+    "date": "2026-06-22T01:00:00Z",
+    "thuis": "New Zealand",
+    "uit": "Egypt",
+    "goalsThuis": 1,
+    "goalsUit": 3
   }
 ]
