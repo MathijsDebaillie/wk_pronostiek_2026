@@ -271,5 +271,12 @@
     "uit": "Cape Verde Islands",
     "goalsThuis": 2,
     "goalsUit": 2
+  },
+  {
+    "date": "2026-06-22T01:00:00Z",
+    "thuis": "New Zealand",
+    "uit": "Egypt",
+    "goalsThuis": 1,
+    "goalsUit": 3
   }
 ]
