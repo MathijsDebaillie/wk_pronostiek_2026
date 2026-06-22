@@ -264,5 +264,12 @@
     "uit": "Iran",
     "goalsThuis": 0,
     "goalsUit": 0
+  },
+  {
+    "date": "2026-06-21T22:00:00Z",
+    "thuis": "Uruguay",
+    "uit": "Cape Verde Islands",
+    "goalsThuis": 2,
+    "goalsUit": 2
   }
 ]
