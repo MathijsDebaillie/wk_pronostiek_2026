@@ -299,5 +299,12 @@
     "uit": "Senegal",
     "goalsThuis": 3,
     "goalsUit": 2
+  },
+  {
+    "date": "2026-06-23T03:00:00Z",
+    "thuis": "Jordan",
+    "uit": "Algeria",
+    "goalsThuis": 1,
+    "goalsUit": 2
   }
 ]
