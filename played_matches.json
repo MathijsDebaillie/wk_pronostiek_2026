@@ -285,5 +285,19 @@
     "uit": "Austria",
     "goalsThuis": 2,
     "goalsUit": 0
+  },
+  {
+    "date": "2026-06-22T21:00:00Z",
+    "thuis": "France",
+    "uit": "Iraq",
+    "goalsThuis": 3,
+    "goalsUit": 0
+  },
+  {
+    "date": "2026-06-23T00:00:00Z",
+    "thuis": "Norway",
+    "uit": "Senegal",
+    "goalsThuis": 3,
+    "goalsUit": 2
   }
 ]
