@@ -306,5 +306,12 @@
     "uit": "Algeria",
     "goalsThuis": 1,
     "goalsUit": 2
+  },
+  {
+    "date": "2026-06-23T17:00:00Z",
+    "thuis": "Portugal",
+    "uit": "Uzbekistan",
+    "goalsThuis": 5,
+    "goalsUit": 0
   }
 ]
