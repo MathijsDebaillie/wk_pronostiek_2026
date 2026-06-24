@@ -1,10 +1,5 @@
 [
   {
-    "date": "2026-06-24T02:00:00Z",
-    "homeTeam": "Colombia",
-    "awayTeam": "Congo DR"
-  },
-  {
     "date": "2026-06-24T19:00:00Z",
     "homeTeam": "Switzerland",
     "awayTeam": "Canada"
@@ -136,7 +131,7 @@
   },
   {
     "date": "2026-06-29T20:30:00Z",
-    "homeTeam": "TBD",
+    "homeTeam": "Germany",
     "awayTeam": "TBD"
   },
   {
@@ -156,7 +151,7 @@
   },
   {
     "date": "2026-07-01T01:00:00Z",
-    "homeTeam": "TBD",
+    "homeTeam": "Mexico",
     "awayTeam": "TBD"
   },
   {
@@ -171,7 +166,7 @@
   },
   {
     "date": "2026-07-02T00:00:00Z",
-    "homeTeam": "TBD",
+    "homeTeam": "United States",
     "awayTeam": "TBD"
   },
   {
@@ -196,7 +191,7 @@
   },
   {
     "date": "2026-07-03T22:00:00Z",
-    "homeTeam": "TBD",
+    "homeTeam": "Argentina",
     "awayTeam": "TBD"
   },
   {
