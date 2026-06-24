@@ -334,5 +334,19 @@
     "uit": "Congo DR",
     "goalsThuis": 1,
     "goalsUit": 0
+  },
+  {
+    "date": "2026-06-24T19:00:00Z",
+    "thuis": "Switzerland",
+    "uit": "Canada",
+    "goalsThuis": 2,
+    "goalsUit": 1
+  },
+  {
+    "date": "2026-06-24T19:00:00Z",
+    "thuis": "Bosnia-Herzegovina",
+    "uit": "Qatar",
+    "goalsThuis": 3,
+    "goalsUit": 1
   }
 ]
