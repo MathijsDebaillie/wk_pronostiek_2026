@@ -327,5 +327,12 @@
     "uit": "Croatia",
     "goalsThuis": 0,
     "goalsUit": 1
+  },
+  {
+    "date": "2026-06-24T02:00:00Z",
+    "thuis": "Colombia",
+    "uit": "Congo DR",
+    "goalsThuis": 1,
+    "goalsUit": 0
   }
 ]
