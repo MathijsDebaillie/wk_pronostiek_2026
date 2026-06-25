@@ -348,5 +348,33 @@
     "uit": "Qatar",
     "goalsThuis": 3,
     "goalsUit": 1
+  },
+  {
+    "date": "2026-06-24T22:00:00Z",
+    "thuis": "Morocco",
+    "uit": "Haiti",
+    "goalsThuis": 4,
+    "goalsUit": 2
+  },
+  {
+    "date": "2026-06-24T22:00:00Z",
+    "thuis": "Scotland",
+    "uit": "Brazil",
+    "goalsThuis": 0,
+    "goalsUit": 3
+  },
+  {
+    "date": "2026-06-25T01:00:00Z",
+    "thuis": "Czechia",
+    "uit": "Mexico",
+    "goalsThuis": 0,
+    "goalsUit": 3
+  },
+  {
+    "date": "2026-06-25T01:00:00Z",
+    "thuis": "South Africa",
+    "uit": "South Korea",
+    "goalsThuis": 1,
+    "goalsUit": 0
   }
 ]
