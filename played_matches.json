@@ -376,5 +376,12 @@
     "uit": "South Korea",
     "goalsThuis": 1,
     "goalsUit": 0
+  },
+  {
+    "date": "2026-06-25T20:00:00Z",
+    "thuis": "Curaçao",
+    "uit": "Ivory Coast",
+    "goalsThuis": 0,
+    "goalsUit": 2
   }
 ]
