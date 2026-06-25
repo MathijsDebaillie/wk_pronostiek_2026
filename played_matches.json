@@ -379,6 +379,13 @@
   },
   {
     "date": "2026-06-25T20:00:00Z",
+    "thuis": "Ecuador",
+    "uit": "Germany",
+    "goalsThuis": 2,
+    "goalsUit": 1
+  },
+  {
+    "date": "2026-06-25T20:00:00Z",
     "thuis": "Curaçao",
     "uit": "Ivory Coast",
     "goalsThuis": 0,
