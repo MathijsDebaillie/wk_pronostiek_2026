@@ -390,5 +390,19 @@
     "uit": "Ivory Coast",
     "goalsThuis": 0,
     "goalsUit": 2
+  },
+  {
+    "date": "2026-06-25T23:00:00Z",
+    "thuis": "Tunisia",
+    "uit": "Netherlands",
+    "goalsThuis": 1,
+    "goalsUit": 3
+  },
+  {
+    "date": "2026-06-25T23:00:00Z",
+    "thuis": "Japan",
+    "uit": "Sweden",
+    "goalsThuis": 1,
+    "goalsUit": 1
   }
 ]
