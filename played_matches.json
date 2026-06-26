@@ -418,5 +418,19 @@
     "uit": "Australia",
     "goalsThuis": 0,
     "goalsUit": 0
+  },
+  {
+    "date": "2026-06-26T19:00:00Z",
+    "thuis": "Norway",
+    "uit": "France",
+    "goalsThuis": 1,
+    "goalsUit": 4
+  },
+  {
+    "date": "2026-06-26T19:00:00Z",
+    "thuis": "Senegal",
+    "uit": "Iraq",
+    "goalsThuis": 5,
+    "goalsUit": 0
   }
 ]
