@@ -404,5 +404,19 @@
     "uit": "Sweden",
     "goalsThuis": 1,
     "goalsUit": 1
+  },
+  {
+    "date": "2026-06-26T02:00:00Z",
+    "thuis": "Turkey",
+    "uit": "United States",
+    "goalsThuis": 3,
+    "goalsUit": 2
+  },
+  {
+    "date": "2026-06-26T02:00:00Z",
+    "thuis": "Paraguay",
+    "uit": "Australia",
+    "goalsThuis": 0,
+    "goalsUit": 0
   }
 ]

@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-06-26T02:00:00Z",
-    "homeTeam": "Turkey",
-    "awayTeam": "United States"
-  },
-  {
-    "date": "2026-06-26T02:00:00Z",
-    "homeTeam": "Paraguay",
-    "awayTeam": "Australia"
-  },
-  {
     "date": "2026-06-26T19:00:00Z",
     "homeTeam": "Norway",
     "awayTeam": "France"
@@ -71,13 +61,13 @@
   },
   {
     "date": "2026-06-28T19:00:00Z",
-    "homeTeam": "TBD",
-    "awayTeam": "TBD"
+    "homeTeam": "South Africa",
+    "awayTeam": "Canada"
   },
   {
     "date": "2026-06-29T17:00:00Z",
-    "homeTeam": "TBD",
-    "awayTeam": "TBD"
+    "homeTeam": "Brazil",
+    "awayTeam": "Japan"
   },
   {
     "date": "2026-06-29T20:30:00Z",
@@ -86,8 +76,8 @@
   },
   {
     "date": "2026-06-30T01:00:00Z",
-    "homeTeam": "TBD",
-    "awayTeam": "TBD"
+    "homeTeam": "Netherlands",
+    "awayTeam": "Morocco"
   },
   {
     "date": "2026-06-30T17:00:00Z",
@@ -117,7 +107,7 @@
   {
     "date": "2026-07-02T00:00:00Z",
     "homeTeam": "United States",
-    "awayTeam": "TBD"
+    "awayTeam": "Bosnia-Herzegovina"
   },
   {
     "date": "2026-07-02T19:00:00Z",
@@ -131,12 +121,12 @@
   },
   {
     "date": "2026-07-03T03:00:00Z",
-    "homeTeam": "TBD",
+    "homeTeam": "Switzerland",
     "awayTeam": "TBD"
   },
   {
     "date": "2026-07-03T18:00:00Z",
-    "homeTeam": "TBD",
+    "homeTeam": "Australia",
     "awayTeam": "TBD"
   },
   {
