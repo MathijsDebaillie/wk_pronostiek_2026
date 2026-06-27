@@ -432,5 +432,19 @@
     "uit": "Iraq",
     "goalsThuis": 5,
     "goalsUit": 0
+  },
+  {
+    "date": "2026-06-27T00:00:00Z",
+    "thuis": "Uruguay",
+    "uit": "Spain",
+    "goalsThuis": 0,
+    "goalsUit": 1
+  },
+  {
+    "date": "2026-06-27T00:00:00Z",
+    "thuis": "Cape Verde Islands",
+    "uit": "Saudi Arabia",
+    "goalsThuis": 0,
+    "goalsUit": 0
   }
 ]
