@@ -460,5 +460,19 @@
     "uit": "Iran",
     "goalsThuis": 1,
     "goalsUit": 1
+  },
+  {
+    "date": "2026-06-27T21:00:00Z",
+    "thuis": "Panama",
+    "uit": "England",
+    "goalsThuis": 0,
+    "goalsUit": 2
+  },
+  {
+    "date": "2026-06-27T21:00:00Z",
+    "thuis": "Croatia",
+    "uit": "Ghana",
+    "goalsThuis": 2,
+    "goalsUit": 1
   }
 ]

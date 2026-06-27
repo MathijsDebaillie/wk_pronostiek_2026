@@ -1,25 +1,5 @@
 [
   {
-    "date": "2026-06-27T21:00:00Z",
-    "homeTeam": "Panama",
-    "awayTeam": "England"
-  },
-  {
-    "date": "2026-06-27T21:00:00Z",
-    "homeTeam": "Croatia",
-    "awayTeam": "Ghana"
-  },
-  {
-    "date": "2026-06-27T23:30:00Z",
-    "homeTeam": "Colombia",
-    "awayTeam": "Portugal"
-  },
-  {
-    "date": "2026-06-27T23:30:00Z",
-    "homeTeam": "Congo DR",
-    "awayTeam": "Uzbekistan"
-  },
-  {
     "date": "2026-06-28T02:00:00Z",
     "homeTeam": "Jordan",
     "awayTeam": "Argentina"
@@ -31,27 +11,27 @@
   },
   {
     "date": "2026-06-28T19:00:00Z",
-    "homeTeam": "South Africa",
-    "awayTeam": "Canada"
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
   },
   {
     "date": "2026-06-29T17:00:00Z",
-    "homeTeam": "Brazil",
-    "awayTeam": "Japan"
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
   },
   {
     "date": "2026-06-29T20:30:00Z",
-    "homeTeam": "Germany",
+    "homeTeam": "TBD",
     "awayTeam": "TBD"
   },
   {
     "date": "2026-06-30T01:00:00Z",
-    "homeTeam": "Netherlands",
-    "awayTeam": "Morocco"
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
   },
   {
     "date": "2026-06-30T17:00:00Z",
-    "homeTeam": "Ivory Coast",
+    "homeTeam": "TBD",
     "awayTeam": "TBD"
   },
   {
@@ -61,7 +41,7 @@
   },
   {
     "date": "2026-07-01T01:00:00Z",
-    "homeTeam": "Mexico",
+    "homeTeam": "TBD",
     "awayTeam": "TBD"
   },
   {
@@ -76,8 +56,8 @@
   },
   {
     "date": "2026-07-02T00:00:00Z",
-    "homeTeam": "United States",
-    "awayTeam": "Bosnia-Herzegovina"
+    "homeTeam": "TBD",
+    "awayTeam": "TBD"
   },
   {
     "date": "2026-07-02T19:00:00Z",
@@ -91,17 +71,17 @@
   },
   {
     "date": "2026-07-03T03:00:00Z",
-    "homeTeam": "Switzerland",
+    "homeTeam": "TBD",
     "awayTeam": "TBD"
   },
   {
     "date": "2026-07-03T18:00:00Z",
-    "homeTeam": "Australia",
+    "homeTeam": "TBD",
     "awayTeam": "TBD"
   },
   {
     "date": "2026-07-03T22:00:00Z",
-    "homeTeam": "Argentina",
+    "homeTeam": "TBD",
     "awayTeam": "TBD"
   },
   {
