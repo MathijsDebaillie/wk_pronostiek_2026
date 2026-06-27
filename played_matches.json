@@ -446,5 +446,19 @@
     "uit": "Saudi Arabia",
     "goalsThuis": 0,
     "goalsUit": 0
+  },
+  {
+    "date": "2026-06-27T03:00:00Z",
+    "thuis": "New Zealand",
+    "uit": "Belgium",
+    "goalsThuis": 1,
+    "goalsUit": 5
+  },
+  {
+    "date": "2026-06-27T03:00:00Z",
+    "thuis": "Egypt",
+    "uit": "Iran",
+    "goalsThuis": 1,
+    "goalsUit": 1
   }
 ]
