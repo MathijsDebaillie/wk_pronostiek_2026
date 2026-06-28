@@ -502,5 +502,12 @@
     "uit": "Austria",
     "goalsThuis": 3,
     "goalsUit": 3
+  },
+  {
+    "date": "2026-06-28T19:00:00Z",
+    "thuis": "South Africa",
+    "uit": "Canada",
+    "goalsThuis": 0,
+    "goalsUit": 1
   }
 ]
