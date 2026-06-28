@@ -474,5 +474,33 @@
     "uit": "Ghana",
     "goalsThuis": 2,
     "goalsUit": 1
+  },
+  {
+    "date": "2026-06-27T23:30:00Z",
+    "thuis": "Colombia",
+    "uit": "Portugal",
+    "goalsThuis": 0,
+    "goalsUit": 0
+  },
+  {
+    "date": "2026-06-27T23:30:00Z",
+    "thuis": "Congo DR",
+    "uit": "Uzbekistan",
+    "goalsThuis": 3,
+    "goalsUit": 1
+  },
+  {
+    "date": "2026-06-28T02:00:00Z",
+    "thuis": "Jordan",
+    "uit": "Argentina",
+    "goalsThuis": 1,
+    "goalsUit": 3
+  },
+  {
+    "date": "2026-06-28T02:00:00Z",
+    "thuis": "Algeria",
+    "uit": "Austria",
+    "goalsThuis": 3,
+    "goalsUit": 3
   }
 ]
