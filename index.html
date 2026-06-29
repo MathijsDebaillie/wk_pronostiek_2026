@@ -85,6 +85,10 @@
                 class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all text-slate-500 hover:text-slate-800 hover:bg-slate-100 whitespace-nowrap">
                 📅 Kalender & Matchen
             </button>
+            <button id="tab-bracket" onclick="switchTab('bracket')"
+                class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all text-slate-500 hover:text-slate-800 hover:bg-slate-100 whitespace-nowrap">
+                🌳 Bracket
+            </button>
             <button id="tab-player" onclick="switchTab('player')"
                 class="px-5 py-2.5 rounded-t-lg font-semibold text-sm transition-all text-slate-500 hover:text-slate-800 hover:bg-slate-100 whitespace-nowrap">
                 👤 Speler
@@ -222,20 +226,7 @@
                 </div>
             </div>
 
-            <!-- Knock-out Bracket -->
-            <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden mb-6">
-                <button onclick="toggleAccordion('calendar-bracket-content', 'icon-bracket')" class="w-full p-5 flex justify-between items-center bg-slate-50 hover:bg-slate-100 transition-colors">
-                    <h2 class="font-bold text-lg text-slate-800 flex justify-between items-center">
-                        <span>🌳 Knock-out Bracket</span>
-                    </h2>
-                    <span id="icon-bracket" class="transform transition-transform duration-200 text-slate-500">▼</span>
-                </button>
-                <div id="calendar-bracket-content" class="p-5 border-t border-slate-200 transition-all overflow-x-auto snap-x hidden">
-                    <div class="min-w-max flex space-x-6 pb-2" id="bracket-container">
-                        <!-- Dynamic bracket -->
-                    </div>
-                </div>
-            </div>
+
 
             <!-- Gespeelde Matchen -->
             <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
@@ -249,6 +240,18 @@
                     <div class="space-y-3" id="calendar-played-list">
                         <!-- Dynamic matches rows -->
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: Bracket -->
+        <section id="content-bracket" class="hidden">
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden p-5 overflow-x-auto snap-x">
+                <h2 class="font-bold text-lg text-slate-800 mb-4 flex items-center">
+                    <span>🌳 Knock-out Bracket</span>
+                </h2>
+                <div class="min-w-max flex space-x-8 pb-4" id="bracket-container">
+                    <!-- Dynamic bracket -->
                 </div>
             </div>
         </section>
@@ -1259,8 +1262,9 @@
                         }
 
                         html += `
-                            <div class="bg-white border border-slate-200 rounded-lg shadow-sm p-3 flex-1 flex flex-col justify-center transition-all hover:border-indigo-300 hover:shadow-md">
+                            <div class="relative bg-white border border-slate-200 rounded-lg shadow-sm p-3 flex-1 flex flex-col justify-center transition-all hover:border-indigo-300 hover:shadow-md">
                                 ${scoreHtml}
+                                ${stage !== 'FINAL' ? '<div class="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-6 h-6 bg-slate-50 rounded-full flex items-center justify-center text-slate-400 border border-slate-200 shadow-sm text-[10px] font-black shadow-sm">➔</div>' : ''}
                             </div>
                         `;
                     });
@@ -1464,7 +1468,7 @@
         }
 
         function switchTab(tabId) {
-            const tabs = ['leaderboard', 'player', 'calendar', 'teams'];
+            const tabs = ['leaderboard', 'player', 'calendar', 'bracket', 'teams'];
             tabs.forEach(t => {
                 const btn = document.getElementById(`tab-${t}`);
                 const content = document.getElementById(`content-${t}`);
