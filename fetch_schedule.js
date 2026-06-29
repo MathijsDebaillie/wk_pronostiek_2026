@@ -36,7 +36,8 @@ async function fetchSchedule() {
             return {
                 date: match.utcDate,
                 homeTeam: match.homeTeam?.name || 'TBD',
-                awayTeam: match.awayTeam?.name || 'TBD'
+                awayTeam: match.awayTeam?.name || 'TBD',
+                stage: match.stage
             };
         });
 
@@ -84,7 +85,8 @@ async function fetchSchedule() {
                 thuis: match.homeTeam?.name || 'Onbekend',
                 uit: match.awayTeam?.name || 'Onbekend',
                 goalsThuis: homeScore,
-                goalsUit: awayScore
+                goalsUit: awayScore,
+                stage: match.stage
             };
         });
 

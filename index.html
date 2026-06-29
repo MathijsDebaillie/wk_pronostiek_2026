@@ -222,6 +222,21 @@
                 </div>
             </div>
 
+            <!-- Knock-out Bracket -->
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden mb-6">
+                <button onclick="toggleAccordion('calendar-bracket-content', 'icon-bracket')" class="w-full p-5 flex justify-between items-center bg-slate-50 hover:bg-slate-100 transition-colors">
+                    <h2 class="font-bold text-lg text-slate-800 flex justify-between items-center">
+                        <span>🌳 Knock-out Bracket</span>
+                    </h2>
+                    <span id="icon-bracket" class="transform transition-transform duration-200 text-slate-500">▼</span>
+                </button>
+                <div id="calendar-bracket-content" class="p-5 border-t border-slate-200 transition-all overflow-x-auto snap-x hidden">
+                    <div class="min-w-max flex space-x-6 pb-2" id="bracket-container">
+                        <!-- Dynamic bracket -->
+                    </div>
+                </div>
+            </div>
+
             <!-- Gespeelde Matchen -->
             <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
                 <button onclick="toggleAccordion('calendar-played-content', 'icon-played')" class="w-full p-5 flex justify-between items-center bg-slate-50 hover:bg-slate-100 transition-colors">
@@ -602,6 +617,7 @@
             renderRoundHistories();
             setupPlayerSelect();
             renderCalendar();
+            renderBracket();
             renderTeamPerformance();
         }
 
@@ -1102,7 +1118,9 @@
                     div.className = "bg-slate-50 p-4 rounded-lg border border-slate-200 mb-3";
                     div.innerHTML = `
                         <div class="grid grid-cols-3 mb-4 pb-3 border-b border-slate-100">
-                            <div></div>
+                            <div class="flex items-start">
+                                ${match.stage ? `<span class="bg-indigo-100 text-indigo-800 text-[10px] font-bold px-2 py-1 rounded shadow-sm">${translateStage(match.stage)}</span>` : ''}
+                            </div>
                             <div class="text-xs font-semibold text-slate-500 flex items-center justify-center text-center whitespace-nowrap">
                                 ${dateString} om ${timeString}
                             </div>
@@ -1153,6 +1171,104 @@
                     upcomingContainer.appendChild(div);
                 });
             }
+        }
+
+        function renderBracket() {
+            // 1. Combine played and upcoming matches that have a stage
+            const allKoMatches = [];
+            
+            matches.forEach(m => {
+                if (['LAST_32', 'LAST_16', 'QUARTER_FINALS', 'SEMI_FINALS', 'FINAL'].includes(m.stage)) {
+                    allKoMatches.push({
+                        ...m,
+                        isPlayed: true
+                    });
+                }
+            });
+            
+            upcomingMatches.forEach(m => {
+                if (['LAST_32', 'LAST_16', 'QUARTER_FINALS', 'SEMI_FINALS', 'FINAL'].includes(m.stage)) {
+                    allKoMatches.push({
+                        ...m,
+                        isPlayed: false,
+                        thuis: m.homeTeam,
+                        uit: m.awayTeam,
+                        goalsThuis: null,
+                        goalsUit: null
+                    });
+                }
+            });
+
+            const container = document.getElementById('bracket-container');
+            if(allKoMatches.length === 0) {
+                container.innerHTML = '<p class="text-slate-500 text-sm text-center py-6 w-full">Knock-outfase is nog niet begonnen.</p>';
+                return;
+            }
+
+            // Group by stage
+            const stages = ['LAST_32', 'LAST_16', 'QUARTER_FINALS', 'SEMI_FINALS', 'FINAL'];
+            const grouped = {};
+            stages.forEach(s => grouped[s] = []);
+            
+            // Sort matches by date before grouping
+            allKoMatches.sort((a,b) => new Date(a.date) - new Date(b.date));
+            
+            allKoMatches.forEach(m => {
+                if(grouped[m.stage]) grouped[m.stage].push(m);
+            });
+
+            // Render columns
+            let html = '';
+            stages.forEach(stage => {
+                if(grouped[stage].length > 0) {
+                    html += `<div class="flex flex-col space-y-4 snap-center w-64 flex-none">`;
+                    html += `<div class="text-center font-bold text-[#002f6c] mb-2 border-b border-slate-200 pb-2 bg-slate-50/80 sticky top-0 backdrop-blur-sm z-10">${translateStage(stage)}</div>`;
+                    html += `<div class="flex flex-col justify-around h-full space-y-4 py-2">`;
+                    
+                    grouped[stage].forEach(match => {
+                        const homeFlag = getFlagHtml(match.thuis);
+                        const awayFlag = getFlagHtml(match.uit);
+                        const homeName = translateTeam(match.thuis);
+                        const awayName = translateTeam(match.uit);
+                        
+                        let scoreHtml = '';
+                        if(match.isPlayed) {
+                             const isHomeWin = match.goalsThuis > match.goalsUit;
+                             const isAwayWin = match.goalsUit > match.goalsThuis;
+                             scoreHtml = `
+                                <div class="flex justify-between items-center text-sm py-1.5 border-b border-slate-100 ${isHomeWin ? 'font-bold text-slate-800' : 'text-slate-500'}">
+                                    <div class="flex items-center min-w-0 flex-1 mr-2">${homeFlag} <span class="ml-2 truncate">${homeName}</span></div>
+                                    <div class="font-bold shrink-0">${match.goalsThuis}</div>
+                                </div>
+                                <div class="flex justify-between items-center text-sm py-1.5 ${isAwayWin ? 'font-bold text-slate-800' : 'text-slate-500'}">
+                                    <div class="flex items-center min-w-0 flex-1 mr-2">${awayFlag} <span class="ml-2 truncate">${awayName}</span></div>
+                                    <div class="font-bold shrink-0">${match.goalsUit}</div>
+                                </div>
+                             `;
+                        } else {
+                             scoreHtml = `
+                                <div class="flex justify-between items-center text-sm py-1.5 border-b border-slate-100 text-slate-700">
+                                    <div class="flex items-center min-w-0 flex-1 mr-2">${homeFlag} <span class="ml-2 truncate">${homeName}</span></div>
+                                    <div class="text-xs text-slate-400 font-bold shrink-0">-</div>
+                                </div>
+                                <div class="flex justify-between items-center text-sm py-1.5 text-slate-700">
+                                    <div class="flex items-center min-w-0 flex-1 mr-2">${awayFlag} <span class="ml-2 truncate">${awayName}</span></div>
+                                    <div class="text-xs text-slate-400 font-bold shrink-0">-</div>
+                                </div>
+                             `;
+                        }
+
+                        html += `
+                            <div class="bg-white border border-slate-200 rounded-lg shadow-sm p-3 flex-1 flex flex-col justify-center transition-all hover:border-indigo-300 hover:shadow-md">
+                                ${scoreHtml}
+                            </div>
+                        `;
+                    });
+                    html += `</div></div>`;
+                }
+            });
+
+            container.innerHTML = html;
         }
 
         function renderTeamPerformance() {

@@ -344,6 +344,21 @@ function translateTeam(englishName) {
     return teamTranslations[englishName] || englishName;
 }
 
+const stageTranslations = {
+    "GROUP_STAGE": "Groepsfase",
+    "LAST_32": "1/16 Finales",
+    "LAST_16": "Achtste finales",
+    "QUARTER_FINALS": "Kwartfinales",
+    "SEMI_FINALS": "Halve finales",
+    "THIRD_PLACE": "Troostfinale",
+    "FINAL": "Finale"
+};
+
+function translateStage(stageName) {
+    if (!stageName) return '';
+    return stageTranslations[stageName] || stageName;
+}
+
 // ==========================================
 // LANDENCODES VOOR VLAGGEN (ISO 3166-1 alpha-2)
 // ==========================================
