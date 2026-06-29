@@ -1,157 +1,182 @@
 [
   {
-    "date": "2026-06-29T17:00:00Z",
-    "homeTeam": "Brazil",
-    "awayTeam": "Japan"
-  },
-  {
     "date": "2026-06-29T20:30:00Z",
     "homeTeam": "Germany",
-    "awayTeam": "Paraguay"
+    "awayTeam": "Paraguay",
+    "stage": "LAST_32"
   },
   {
     "date": "2026-06-30T01:00:00Z",
     "homeTeam": "Netherlands",
-    "awayTeam": "Morocco"
+    "awayTeam": "Morocco",
+    "stage": "LAST_32"
   },
   {
     "date": "2026-06-30T17:00:00Z",
     "homeTeam": "Ivory Coast",
-    "awayTeam": "Norway"
+    "awayTeam": "Norway",
+    "stage": "LAST_32"
   },
   {
     "date": "2026-06-30T21:00:00Z",
     "homeTeam": "France",
-    "awayTeam": "Sweden"
+    "awayTeam": "Sweden",
+    "stage": "LAST_32"
   },
   {
     "date": "2026-07-01T01:00:00Z",
     "homeTeam": "Mexico",
-    "awayTeam": "Ecuador"
+    "awayTeam": "Ecuador",
+    "stage": "LAST_32"
   },
   {
     "date": "2026-07-01T16:00:00Z",
     "homeTeam": "England",
-    "awayTeam": "Congo DR"
+    "awayTeam": "Congo DR",
+    "stage": "LAST_32"
   },
   {
     "date": "2026-07-01T20:00:00Z",
     "homeTeam": "Belgium",
-    "awayTeam": "Senegal"
+    "awayTeam": "Senegal",
+    "stage": "LAST_32"
   },
   {
     "date": "2026-07-02T00:00:00Z",
     "homeTeam": "United States",
-    "awayTeam": "Bosnia-Herzegovina"
+    "awayTeam": "Bosnia-Herzegovina",
+    "stage": "LAST_32"
   },
   {
     "date": "2026-07-02T19:00:00Z",
     "homeTeam": "Spain",
-    "awayTeam": "Austria"
+    "awayTeam": "Austria",
+    "stage": "LAST_32"
   },
   {
     "date": "2026-07-02T23:00:00Z",
     "homeTeam": "Portugal",
-    "awayTeam": "Croatia"
+    "awayTeam": "Croatia",
+    "stage": "LAST_32"
   },
   {
     "date": "2026-07-03T03:00:00Z",
     "homeTeam": "Switzerland",
-    "awayTeam": "Algeria"
+    "awayTeam": "Algeria",
+    "stage": "LAST_32"
   },
   {
     "date": "2026-07-03T18:00:00Z",
     "homeTeam": "Australia",
-    "awayTeam": "Egypt"
+    "awayTeam": "Egypt",
+    "stage": "LAST_32"
   },
   {
     "date": "2026-07-03T22:00:00Z",
     "homeTeam": "Argentina",
-    "awayTeam": "Cape Verde Islands"
+    "awayTeam": "Cape Verde Islands",
+    "stage": "LAST_32"
   },
   {
     "date": "2026-07-04T01:30:00Z",
     "homeTeam": "Colombia",
-    "awayTeam": "Ghana"
+    "awayTeam": "Ghana",
+    "stage": "LAST_32"
   },
   {
     "date": "2026-07-04T17:00:00Z",
     "homeTeam": "Canada",
-    "awayTeam": "TBD"
+    "awayTeam": "TBD",
+    "stage": "LAST_16"
   },
   {
     "date": "2026-07-04T21:00:00Z",
     "homeTeam": "TBD",
-    "awayTeam": "TBD"
+    "awayTeam": "TBD",
+    "stage": "LAST_16"
   },
   {
     "date": "2026-07-05T20:00:00Z",
     "homeTeam": "TBD",
-    "awayTeam": "TBD"
+    "awayTeam": "TBD",
+    "stage": "LAST_16"
   },
   {
     "date": "2026-07-06T00:00:00Z",
     "homeTeam": "TBD",
-    "awayTeam": "TBD"
+    "awayTeam": "TBD",
+    "stage": "LAST_16"
   },
   {
     "date": "2026-07-06T19:00:00Z",
     "homeTeam": "TBD",
-    "awayTeam": "TBD"
+    "awayTeam": "TBD",
+    "stage": "LAST_16"
   },
   {
     "date": "2026-07-07T00:00:00Z",
     "homeTeam": "TBD",
-    "awayTeam": "TBD"
+    "awayTeam": "TBD",
+    "stage": "LAST_16"
   },
   {
     "date": "2026-07-07T16:00:00Z",
     "homeTeam": "TBD",
-    "awayTeam": "TBD"
+    "awayTeam": "TBD",
+    "stage": "LAST_16"
   },
   {
     "date": "2026-07-07T20:00:00Z",
     "homeTeam": "TBD",
-    "awayTeam": "TBD"
+    "awayTeam": "TBD",
+    "stage": "LAST_16"
   },
   {
     "date": "2026-07-09T20:00:00Z",
     "homeTeam": "TBD",
-    "awayTeam": "TBD"
+    "awayTeam": "TBD",
+    "stage": "QUARTER_FINALS"
   },
   {
     "date": "2026-07-10T19:00:00Z",
     "homeTeam": "TBD",
-    "awayTeam": "TBD"
+    "awayTeam": "TBD",
+    "stage": "QUARTER_FINALS"
   },
   {
     "date": "2026-07-11T21:00:00Z",
     "homeTeam": "TBD",
-    "awayTeam": "TBD"
+    "awayTeam": "TBD",
+    "stage": "QUARTER_FINALS"
   },
   {
     "date": "2026-07-12T01:00:00Z",
     "homeTeam": "TBD",
-    "awayTeam": "TBD"
+    "awayTeam": "TBD",
+    "stage": "QUARTER_FINALS"
   },
   {
     "date": "2026-07-14T19:00:00Z",
     "homeTeam": "TBD",
-    "awayTeam": "TBD"
+    "awayTeam": "TBD",
+    "stage": "SEMI_FINALS"
   },
   {
     "date": "2026-07-15T19:00:00Z",
     "homeTeam": "TBD",
-    "awayTeam": "TBD"
+    "awayTeam": "TBD",
+    "stage": "SEMI_FINALS"
   },
   {
     "date": "2026-07-18T21:00:00Z",
     "homeTeam": "TBD",
-    "awayTeam": "TBD"
+    "awayTeam": "TBD",
+    "stage": "THIRD_PLACE"
   },
   {
     "date": "2026-07-19T19:00:00Z",
     "homeTeam": "TBD",
-    "awayTeam": "TBD"
+    "awayTeam": "TBD",
+    "stage": "FINAL"
   }
 ]
