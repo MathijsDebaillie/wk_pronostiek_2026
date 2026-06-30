@@ -598,5 +598,13 @@
     "goalsThuis": 4,
     "goalsUit": 5,
     "stage": "LAST_32"
+  },
+  {
+    "date": "2026-06-30T01:00:00Z",
+    "thuis": "Netherlands",
+    "uit": "Morocco",
+    "goalsThuis": 3,
+    "goalsUit": 4,
+    "stage": "LAST_32"
   }
 ]
