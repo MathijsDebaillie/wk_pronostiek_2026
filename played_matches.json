@@ -5,6 +5,8 @@
     "uit": "South Africa",
     "goalsThuis": 2,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -13,6 +15,8 @@
     "uit": "Czechia",
     "goalsThuis": 2,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -21,6 +25,8 @@
     "uit": "Bosnia-Herzegovina",
     "goalsThuis": 1,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -29,6 +35,8 @@
     "uit": "Paraguay",
     "goalsThuis": 4,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -37,6 +45,8 @@
     "uit": "Switzerland",
     "goalsThuis": 1,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -45,6 +55,8 @@
     "uit": "Morocco",
     "goalsThuis": 1,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -53,6 +65,8 @@
     "uit": "Scotland",
     "goalsThuis": 0,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -61,6 +75,8 @@
     "uit": "Turkey",
     "goalsThuis": 2,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -69,6 +85,8 @@
     "uit": "Curaçao",
     "goalsThuis": 7,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -77,6 +95,8 @@
     "uit": "Japan",
     "goalsThuis": 2,
     "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -85,6 +105,8 @@
     "uit": "Ecuador",
     "goalsThuis": 1,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -93,6 +115,8 @@
     "uit": "Tunisia",
     "goalsThuis": 5,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -101,6 +125,8 @@
     "uit": "Cape Verde Islands",
     "goalsThuis": 0,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -109,6 +135,8 @@
     "uit": "Egypt",
     "goalsThuis": 1,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -117,6 +145,8 @@
     "uit": "Uruguay",
     "goalsThuis": 1,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -125,6 +155,8 @@
     "uit": "New Zealand",
     "goalsThuis": 2,
     "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -133,6 +165,8 @@
     "uit": "Senegal",
     "goalsThuis": 3,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -141,6 +175,8 @@
     "uit": "Norway",
     "goalsThuis": 1,
     "goalsUit": 4,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -149,6 +185,8 @@
     "uit": "Algeria",
     "goalsThuis": 3,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -157,6 +195,8 @@
     "uit": "Jordan",
     "goalsThuis": 3,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -165,6 +205,8 @@
     "uit": "Congo DR",
     "goalsThuis": 1,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -173,6 +215,8 @@
     "uit": "Croatia",
     "goalsThuis": 4,
     "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -181,6 +225,8 @@
     "uit": "Panama",
     "goalsThuis": 1,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -189,6 +235,8 @@
     "uit": "Colombia",
     "goalsThuis": 1,
     "goalsUit": 3,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -197,6 +245,8 @@
     "uit": "South Africa",
     "goalsThuis": 1,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -205,6 +255,8 @@
     "uit": "Bosnia-Herzegovina",
     "goalsThuis": 4,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -213,6 +265,8 @@
     "uit": "Qatar",
     "goalsThuis": 6,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -221,6 +275,8 @@
     "uit": "South Korea",
     "goalsThuis": 1,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -229,6 +285,8 @@
     "uit": "Australia",
     "goalsThuis": 2,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -237,6 +295,8 @@
     "uit": "Morocco",
     "goalsThuis": 0,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -245,6 +305,8 @@
     "uit": "Haiti",
     "goalsThuis": 3,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -253,6 +315,8 @@
     "uit": "Paraguay",
     "goalsThuis": 0,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -261,6 +325,8 @@
     "uit": "Sweden",
     "goalsThuis": 5,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -269,6 +335,8 @@
     "uit": "Ivory Coast",
     "goalsThuis": 2,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -277,6 +345,8 @@
     "uit": "Curaçao",
     "goalsThuis": 0,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -285,6 +355,8 @@
     "uit": "Japan",
     "goalsThuis": 0,
     "goalsUit": 4,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -293,6 +365,8 @@
     "uit": "Saudi Arabia",
     "goalsThuis": 4,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -301,6 +375,8 @@
     "uit": "Iran",
     "goalsThuis": 0,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -309,6 +385,8 @@
     "uit": "Cape Verde Islands",
     "goalsThuis": 2,
     "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -317,6 +395,8 @@
     "uit": "Egypt",
     "goalsThuis": 1,
     "goalsUit": 3,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -325,6 +405,8 @@
     "uit": "Austria",
     "goalsThuis": 2,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -333,6 +415,8 @@
     "uit": "Iraq",
     "goalsThuis": 3,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -341,6 +425,8 @@
     "uit": "Senegal",
     "goalsThuis": 3,
     "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -349,6 +435,8 @@
     "uit": "Algeria",
     "goalsThuis": 1,
     "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -357,6 +445,8 @@
     "uit": "Uzbekistan",
     "goalsThuis": 5,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -365,6 +455,8 @@
     "uit": "Ghana",
     "goalsThuis": 0,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -373,6 +465,8 @@
     "uit": "Croatia",
     "goalsThuis": 0,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -381,6 +475,8 @@
     "uit": "Congo DR",
     "goalsThuis": 1,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -389,6 +485,8 @@
     "uit": "Canada",
     "goalsThuis": 2,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -397,6 +495,8 @@
     "uit": "Qatar",
     "goalsThuis": 3,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -405,6 +505,8 @@
     "uit": "Haiti",
     "goalsThuis": 4,
     "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -413,6 +515,8 @@
     "uit": "Brazil",
     "goalsThuis": 0,
     "goalsUit": 3,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -421,6 +525,8 @@
     "uit": "Mexico",
     "goalsThuis": 0,
     "goalsUit": 3,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -429,6 +535,8 @@
     "uit": "South Korea",
     "goalsThuis": 1,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -437,6 +545,8 @@
     "uit": "Germany",
     "goalsThuis": 2,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -445,6 +555,8 @@
     "uit": "Ivory Coast",
     "goalsThuis": 0,
     "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -453,6 +565,8 @@
     "uit": "Netherlands",
     "goalsThuis": 1,
     "goalsUit": 3,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -461,6 +575,8 @@
     "uit": "Sweden",
     "goalsThuis": 1,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -469,6 +585,8 @@
     "uit": "United States",
     "goalsThuis": 3,
     "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -477,6 +595,8 @@
     "uit": "Australia",
     "goalsThuis": 0,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -485,6 +605,8 @@
     "uit": "France",
     "goalsThuis": 1,
     "goalsUit": 4,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -493,6 +615,8 @@
     "uit": "Iraq",
     "goalsThuis": 5,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -501,6 +625,8 @@
     "uit": "Spain",
     "goalsThuis": 0,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -509,6 +635,8 @@
     "uit": "Saudi Arabia",
     "goalsThuis": 0,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -517,6 +645,8 @@
     "uit": "Belgium",
     "goalsThuis": 1,
     "goalsUit": 5,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -525,6 +655,8 @@
     "uit": "Iran",
     "goalsThuis": 1,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -533,6 +665,8 @@
     "uit": "England",
     "goalsThuis": 0,
     "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -541,6 +675,8 @@
     "uit": "Ghana",
     "goalsThuis": 2,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -549,6 +685,8 @@
     "uit": "Portugal",
     "goalsThuis": 0,
     "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -557,6 +695,8 @@
     "uit": "Uzbekistan",
     "goalsThuis": 3,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -565,6 +705,8 @@
     "uit": "Argentina",
     "goalsThuis": 1,
     "goalsUit": 3,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -573,6 +715,8 @@
     "uit": "Austria",
     "goalsThuis": 3,
     "goalsUit": 3,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "GROUP_STAGE"
   },
   {
@@ -581,6 +725,8 @@
     "uit": "Canada",
     "goalsThuis": 0,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "LAST_32"
   },
   {
@@ -589,22 +735,28 @@
     "uit": "Japan",
     "goalsThuis": 2,
     "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
     "stage": "LAST_32"
   },
   {
     "date": "2026-06-29T20:30:00Z",
     "thuis": "Germany",
     "uit": "Paraguay",
-    "goalsThuis": 4,
-    "goalsUit": 5,
+    "goalsThuis": 1,
+    "goalsUit": 1,
+    "penaltiesThuis": 3,
+    "penaltiesUit": 4,
     "stage": "LAST_32"
   },
   {
     "date": "2026-06-30T01:00:00Z",
     "thuis": "Netherlands",
     "uit": "Morocco",
-    "goalsThuis": 3,
-    "goalsUit": 4,
+    "goalsThuis": 1,
+    "goalsUit": 1,
+    "penaltiesThuis": 2,
+    "penaltiesUit": 3,
     "stage": "LAST_32"
   }
 ]
