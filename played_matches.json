@@ -758,5 +758,15 @@
     "penaltiesThuis": 2,
     "penaltiesUit": 3,
     "stage": "LAST_32"
+  },
+  {
+    "date": "2026-06-30T17:00:00Z",
+    "thuis": "Ivory Coast",
+    "uit": "Norway",
+    "goalsThuis": 1,
+    "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
   }
 ]
