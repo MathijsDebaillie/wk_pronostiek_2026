@@ -1,17 +1,5 @@
 [
   {
-    "date": "2026-06-29T20:30:00Z",
-    "homeTeam": "Germany",
-    "awayTeam": "Paraguay",
-    "stage": "LAST_32"
-  },
-  {
-    "date": "2026-06-30T01:00:00Z",
-    "homeTeam": "Netherlands",
-    "awayTeam": "Morocco",
-    "stage": "LAST_32"
-  },
-  {
     "date": "2026-06-30T17:00:00Z",
     "homeTeam": "Ivory Coast",
     "awayTeam": "Norway",
@@ -86,18 +74,18 @@
   {
     "date": "2026-07-04T17:00:00Z",
     "homeTeam": "Canada",
-    "awayTeam": "TBD",
+    "awayTeam": "Morocco",
     "stage": "LAST_16"
   },
   {
     "date": "2026-07-04T21:00:00Z",
-    "homeTeam": "TBD",
+    "homeTeam": "Paraguay",
     "awayTeam": "TBD",
     "stage": "LAST_16"
   },
   {
     "date": "2026-07-05T20:00:00Z",
-    "homeTeam": "TBD",
+    "homeTeam": "Brazil",
     "awayTeam": "TBD",
     "stage": "LAST_16"
   },
