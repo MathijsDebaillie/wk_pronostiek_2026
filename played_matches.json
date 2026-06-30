@@ -768,5 +768,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "LAST_32"
+  },
+  {
+    "date": "2026-06-30T21:00:00Z",
+    "thuis": "France",
+    "uit": "Sweden",
+    "goalsThuis": 3,
+    "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
   }
 ]
