@@ -66,6 +66,23 @@ async function fetchSchedule() {
             let homeScore = match.score?.fullTime?.home ?? match.score?.regularTime?.home;
             let awayScore = match.score?.fullTime?.away ?? match.score?.regularTime?.away;
 
+            let pensHome = null;
+            let pensAway = null;
+
+            if (match.score?.duration === 'PENALTY_SHOOTOUT' && match.score?.penalties) {
+                pensHome = match.score.penalties.home;
+                pensAway = match.score.penalties.away;
+                
+                // Football-data.org v4 API can sometimes include penalties in the fullTime score
+                // We subtract them here to get the score after 120 minutes.
+                if (homeScore !== null && pensHome !== null && homeScore >= pensHome) {
+                    homeScore -= pensHome;
+                }
+                if (awayScore !== null && pensAway !== null && awayScore >= pensAway) {
+                    awayScore -= pensAway;
+                }
+            }
+
             // Als er null doorkomt, proberen we de score uit de reeds opgeslagen json te halen (zodat we hem niet "veranderen" naar 0)
             if (homeScore === null || awayScore === null || homeScore === undefined || awayScore === undefined) {
                 const existingMatch = existingPlayedMatches.find(
@@ -74,6 +91,10 @@ async function fetchSchedule() {
                 if (existingMatch) {
                     homeScore = existingMatch.goalsThuis;
                     awayScore = existingMatch.goalsUit;
+                    if (existingMatch.penaltiesThuis !== undefined) {
+                        pensHome = existingMatch.penaltiesThuis;
+                        pensAway = existingMatch.penaltiesUit;
+                    }
                 } else {
                     homeScore = 0;
                     awayScore = 0;
@@ -86,6 +107,8 @@ async function fetchSchedule() {
                 uit: match.awayTeam?.name || 'Onbekend',
                 goalsThuis: homeScore,
                 goalsUit: awayScore,
+                penaltiesThuis: pensHome,
+                penaltiesUit: pensAway,
                 stage: match.stage
             };
         });
