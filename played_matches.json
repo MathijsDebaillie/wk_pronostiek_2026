@@ -798,5 +798,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-01T20:00:00Z",
+    "thuis": "Belgium",
+    "uit": "Senegal",
+    "goalsThuis": 3,
+    "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
   }
 ]
