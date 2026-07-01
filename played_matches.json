@@ -778,5 +778,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-01T01:00:00Z",
+    "thuis": "Mexico",
+    "uit": "Ecuador",
+    "goalsThuis": 2,
+    "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
   }
 ]
