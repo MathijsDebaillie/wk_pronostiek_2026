@@ -808,5 +808,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-02T00:00:00Z",
+    "thuis": "United States",
+    "uit": "Bosnia-Herzegovina",
+    "goalsThuis": 2,
+    "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
   }
 ]
