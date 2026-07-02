@@ -818,5 +818,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-02T19:00:00Z",
+    "thuis": "Spain",
+    "uit": "Austria",
+    "goalsThuis": 3,
+    "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
   }
 ]
