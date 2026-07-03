@@ -828,5 +828,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-02T23:00:00Z",
+    "thuis": "Portugal",
+    "uit": "Croatia",
+    "goalsThuis": 2,
+    "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
   }
 ]
