@@ -838,5 +838,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-03T03:00:00Z",
+    "thuis": "Switzerland",
+    "uit": "Algeria",
+    "goalsThuis": 2,
+    "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
   }
 ]
