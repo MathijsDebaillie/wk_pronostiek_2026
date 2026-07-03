@@ -848,5 +848,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-03T18:00:00Z",
+    "thuis": "Australia",
+    "uit": "Egypt",
+    "goalsThuis": 3,
+    "goalsUit": 1,
+    "penaltiesThuis": 4,
+    "penaltiesUit": 4,
+    "stage": "LAST_32"
   }
 ]
