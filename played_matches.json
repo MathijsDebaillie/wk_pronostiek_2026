@@ -888,5 +888,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "LAST_16"
+  },
+  {
+    "date": "2026-07-04T21:00:00Z",
+    "thuis": "Paraguay",
+    "uit": "France",
+    "goalsThuis": 0,
+    "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_16"
   }
 ]
