@@ -858,5 +858,15 @@
     "penaltiesThuis": 4,
     "penaltiesUit": 4,
     "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-03T22:00:00Z",
+    "thuis": "Argentina",
+    "uit": "Cape Verde Islands",
+    "goalsThuis": 3,
+    "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
   }
 ]
