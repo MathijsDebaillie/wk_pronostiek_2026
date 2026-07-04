@@ -868,5 +868,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-04T01:30:00Z",
+    "thuis": "Colombia",
+    "uit": "Ghana",
+    "goalsThuis": 1,
+    "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
   }
 ]
