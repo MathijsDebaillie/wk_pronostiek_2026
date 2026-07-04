@@ -878,5 +878,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-04T17:00:00Z",
+    "thuis": "Canada",
+    "uit": "Morocco",
+    "goalsThuis": 0,
+    "goalsUit": 3,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_16"
   }
 ]
