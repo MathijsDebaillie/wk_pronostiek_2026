@@ -898,5 +898,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "LAST_16"
+  },
+  {
+    "date": "2026-07-05T20:00:00Z",
+    "thuis": "Brazil",
+    "uit": "Norway",
+    "goalsThuis": 1,
+    "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_16"
   }
 ]
