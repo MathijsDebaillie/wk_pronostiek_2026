@@ -758,5 +758,195 @@
     "penaltiesThuis": 2,
     "penaltiesUit": 3,
     "stage": "LAST_32"
+  },
+  {
+    "date": "2026-06-30T17:00:00Z",
+    "thuis": "Ivory Coast",
+    "uit": "Norway",
+    "goalsThuis": 1,
+    "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
+  },
+  {
+    "date": "2026-06-30T21:00:00Z",
+    "thuis": "France",
+    "uit": "Sweden",
+    "goalsThuis": 3,
+    "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-01T02:00:00Z",
+    "thuis": "Mexico",
+    "uit": "Ecuador",
+    "goalsThuis": 2,
+    "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-01T16:00:00Z",
+    "thuis": "England",
+    "uit": "Congo DR",
+    "goalsThuis": 2,
+    "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-01T20:00:00Z",
+    "thuis": "Belgium",
+    "uit": "Senegal",
+    "goalsThuis": 3,
+    "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-02T00:00:00Z",
+    "thuis": "United States",
+    "uit": "Bosnia-Herzegovina",
+    "goalsThuis": 2,
+    "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-02T19:00:00Z",
+    "thuis": "Spain",
+    "uit": "Austria",
+    "goalsThuis": 3,
+    "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-02T23:00:00Z",
+    "thuis": "Portugal",
+    "uit": "Croatia",
+    "goalsThuis": 2,
+    "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-03T03:00:00Z",
+    "thuis": "Switzerland",
+    "uit": "Algeria",
+    "goalsThuis": 2,
+    "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-03T18:00:00Z",
+    "thuis": "Australia",
+    "uit": "Egypt",
+    "goalsThuis": 1,
+    "goalsUit": 1,
+    "penaltiesThuis": 2,
+    "penaltiesUit": 4,
+    "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-03T22:00:00Z",
+    "thuis": "Argentina",
+    "uit": "Cape Verde Islands",
+    "goalsThuis": 3,
+    "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-04T01:30:00Z",
+    "thuis": "Colombia",
+    "uit": "Ghana",
+    "goalsThuis": 1,
+    "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_32"
+  },
+  {
+    "date": "2026-07-04T17:00:00Z",
+    "thuis": "Canada",
+    "uit": "Morocco",
+    "goalsThuis": 0,
+    "goalsUit": 3,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_16"
+  },
+  {
+    "date": "2026-07-04T21:00:00Z",
+    "thuis": "Paraguay",
+    "uit": "France",
+    "goalsThuis": 0,
+    "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_16"
+  },
+  {
+    "date": "2026-07-05T20:00:00Z",
+    "thuis": "Brazil",
+    "uit": "Norway",
+    "goalsThuis": 1,
+    "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_16"
+  },
+  {
+    "date": "2026-07-06T01:00:00Z",
+    "thuis": "Mexico",
+    "uit": "England",
+    "goalsThuis": 2,
+    "goalsUit": 3,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_16"
+  },
+  {
+    "date": "2026-07-06T19:00:00Z",
+    "thuis": "Portugal",
+    "uit": "Spain",
+    "goalsThuis": 0,
+    "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_16"
+  },
+  {
+    "date": "2026-07-07T00:00:00Z",
+    "thuis": "United States",
+    "uit": "Belgium",
+    "goalsThuis": 1,
+    "goalsUit": 4,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_16"
+  },
+  {
+    "date": "2026-07-07T16:00:00Z",
+    "thuis": "Argentina",
+    "uit": "Egypt",
+    "goalsThuis": 3,
+    "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_16"
   }
 ]
