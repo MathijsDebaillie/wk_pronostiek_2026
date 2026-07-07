@@ -928,5 +928,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "LAST_16"
+  },
+  {
+    "date": "2026-07-07T00:00:00Z",
+    "thuis": "United States",
+    "uit": "Belgium",
+    "goalsThuis": 1,
+    "goalsUit": 4,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_16"
   }
 ]
