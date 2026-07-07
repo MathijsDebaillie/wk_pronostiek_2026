@@ -489,25 +489,29 @@
         let aquafinData = [];
         let roundHistoriesData = [];
 
+        function formatRoundName(roundNumber) {
+            if (roundNumber <= 3) return `Ronde ${roundNumber}`;
+            if (roundNumber === 4) return "16de finales";
+            if (roundNumber === 5) return "8ste finales";
+            if (roundNumber === 6) return "Kwartfinales";
+            if (roundNumber === 7) return "Halve finales";
+            if (roundNumber === 8) return "Finales";
+            return `Ronde ${roundNumber}`;
+        }
+
         function calculateRoundHistories() {
             roundHistoriesData = [];
             if (!matches || matches.length === 0) return;
 
             const sortedMatches = [...matches].sort((a, b) => new Date(a.date) - new Date(b.date));
-            let teamPlayCounts = {};
             let currentRoundTarget = 1;
             let processedMatches = [];
-            const TOTAL_TEAMS = 48; // Total teams in WK 2026
+            const roundBoundaries = [24, 48, 72, 88, 96, 100, 102, 104];
 
             sortedMatches.forEach(match => {
                 processedMatches.push(match);
-                teamPlayCounts[match.thuis] = (teamPlayCounts[match.thuis] || 0) + 1;
-                teamPlayCounts[match.uit] = (teamPlayCounts[match.uit] || 0) + 1;
 
-                const counts = Object.values(teamPlayCounts);
-                
-                // A round ends when ALL 48 teams have played at least currentRoundTarget times
-                if (counts.length >= TOTAL_TEAMS && counts.every(c => c >= currentRoundTarget)) {
+                if (currentRoundTarget <= roundBoundaries.length && processedMatches.length === roundBoundaries[currentRoundTarget - 1]) {
                     // Calculate leaderboard at this point
                     const historyData = calculateLeaderboard(participants, processedMatches);
                     
@@ -575,7 +579,7 @@
             roundHistoriesData.forEach(history => {
                 html += `
                     <tr class="hover:bg-slate-50 transition-colors">
-                        <td class="py-3 px-4 text-center font-bold text-slate-700 bg-slate-50 border-r border-slate-100 w-24">Ronde ${history.round}</td>
+                        <td class="py-3 px-4 text-center font-bold text-slate-700 bg-slate-50 border-r border-slate-100 w-24">${formatRoundName(history.round)}</td>
                         <td class="py-3 px-4 text-center">
                             <div class="font-bold text-blue-800">${history.leider.naam}</div>
                             <div class="text-[10px] font-bold text-blue-700 bg-blue-100/60 rounded-full px-2 py-0.5 inline-block mt-0.5 border border-blue-200 whitespace-nowrap">${history.leider.score} pt</div>
@@ -974,7 +978,7 @@
                     roundHeader.innerHTML = `
                         <button onclick="toggleAccordion('${roundContainerId}', '${roundIconId}')" class="w-full px-4 py-3 flex justify-between items-center bg-indigo-50 border border-indigo-100 rounded-lg hover:bg-indigo-100 transition-colors shadow-sm">
                             <h3 class="font-bold text-indigo-900 flex items-center">
-                                <span>Ronde ${round}</span>
+                                <span>${formatRoundName(round)}</span>
                                 <span class="ml-2 text-xs font-semibold bg-white text-indigo-700 px-2 py-0.5 rounded-full border border-indigo-200 shadow-sm">${roundMatches.length} ${roundMatches.length === 1 ? 'match' : 'matchen'}</span>
                             </h3>
                             <span id="${roundIconId}" class="transform transition-transform duration-200 text-indigo-500 ${isLastRound ? 'rotate-180' : ''}">▼</span>
@@ -1248,6 +1252,59 @@
             allKoMatches.forEach(m => {
                 if(grouped[m.stage]) grouped[m.stage].push(m);
             });
+
+            // Build tree backwards to ensure visual alignment matches actual knock-out paths
+            const stagesKo = ['FINAL', 'SEMI_FINALS', 'QUARTER_FINALS', 'LAST_16', 'LAST_32'];
+            
+            for (let i = 0; i < stagesKo.length - 1; i++) {
+                const currentStage = stagesKo[i];
+                const prevStage = stagesKo[i+1];
+                
+                if (!grouped[currentStage] || !grouped[prevStage] || grouped[currentStage].length === 0) continue;
+                
+                let newPrevStageOrder = [];
+                let unassignedPrevMatches = [...grouped[prevStage]];
+                
+                grouped[currentStage].forEach(currentMatch => {
+                    // Match feeding the home team
+                    let homeMatch = null;
+                    if (currentMatch.thuis && currentMatch.thuis !== 'TBD') {
+                        homeMatch = unassignedPrevMatches.find(m => m.thuis === currentMatch.thuis || m.uit === currentMatch.thuis);
+                    }
+                    if (homeMatch) {
+                        unassignedPrevMatches = unassignedPrevMatches.filter(m => m !== homeMatch);
+                        newPrevStageOrder.push(homeMatch);
+                    } else {
+                        newPrevStageOrder.push(null);
+                    }
+
+                    // Match feeding the away team
+                    let awayMatch = null;
+                    if (currentMatch.uit && currentMatch.uit !== 'TBD') {
+                        awayMatch = unassignedPrevMatches.find(m => m.thuis === currentMatch.uit || m.uit === currentMatch.uit);
+                    }
+                    if (awayMatch) {
+                        unassignedPrevMatches = unassignedPrevMatches.filter(m => m !== awayMatch);
+                        newPrevStageOrder.push(awayMatch);
+                    } else {
+                        newPrevStageOrder.push(null);
+                    }
+                });
+                
+                // Fill placeholders with remaining unassigned matches chronologically
+                for (let j = 0; j < newPrevStageOrder.length; j++) {
+                    if (newPrevStageOrder[j] === null) {
+                        newPrevStageOrder[j] = unassignedPrevMatches.shift();
+                    }
+                }
+                
+                // Append any leftovers (should be empty in a normal complete bracket)
+                unassignedPrevMatches.forEach(m => {
+                    if (m) newPrevStageOrder.push(m);
+                });
+                
+                grouped[prevStage] = newPrevStageOrder.filter(m => m !== undefined);
+            }
 
             // Render columns
             let html = '';
