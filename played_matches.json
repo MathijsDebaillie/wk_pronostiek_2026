@@ -938,5 +938,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "LAST_16"
+  },
+  {
+    "date": "2026-07-07T16:00:00Z",
+    "thuis": "Argentina",
+    "uit": "Egypt",
+    "goalsThuis": 3,
+    "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "LAST_16"
   }
 ]
