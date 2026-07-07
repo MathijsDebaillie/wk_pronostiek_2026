@@ -948,5 +948,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "LAST_16"
+  },
+  {
+    "date": "2026-07-07T20:00:00Z",
+    "thuis": "Switzerland",
+    "uit": "Colombia",
+    "goalsThuis": 0,
+    "goalsUit": 0,
+    "penaltiesThuis": 2,
+    "penaltiesUit": 2,
+    "stage": "LAST_16"
   }
 ]
