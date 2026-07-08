@@ -953,9 +953,9 @@
     "date": "2026-07-07T20:00:00Z",
     "thuis": "Switzerland",
     "uit": "Colombia",
-    "goalsThuis": 1,
+    "goalsThuis": 0,
     "goalsUit": 0,
-    "penaltiesThuis": 3,
+    "penaltiesThuis": 4,
     "penaltiesUit": 3,
     "stage": "LAST_16"
   }
