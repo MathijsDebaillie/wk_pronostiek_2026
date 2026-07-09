@@ -958,5 +958,15 @@
     "penaltiesThuis": 4,
     "penaltiesUit": 3,
     "stage": "LAST_16"
+  },
+  {
+    "date": "2026-07-09T20:00:00Z",
+    "thuis": "France",
+    "uit": "Morocco",
+    "goalsThuis": 2,
+    "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "QUARTER_FINALS"
   }
 ]
