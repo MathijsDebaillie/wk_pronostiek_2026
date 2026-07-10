@@ -968,5 +968,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "QUARTER_FINALS"
+  },
+  {
+    "date": "2026-07-10T19:00:00Z",
+    "thuis": "Spain",
+    "uit": "Belgium",
+    "goalsThuis": 2,
+    "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "QUARTER_FINALS"
   }
 ]
