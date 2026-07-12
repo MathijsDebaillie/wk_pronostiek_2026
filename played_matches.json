@@ -978,5 +978,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "QUARTER_FINALS"
+  },
+  {
+    "date": "2026-07-12T01:00:00Z",
+    "thuis": "Argentina",
+    "uit": "Switzerland",
+    "goalsThuis": 3,
+    "goalsUit": 1,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "QUARTER_FINALS"
   }
 ]
