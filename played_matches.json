@@ -968,5 +968,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "QUARTER_FINALS"
+  },
+  {
+    "date": "2026-07-11T21:00:00Z",
+    "thuis": "Norway",
+    "uit": "England",
+    "goalsThuis": 1,
+    "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "QUARTER_FINALS"
   }
 ]
