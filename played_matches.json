@@ -1008,5 +1008,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "SEMI_FINALS"
+  },
+  {
+    "date": "2026-07-15T19:00:00Z",
+    "thuis": "England",
+    "uit": "Argentina",
+    "goalsThuis": 1,
+    "goalsUit": 2,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "SEMI_FINALS"
   }
 ]
