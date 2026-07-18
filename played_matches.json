@@ -1018,5 +1018,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "SEMI_FINALS"
+  },
+  {
+    "date": "2026-07-18T21:00:00Z",
+    "thuis": "France",
+    "uit": "England",
+    "goalsThuis": 4,
+    "goalsUit": 6,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "THIRD_PLACE"
   }
 ]
