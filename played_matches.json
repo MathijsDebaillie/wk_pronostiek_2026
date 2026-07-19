@@ -1028,5 +1028,15 @@
     "penaltiesThuis": null,
     "penaltiesUit": null,
     "stage": "THIRD_PLACE"
+  },
+  {
+    "date": "2026-07-19T19:00:00Z",
+    "thuis": "Spain",
+    "uit": "Argentina",
+    "goalsThuis": 1,
+    "goalsUit": 0,
+    "penaltiesThuis": null,
+    "penaltiesUit": null,
+    "stage": "FINAL"
   }
 ]
