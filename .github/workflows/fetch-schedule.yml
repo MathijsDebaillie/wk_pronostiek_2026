@@ -1,8 +1,6 @@
 name: Fetch World Cup Schedule
 
 on:
-  schedule:
-    - cron: "*/30 * * * *"
   workflow_dispatch:
 
 jobs:
